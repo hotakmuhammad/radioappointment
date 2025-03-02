@@ -1,0 +1,44 @@
+# Ignore Composer dependencies
+vendor/
+
+# Ignore environment configuration
+.env
+.env.local
+.env.*.local
+
+# Ignore IDE/editor settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore logs and cache
+*.log
+logs/
+storage/
+cache/
+debug.log
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore build and deployment files
+/node_modules/
+npm-debug.log
+package-lock.json
+dist/
+public/build/
+
+# Ignore PHPUnit test results
+phpunit.xml
+phpunit.xml.dist
+coverage/
+
+# Ignore temporary or upload folders
+uploads/
+tmp/
+
+
+# Other files to be ignored
+MCD.drawio
