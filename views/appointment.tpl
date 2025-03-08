@@ -5,6 +5,7 @@
 {include file="views/_partiel/header.tpl"}
 
 
-<a class="" href="{$base_url}user/login">Login</a>
-    <h1>Appoitment / index Page</h1>
+{* <a class="" href="{$base_url}user/login">Login</a> *}
+
+    <h1>Appointment form</h1>
 {/block}

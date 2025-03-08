@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-03-05 20:14:50
+/* Smarty version 4.3.4, created on 2025-03-08 21:05:30
   from 'C:\wamp64\www\radioappointment\views\appointment.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_67c8b0ba87dd50_67216772',
+  'unifunc' => 'content_67ccb11aab13e6_25346323',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8c7d06f9f18a019297922be03260864f1251b6f0' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\appointment.tpl',
-      1 => 1741205688,
+      1 => 1741452791,
       2 => 'file',
     ),
   ),
@@ -21,23 +21,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:views/_partiel/header.tpl' => 1,
   ),
 ),false)) {
-function content_67c8b0ba87dd50_67216772 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67ccb11aab13e6_25346323 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_144149437267c8b0ba876f15_50388287', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_30964105967ccb11aaaf712_25789634', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_144149437267c8b0ba876f15_50388287 extends Smarty_Internal_Block
+class Block_30964105967ccb11aaaf712_25789634 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_144149437267c8b0ba876f15_50388287',
+    0 => 'Block_30964105967ccb11aaaf712_25789634',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -48,9 +48,8 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 
-<a class="" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
-user/login">Login</a>
-    <h1>Appoitment / index Page</h1>
+
+    <h1>Appointment form</h1>
 <?php
 }
 }

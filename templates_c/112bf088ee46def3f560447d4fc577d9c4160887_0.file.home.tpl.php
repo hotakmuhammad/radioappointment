@@ -1,52 +1,55 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-03-05 19:53:15
+/* Smarty version 4.3.4, created on 2025-03-06 21:53:46
   from 'C:\wamp64\www\radioappointment\views\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_67c8abab3eebd7_64498968',
+  'unifunc' => 'content_67ca196aa2ce40_66350125',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '112bf088ee46def3f560447d4fc577d9c4160887' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\home.tpl',
-      1 => 1741204394,
+      1 => 1741296192,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
-    'file:views/appointment.tpl' => 1,
   ),
 ),false)) {
-function content_67c8abab3eebd7_64498968 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67ca196aa2ce40_66350125 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_127580027667c8abab3ec9f0_50382496', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_64247397567ca196aa18a61_70234418', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_127580027667c8abab3ec9f0_50382496 extends Smarty_Internal_Block
+class Block_64247397567ca196aa18a61_70234418 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_127580027667c8abab3ec9f0_50382496',
+    0 => 'Block_64247397567ca196aa18a61_70234418',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
     
-    <?php $_smarty_tpl->_subTemplateRender("file:views/appointment.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?>
-    
+    <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+page/appointment">Prendre un rendez-vous</a></button>
+    <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+page/about">Page à propos</a></button>
+
+    <h1>Accueil + Appointment</h1>
+        
 <?php
 }
 }
