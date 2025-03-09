@@ -8,19 +8,7 @@ include_once("entities/user_entity.php");
 
 class UserCtrl extends Ctrl {
 
-    public function login() {
-
-        $this->_arrData["strPage"] = "login";
-
-        $this->_arrData["strTitle"] = "Login";
-
-        $this->_arrData["strDesc"] = "Page de connexion";
-
-        $this->displayTemplate("login");
-
-	}
-
-
+    
     public function registration() {
 
         $objUser = new User();
@@ -34,7 +22,7 @@ class UserCtrl extends Ctrl {
                 //$objUser->setPwd(password_hash($objUser->getPwd(), PASSWORD_DEFAULT));
                 $objUserModel	= new UserModel;
                 if ($objUserModel->registration($objUser)){
-                    header("Location:".parent::BASE_URL."user/login");
+                    header("Location:".parent::BASE_URL."page/appointment");
                 }else{
                     $this->_arrErrors[] = "L'insertion s'est mal passée";
                 }
@@ -75,6 +63,39 @@ class UserCtrl extends Ctrl {
 			}
 			return $arrErrors;
     }
+
+    public function login() {
+
+        $this->_arrErrors = array();
+
+        $strEmail 	= $_POST['email']??"";
+        $strPassword 	= $_POST['password']??"";
+
+        if(count($_POST) > 0) {
+            $objUserModel = new UserModel;
+            $arrUser = $objUserModel->searchUser($strEmail, $strPassword);
+
+            if($arrUser === false) {
+                $this->_arrErrors[] = "Erreur de connexion";
+
+				}else{
+					
+				$_SESSION['user'] = $arrUser;
+                header("Location:".parent::BASE_URL."page/appointment");
+            }
+        }
+
+
+
+        $this->_arrData["strPage"] = "login";
+
+        $this->_arrData["strTitle"] = "Login";
+
+        $this->_arrData["strDesc"] = "Page de connexion";
+        $this->_arrData["email"]	= $strEmail;
+        $this->displayTemplate("login");
+
+	}
     
     public function logout() {
 

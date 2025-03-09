@@ -31,7 +31,7 @@
 
 
         <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" value="{$objUser->getEmail()}">
+        <input type="email" placeholder="Enter Email" name="email" value="{$objUser->getEmail()}">
 
 
         <label for="phone"><b>Phone</b></label>
@@ -57,6 +57,7 @@
         {* <input type="button" value="Annuler"> *}
     </div>
     <div>
+    Sqaan@444$hello124578
         <input type="submit" value="Creer compte">
 
   </div>

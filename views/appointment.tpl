@@ -2,6 +2,7 @@
 
 {block name="contenu"}
 
+
 {include file="views/_partiel/header.tpl"}
 
 

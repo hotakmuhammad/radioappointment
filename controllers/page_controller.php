@@ -91,5 +91,3 @@ class PageCtrl extends Ctrl {
 */
 
 }
-
-Sqaan@444$hello124578
