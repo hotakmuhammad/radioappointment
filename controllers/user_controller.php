@@ -99,6 +99,8 @@ class UserCtrl extends Ctrl {
     
     public function logout() {
 
+        session_destroy();
+        header("Location:".parent::BASE_URL);
     }
 
     public function edit_profile() {

@@ -9,7 +9,11 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password">
 
-        Sqaan@444$hello124578
+        <p>
+            me911khan@gmail.com </br>
+            Sqaan@444$hello124578
+        </p>
+
         <input type="submit" value="Connexion">
     </form>
 {/block}
