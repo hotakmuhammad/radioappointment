@@ -10,8 +10,8 @@
 		}
 
         public function registration(object $objUser) {
-            $strQuery = "INSERT INTO users (first_name, last_name, email, phone, password, profile_pic, registration_time)
-                        VALUES (:firstName, :lastName, :email, :phone, :password, :profilePic, NOW())";
+            $strQuery = "INSERT INTO users (first_name, last_name, email, phone, password, registration_time)
+                        VALUES (:firstName, :lastName, :email, :phone, :password,  NOW())";
 
             $rqPrep	= $this->_db->prepare($strQuery);
             $rqPrep->bindValue(':firstName', $objUser->getFirstName(), PDO::PARAM_STR);
@@ -25,7 +25,7 @@
 
         public function searchUser(string $strEmail, string $strPassword) {
 
-            $strQuery = "SELECT user_id, first_name, last_name, email, phone, password, profile_pic, registration_time
+            $strQuery = "SELECT user_id, first_name, last_name, email, phone, password, registration_time
                          FROM users
                          WHERE email = :email;
             ";

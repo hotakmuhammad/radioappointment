@@ -42,15 +42,15 @@
 
         <label for="psw-repeat"><b>Confirmez mot de passe</b></label>
         <input type="password" placeholder="Confirmation du mot de passe" name="confirm-password" >
-        
+        {* 
         <label>Profile picture </b></label>
-        {* <input type="image" > *}
+        <input type="image" > 
     
         {if $objUser->getProfilePic() != ""}
             <img src="uploads/{$objUser->getProfilePic()}">
         {/if}
         <input id="" type="file" accept="image/*" name="profilePic" value="">
-    
+    *}
     </div>
 
     <div>
