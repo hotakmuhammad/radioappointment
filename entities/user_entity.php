@@ -79,6 +79,7 @@ class User extends Entity{
     public function getPasswordHash() :string{
         return password_hash($this->_password, PASSWORD_DEFAULT);
     }
+/*
 
     // Getters and Setters Profile Pic
     public function getProfilePic() :string{
@@ -88,7 +89,7 @@ class User extends Entity{
     public function setProfilePic(string $strProfilePic){
         $this->_profilePic = $strProfilePic;
     }
-
+*/
     // Getters and Setters Registration Date
     public function getRegistrationDate() :string{
         return $this->_registrationTime;

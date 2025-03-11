@@ -19,7 +19,7 @@
             $rqPrep->bindValue(':email', $objUser->getEmail(), PDO::PARAM_STR);
             $rqPrep->bindValue(':phone', $objUser->getPhone(), PDO::PARAM_STR);
             $rqPrep->bindValue(':password', $objUser->getPasswordHash(), PDO::PARAM_STR);
-            $rqPrep->bindValue(':profilePic', $objUser->getProfilePic(), PDO::PARAM_STR);
+            
             return $rqPrep->execute();
         }
 
@@ -41,5 +41,19 @@
                 return $arrUser;
             }
             return false;
+        }
+
+        public function verifyEmail(string $strEmail):bool{
+            $strQuery = "SELECT email
+                        FROM users
+                        WHERE email = :email;
+                    ";
+            $rqPrep = $this->_db->prepare($strQuery);
+
+            $rqPrep->bindValue(":email", $strEmail, PDO::PARAM_STR);
+
+            $rqPrep->execute();
+            return is_array($rqPrep->fetch());
+
         }
     }

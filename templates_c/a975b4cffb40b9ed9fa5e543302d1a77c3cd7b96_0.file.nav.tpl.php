@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-03-10 21:02:52
+/* Smarty version 4.3.4, created on 2025-03-11 22:05:39
   from 'C:\wamp64\www\radioappointment\views\_partiel\nav.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_67cf537cb057a4_94852847',
+  'unifunc' => 'content_67d0b3b3950057_97848710',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a975b4cffb40b9ed9fa5e543302d1a77c3cd7b96' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\_partiel\\nav.tpl',
-      1 => 1741640569,
+      1 => 1741730738,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_67cf537cb057a4_94852847 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67d0b3b3950057_97848710 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="">
 
 	<nav class="mainNav flex">
@@ -29,15 +29,8 @@ function content_67cf537cb057a4_94852847 (Smarty_Internal_Template $_smarty_tpl)
 			<a class="buttonLink" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 ">Accueil</a>
 		</div>	
-		<div class="navbarItems m-5">
-			<a class="buttonLink" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
-user/registration">Registration</a>
+			
 
-		</div>	
-		<div class="navbarItems m-5">
-			<a class="buttonLink" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
-user/login">Login</a>
-		</div>	
 		<div class="navbarItems m-5">
 			<a class="buttonLink" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 appointment/home">Take an appointment</a>
@@ -47,7 +40,8 @@ appointment/home">Take an appointment</a>
 			<?php if ((isset($_smarty_tpl->tpl_vars['user']->value['user_id'])) && $_smarty_tpl->tpl_vars['user']->value['user_id'] != '') {?>
 
 				<div class="">
-					<a class="buttonLink" href="">Mes rendez-vous</a>
+					<a class="buttonLink" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+">Mes rendez-vous</a>
 				</div>
 
 				<div class="">
@@ -58,6 +52,17 @@ appointment/home">Take an appointment</a>
 				<div class="">
 					<a class="" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 user/logout"> se deconnecter </a>
+				</div>
+
+			<?php } else { ?>
+				<div class="navbarItems">
+					<a class="buttonLink" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+user/login">Login</a>
+				</div>	
+
+				<div class="navbarItems">
+					<a class="buttonLink" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+user/registration">Registration</a>
 				</div>
 			<?php }?>
 		</div>

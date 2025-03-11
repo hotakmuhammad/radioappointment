@@ -5,13 +5,8 @@
 		<div class="navbarItems m-5">
 			<a class="buttonLink" href="{$base_url}">Accueil</a>
 		</div>	
-		<div class="navbarItems m-5">
-			<a class="buttonLink" href="{$base_url}user/registration">Registration</a>
+			
 
-		</div>	
-		<div class="navbarItems m-5">
-			<a class="buttonLink" href="{$base_url}user/login">Login</a>
-		</div>	
 		<div class="navbarItems m-5">
 			<a class="buttonLink" href="{$base_url}appointment/home">Take an appointment</a>
 		</div>	
@@ -20,7 +15,7 @@
 			{if isset($user.user_id) && $user.user_id != ''}
 
 				<div class="">
-					<a class="buttonLink" href="">Mes rendez-vous</a>
+					<a class="buttonLink" href="{$base_url}">Mes rendez-vous</a>
 				</div>
 
 				<div class="">
@@ -29,6 +24,15 @@
 				</div>
 				<div class="">
 					<a class="" href="{$base_url}user/logout"> se deconnecter </a>
+				</div>
+
+			{else}
+				<div class="navbarItems">
+					<a class="buttonLink" href="{$base_url}user/login">Login</a>
+				</div>	
+
+				<div class="navbarItems">
+					<a class="buttonLink" href="{$base_url}user/registration">Registration</a>
 				</div>
 			{/if}
 		</div>

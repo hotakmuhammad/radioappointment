@@ -13,8 +13,11 @@ class UserCtrl extends Ctrl {
 
         $objUser = new User();
         if(count($_POST) > 0) {
-            
+            // var_dump($_POST); 
+            // exit();
             $objUser->hydrate($_POST);
+
+            $this->_arrErrors = $this->_verifyInfos($objUser);
 
             $this->_arrErrors = array_merge($this->_arrErrors, $this->_verifyPassword($objUser->getPassword()));
 
@@ -33,10 +36,7 @@ class UserCtrl extends Ctrl {
             $objUser->setEmail("");
             $objUser->setPhone("");
             $objUser->setPassword("");
-            $objUser->setProfilePic("");
-
-
-
+            
         }
 
         $this->_arrData["strPage"]     = "registration";
@@ -102,6 +102,48 @@ class UserCtrl extends Ctrl {
         session_destroy();
         header("Location:".parent::BASE_URL);
     }
+
+
+    private function _verifyInfos(object $objUser, $boolVerifyMail = true) {
+
+
+        $arrErrors = array();
+        if($objUser->getFirstName() == "") {
+            $arrErrors['firstName'] = "Le nom est obligatoire.";
+        }elseif(strlen($objUser->getFirstName()) < 3){
+            $arrErrors['firstName'] = "Le nom est trop court.";
+        }
+
+        if($objUser->getLastName() == "") {
+            $arrErrors['lastName'] = "Le prènom est obligatoire.";
+        }elseif(strlen($objUser->getLastName()) < 3){
+            $arrErrors['lastName'] = "Le prènom est trop court.";
+        }
+
+        if($objUser->getPhone() == "") {
+            $arrErrors['phone'] = "Le numéro du téléphone est obligatoire.";
+        }elseif(strlen($objUser->getPhone()) < 10){
+            $arrErrors['phone'] = "Le numéro du téléphone n'est pas bon.";
+        }
+
+        if($objUser->getEmail() == "") {
+            $arrErrors['email'] = "L'adress mail est obligatoire";
+        }elseif(!filter_var($objUser->getEmail(), FILTER_VALIDATE_EMAIL)){
+            $arrErrors['email'] = "Le mail n'est pas correct";
+        }elseif($boolVerifyMail) {
+            $objUserModel = new UserModel;
+
+            $boolMailExists = $objUserModel->verifyEmail($objUser->getEmail());
+
+            if ($boolMailExists === true){
+                $arrErrors['email'] = "Le mail est déjà utilisé";
+            }
+
+        }
+        return $arrErrors;
+    }
+
+
 
     public function edit_profile() {
 
