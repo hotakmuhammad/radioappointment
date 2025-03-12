@@ -1,5 +1,21 @@
 {extends file="views/layout.tpl"}
 {block name="contenu"}
+
+    {if (count($arrErrors) >0) }
+
+        <div class="">
+            <ul>
+
+                {foreach from=$arrErrors item=strError}
+
+                    <li>{$strError}</li>
+
+                {/foreach}
+            </ul>
+
+        </div>
+
+    {/if}
     <h1>Login Page</h1>
     <form action="{$base_url}user/login" method="post">
         <label for="email">Email:</label>
