@@ -22,7 +22,7 @@ class UserCtrl extends Ctrl {
             $this->_arrErrors = array_merge($this->_arrErrors, $this->_verifyPassword($objUser->getPassword()));
 
             if(count($this->_arrErrors) == 0){
-                //$objUser->setPwd(password_hash($objUser->getPwd(), PASSWORD_DEFAULT));
+                //$objUser->setPwd(password_hash($objUser->getPassword(), PASSWORD_DEFAULT));
                 $objUserModel	= new UserModel;
                 if ($objUserModel->registration($objUser)){
                     header("Location:".parent::BASE_URL."page/appointment");
@@ -47,23 +47,7 @@ class UserCtrl extends Ctrl {
         $this->_arrData["objUser"]		= $objUser;
         $this->displayTemplate("registration");
     }
-
-    private function _verifyPassword(string $strPassword) {
-
-        $arrErrors	= array();
-			$password_regex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{16,}$/"; 
-				
-			if ($strPassword == ""){
-				$arrErrors['password'] = "Le mot de passe est obligatoire";
-			}elseif(!preg_match($password_regex, $strPassword)){
-				$arrErrors['password'] = "Le mot de passe doit faire minimum 16 caractères 
-									et contenir une minuscule, une majuscule, un chiffre et un caractère";
-			}elseif ($strPassword != $_POST['confirm-password']){
-				$arrErrors['password'] = "Le mot de passe et sa confirmation doivent être identiques";
-			}
-			return $arrErrors;
-    }
-
+    
     public function login() {
 
         $this->_arrErrors = array();
@@ -96,14 +80,14 @@ class UserCtrl extends Ctrl {
         $this->displayTemplate("login");
 
 	}
+
     
     public function logout() {
 
         session_destroy();
         header("Location:".parent::BASE_URL);
     }
-
-
+    
     private function _verifyInfos(object $objUser, $boolVerifyMail = true) {
 
 
@@ -144,11 +128,21 @@ class UserCtrl extends Ctrl {
     }
 
 
+    private function _verifyPassword(string $strPassword) {
 
-    public function edit_profile() {
-
+        $arrErrors	= array();
+			$password_regex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{16,}$/"; 
+				
+			if ($strPassword == ""){
+				$arrErrors['password'] = "Le mot de passe est obligatoire";
+			}elseif(!preg_match($password_regex, $strPassword)){
+				$arrErrors['password'] = "Le mot de passe doit faire minimum 16 caractères 
+									et contenir une minuscule, une majuscule, un chiffre et un caractère";
+			}elseif ($strPassword != $_POST['confirm-password']){
+				$arrErrors['password'] = "Le mot de passe et sa confirmation doivent être identiques";
+			}
+			return $arrErrors;
     }
 
-
-
+    
 }

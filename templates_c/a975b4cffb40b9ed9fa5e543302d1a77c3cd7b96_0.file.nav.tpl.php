@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-03-11 22:05:39
+/* Smarty version 4.3.4, created on 2025-03-12 20:10:54
   from 'C:\wamp64\www\radioappointment\views\_partiel\nav.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_67d0b3b3950057_97848710',
+  'unifunc' => 'content_67d1ea4eb25a10_15550197',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a975b4cffb40b9ed9fa5e543302d1a77c3cd7b96' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\_partiel\\nav.tpl',
-      1 => 1741730738,
+      1 => 1741810248,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_67d0b3b3950057_97848710 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67d1ea4eb25a10_15550197 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="">
 
 	<nav class="mainNav flex">
@@ -52,6 +52,10 @@ appointment/home">Take an appointment</a>
 				<div class="">
 					<a class="" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 user/logout"> se deconnecter </a>
+				</div>
+				<div>
+					<a class="" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+user/edit_profile">Edit profile</a>
 				</div>
 
 			<?php } else { ?>

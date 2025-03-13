@@ -25,6 +25,9 @@
 				<div class="">
 					<a class="" href="{$base_url}user/logout"> se deconnecter </a>
 				</div>
+				<div>
+					<a class="" href="{$base_url}user/edit_profile">Edit profile</a>
+				</div>
 
 			{else}
 				<div class="navbarItems">

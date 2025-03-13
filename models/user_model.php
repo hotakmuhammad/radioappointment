@@ -9,18 +9,18 @@
 			parent::__construct();
 		}
 
-        public function registration(object $objUser) {
-            $strQuery = "INSERT INTO users (first_name, last_name, email, phone, password, registration_time)
-                        VALUES (:firstName, :lastName, :email, :phone, :password,  NOW())";
+        public function findAll(){
+			$strQuery 	= "SELECT user_id, first_name 
+							FROM users";
+			return $this->_db->query($strQuery)->fetchAll();
+		}
 
-            $rqPrep	= $this->_db->prepare($strQuery);
-            $rqPrep->bindValue(':firstName', $objUser->getFirstName(), PDO::PARAM_STR);
-            $rqPrep->bindValue(':lastName', $objUser->getLastName(), PDO::PARAM_STR);
-            $rqPrep->bindValue(':email', $objUser->getEmail(), PDO::PARAM_STR);
-            $rqPrep->bindValue(':phone', $objUser->getPhone(), PDO::PARAM_STR);
-            $rqPrep->bindValue(':password', $objUser->getPasswordHash(), PDO::PARAM_STR);
-            
-            return $rqPrep->execute();
+
+        public function get(int $id) {
+            $strQuery = "SELECT user_id, first_name, last_name, email, phone, password, registration_time
+                        From users
+                        WHERE user_id = ".$id;
+            return $this->_db->query($strQuery)->fetchAll();
         }
 
         public function searchUser(string $strEmail, string $strPassword) {
@@ -43,6 +43,7 @@
             return false;
         }
 
+
         public function verifyEmail(string $strEmail):bool{
             $strQuery = "SELECT email
                         FROM users
@@ -56,4 +57,20 @@
             return is_array($rqPrep->fetch());
 
         }
+
+        public function registration(object $objUser) {
+            $strQuery = "INSERT INTO users (first_name, last_name, email, phone, password, registration_time)
+                        VALUES (:firstName, :lastName, :email, :phone, :password,  NOW())";
+
+            $rqPrep	= $this->_db->prepare($strQuery);
+            $rqPrep->bindValue(':firstName', $objUser->getFirstName(), PDO::PARAM_STR);
+            $rqPrep->bindValue(':lastName', $objUser->getLastName(), PDO::PARAM_STR);
+            $rqPrep->bindValue(':email', $objUser->getEmail(), PDO::PARAM_STR);
+            $rqPrep->bindValue(':phone', $objUser->getPhone(), PDO::PARAM_STR);
+            $rqPrep->bindValue(':password', $objUser->getPasswordHash(), PDO::PARAM_STR);
+            
+            return $rqPrep->execute();
+        }
+
+        
     }

@@ -14,7 +14,7 @@ class User extends Entity{
     private string $_email;
     private string $_phone;
     private string $_password;
-    private string $_profilePic;
+
     private string $_registrationTime;
 
 
