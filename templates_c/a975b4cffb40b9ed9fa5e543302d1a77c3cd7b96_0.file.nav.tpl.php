@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-03-12 20:10:54
+/* Smarty version 4.3.4, created on 2025-03-14 23:22:44
   from 'C:\wamp64\www\radioappointment\views\_partiel\nav.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_67d1ea4eb25a10_15550197',
+  'unifunc' => 'content_67d4ba44833cd4_77702631',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a975b4cffb40b9ed9fa5e543302d1a77c3cd7b96' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\_partiel\\nav.tpl',
-      1 => 1741810248,
+      1 => 1741994556,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_67d1ea4eb25a10_15550197 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67d4ba44833cd4_77702631 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="">
 
 	<nav class="mainNav flex">
@@ -41,7 +41,7 @@ appointment/home">Take an appointment</a>
 
 				<div class="">
 					<a class="buttonLink" href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
-">Mes rendez-vous</a>
+page/appointment">Mes rendez-vous</a>
 				</div>
 
 				<div class="">

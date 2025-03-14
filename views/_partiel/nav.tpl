@@ -15,7 +15,7 @@
 			{if isset($user.user_id) && $user.user_id != ''}
 
 				<div class="">
-					<a class="buttonLink" href="{$base_url}">Mes rendez-vous</a>
+					<a class="buttonLink" href="{$base_url}page/appointment">Mes rendez-vous</a>
 				</div>
 
 				<div class="">
