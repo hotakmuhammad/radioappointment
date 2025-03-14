@@ -138,7 +138,7 @@ class UserCtrl extends Ctrl {
 			}elseif(!preg_match($password_regex, $strPassword)){
 				$arrErrors['password'] = "Le mot de passe doit faire minimum 16 caractères 
 									et contenir une minuscule, une majuscule, un chiffre et un caractère";
-			}elseif ($strPassword != $_POST['confirm-password']){
+			}elseif ($strPassword != $_POST['confirmPassword']){
 				$arrErrors['password'] = "Le mot de passe et sa confirmation doivent être identiques";
 			}
 			return $arrErrors;

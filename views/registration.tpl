@@ -46,7 +46,7 @@
             <input type="password" placeholder="Enter Password" id="password" name="password" >
 
             <label for="psw-repeat"><b>Confirmez mot de passe</b></label>
-            <input type="password" placeholder="Confirmation du mot de passe" id="confirm-password" name="confirm-password" >
+            <input type="password" placeholder="Confirmation du mot de passe" id="confirmPassword" name="confirmPassword" >
 
             
 

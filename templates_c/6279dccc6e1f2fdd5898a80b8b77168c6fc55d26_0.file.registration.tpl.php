@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-03-11 22:03:27
+/* Smarty version 4.3.4, created on 2025-03-14 14:56:47
   from 'C:\wamp64\www\radioappointment\views\registration.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_67d0b32fe5ef73_92943191',
+  'unifunc' => 'content_67d443afcb7481_30737755',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6279dccc6e1f2fdd5898a80b8b77168c6fc55d26' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\registration.tpl',
-      1 => 1741730599,
+      1 => 1741964204,
       2 => 'file',
     ),
   ),
@@ -21,23 +21,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:views/_partiel/header.tpl' => 1,
   ),
 ),false)) {
-function content_67d0b32fe5ef73_92943191 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67d443afcb7481_30737755 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php $_smarty_tpl->_subTemplateRender("file:views/_partiel/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_4072971367d0b32fe2e806_80147926', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_152230835367d443afc8c1a6_58460638', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_4072971367d0b32fe2e806_80147926 extends Smarty_Internal_Block
+class Block_152230835367d443afc8c1a6_58460638 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_4072971367d0b32fe2e806_80147926',
+    0 => 'Block_152230835367d443afc8c1a6_58460638',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -100,7 +100,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <input type="password" placeholder="Enter Password" id="password" name="password" >
 
             <label for="psw-repeat"><b>Confirmez mot de passe</b></label>
-            <input type="password" placeholder="Confirmation du mot de passe" id="confirm-password" name="confirm-password" >
+            <input type="password" placeholder="Confirmation du mot de passe" id="confirmPassword" name="confirmPassword" >
 
             
 

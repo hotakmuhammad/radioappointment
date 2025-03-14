@@ -5,7 +5,7 @@ include_once("parent_entity.php");
 class User extends Entity{
 
 
-    protected string $_strPrefixe = "";
+    
 
 
     private int $_id;
@@ -79,19 +79,9 @@ class User extends Entity{
     public function getPasswordHash() :string{
         return password_hash($this->_password, PASSWORD_DEFAULT);
     }
-/*
-
-    // Getters and Setters Profile Pic
-    public function getProfilePic() :string{
-        return $this->_profilePic;
-    }
-
-    public function setProfilePic(string $strProfilePic){
-        $this->_profilePic = $strProfilePic;
-    }
-*/
+    
     // Getters and Setters Registration Date
-    public function getRegistrationDate() :string{
+    public function getRegistrationTime() :string{
         return $this->_registrationTime;
     }
 
@@ -100,7 +90,7 @@ class User extends Entity{
     }
 
     public function getRegistrationDateFR() {
-        $objDate = new DateTime($this->_registrationDate);
+        $objDate = new DateTime($this->_registrationTime);
         return $objDate->format("d/m/Y");
     }
 }
