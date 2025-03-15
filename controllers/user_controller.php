@@ -88,21 +88,10 @@ class UserCtrl extends Ctrl {
         header("Location:".parent::BASE_URL);
     }
     
-    public function edit_profile(){
-        // Est-ce que l'utilisateur est connecté ?
-        if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == ''){
-            header('Location:'.parent::BASE_URL.'error/show403');
-        }
-			// Afficher
-			$this->_arrData["strPage"] 		= "edit_profile";
-			$this->_arrData["strTitle"] 	= "Modifier mon compte";
-			$this->_arrData["strDesc"] 		= "Page permettant de modifier mon compte";
-			$this->_arrData["objUser"]		= $objUser;
-			$this->displayTemplate("edit_profile");
-		}
+
     private function _verifyInfos(object $objUser, $boolVerifyMail = true) {
 
-
+        
         $arrErrors = array();
         if($objUser->getFirstName() == "") {
             $arrErrors['firstName'] = "Le nom est obligatoire.";
@@ -130,6 +119,7 @@ class UserCtrl extends Ctrl {
             $objUserModel = new UserModel;
 
             $boolMailExists = $objUserModel->verifyEmail($objUser->getEmail());
+           // $boolMailExists = $objUserModel->verifyEmail($objUser->getEmail(), $userId ?? 0);
 
             if ($boolMailExists === true){
                 $arrErrors['email'] = "Le mail est déjà utilisé";

@@ -16,8 +16,7 @@ class User extends Entity{
     private string $_password;
 
     private string $_registrationTime;
-
-
+    
     // Getters and Setters ID
     public function getId() :int{
         return $this->_id;
