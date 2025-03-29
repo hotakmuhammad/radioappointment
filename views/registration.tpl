@@ -29,10 +29,10 @@
             <hr>
 
             <label for="firstName"><b>Nom</b></label>
-            <input type="text" placeholder="Enter Name" id="firstName" name="firstName" value="{$objUser->getFirstName()}">
+            <input type="text" placeholder="Enter Name" id="firstName" name="name" value="{$objUser->getName()}">
 
             <label for="lastName"><b>Prénom</b></label>
-            <input type="text" placeholder="Enter Surname" id="lastName" name="lastName" value="{$objUser->getLastName()}">
+            <input type="text" placeholder="Enter Surname" id="lastName" name="firstName" value="{$objUser->getFirstName()}">
 
 
             <label for="email"><b>Email</b></label>

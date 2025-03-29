@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-03-14 23:22:44
+/* Smarty version 4.3.4, created on 2025-03-29 22:09:30
   from 'C:\wamp64\www\radioappointment\views\_partiel\nav.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_67d4ba44833cd4_77702631',
+  'unifunc' => 'content_67e86f9a1cb964_49495386',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a975b4cffb40b9ed9fa5e543302d1a77c3cd7b96' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\_partiel\\nav.tpl',
-      1 => 1741994556,
+      1 => 1743286145,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_67d4ba44833cd4_77702631 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67e86f9a1cb964_49495386 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="">
 
 	<nav class="mainNav flex">
@@ -46,7 +46,7 @@ page/appointment">Mes rendez-vous</a>
 
 				<div class="">
 					<p>Bonjour</p>
-					<?php echo $_SESSION['user']['first_name'];?>
+					<?php echo $_SESSION['user']['user_firstname'];?>
 
 				</div>
 				<div class="">

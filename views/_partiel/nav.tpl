@@ -20,7 +20,7 @@
 
 				<div class="">
 					<p>Bonjour</p>
-					{$smarty.session.user.first_name}
+					{$smarty.session.user.user_firstname}
 				</div>
 				<div class="">
 					<a class="" href="{$base_url}user/logout"> se deconnecter </a>

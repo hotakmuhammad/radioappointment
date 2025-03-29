@@ -25,11 +25,11 @@
                 <legend>Informations personnelles</legend>
                 <p>
                     <label for="name">Nom</label>
-                    <input type="text" name="firstName" id="firstName" value="{$objUser->getFirstname()}">
+                    <input type="text" name="firstName" id="firstName" value="{$objUser->getName()}">
                 </p>
                 <p>
                     <label for="firstname">Prénom</label>
-                    <input type="text" name="lastName" id="lastName" value="{$objUser->getLastName()}">
+                    <input type="text" name="lastName" id="lastName" value="{$objUser->getFirstname()}">
                 </p>
                 <p>
                     <label for="mail">Email</label>

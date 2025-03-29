@@ -11,7 +11,7 @@
 			try{
 				// Connexion à la BDD
 				$this->_db = new PDO(
-										"mysql:host=localhost;dbname=radiologycenter", // Serveur et BDD
+										"mysql:host=localhost;dbname=radioapt", // Serveur et BDD
 										"root", //utilisateur - même que phpmyadmin
 										"", 	//mot de passe - même que phpmyadmin
 										array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC) // Mode de renvoi

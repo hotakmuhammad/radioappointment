@@ -2,20 +2,20 @@
 include_once("parent_entity.php");
 
 
+
 class User extends Entity{
 
 
-    
-
+    protected string $_strPrefixe = "user_";
 
     private int $_id;
-    private string $_firstName;
-    private string $_lastName;
+    private string $_name; 
+    private string $_firstName; 
     private string $_email;
     private string $_phone;
     private string $_password;
 
-    private string $_registrationTime;
+    private string $_regist_date;
     
     // Getters and Setters ID
     public function getId() :int{
@@ -26,6 +26,15 @@ class User extends Entity{
         $this->_id = $intId;
     }
 
+    // Getters and Setters Last Name
+    public function getName() :string{
+        return $this->_name;
+    }
+
+    public function setName(string $strName){
+        $this->_name = trim($strName);
+        $this->_name = filter_var($strName, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    }
 
     // Getters and Setters First Name
     public function getFirstName() :string{
@@ -37,17 +46,7 @@ class User extends Entity{
         $this->_firstName = filter_var($strFirstName, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     }
 
-
-    // Getters and Setters Last Name
-    public function getLastName() :string{
-        return $this->_lastName;
-    }
-
-    public function setLastName(string $strLastName){
-        $this->_lastName = trim($strLastName);
-        $this->_lastName = filter_var($strLastName, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    }
-
+    
     // Getters and Setters Email
     public function getEmail() :string{
         return $this->_email;
@@ -80,16 +79,16 @@ class User extends Entity{
     }
     
     // Getters and Setters Registration Date
-    public function getRegistrationTime() :string{
-        return $this->_registrationTime;
+    public function getRegist_date() :string{
+        return $this->_regist_date;
     }
 
-    public function setRegistrationTime(string $strRegistrationTime){
-        $this->_registrationTime = $strRegistrationTime;
+    public function setRegist_date(string $strRegist_date){
+        $this->_regist_date = $strRegist_date;
     }
 
-    public function getRegistrationDateFR() {
-        $objDate = new DateTime($this->_registrationTime);
+    public function getsetRegist_dateFR() {
+        $objDate = new DateTime($this->_regist_date);
         return $objDate->format("d/m/Y");
     }
 }

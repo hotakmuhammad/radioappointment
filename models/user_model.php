@@ -10,14 +10,14 @@
 		}
 
         public function findAll(){
-			$strQuery 	= "SELECT user_id, first_name 
+			$strQuery 	= "SELECT user_id, user_firstname
 							FROM users";
 			return $this->_db->query($strQuery)->fetchAll();
 		}
 
 
         public function get(int $id) {
-            $strQuery = "SELECT user_id, first_name, last_name, email, phone, password, registration_time
+            $strQuery = "SELECT user_id, user_name, user_firstname, user_email, user_phone, user_password, registration_time
                         From users
                         WHERE user_id = ".$id;
             return $this->_db->query($strQuery)->fetchAll();
@@ -25,9 +25,9 @@
 
         public function searchUser(string $strEmail, string $strPassword) {
 
-            $strQuery = "SELECT user_id, first_name, last_name, email, phone, password, registration_time
+            $strQuery = "SELECT user_id, user_name, user_firstname, user_email, user_phone, user_password, user_regist_date
                          FROM users
-                         WHERE email = :email;
+                         WHERE user_email = :email;
             ";
 
             $rqPrep = $this->_db->prepare($strQuery);
@@ -36,8 +36,11 @@
 
             $rqPrep->execute();
             $arrUser = $rqPrep->fetch();
-            if(is_array($arrUser) && password_verify($strPassword, $arrUser['password'])) {
-                unset($arrUser['password']);
+            var_dump($arrUser); 
+            var_dump($strPassword); // Check what password is entered
+            var_dump($arrUser['user_password']);
+            if(is_array($arrUser) && password_verify($strPassword, $arrUser['user_password'])) {
+                unset($arrUser['user_password']);
                 return $arrUser;
             }
             return false;
@@ -45,9 +48,9 @@
 
 
         public function verifyEmail(string $strEmail):bool{
-            $strQuery = "SELECT email
+            $strQuery = "SELECT user_email
                         FROM users
-                        WHERE email = :email;
+                        WHERE user_email = :email;
                     ";
             $rqPrep = $this->_db->prepare($strQuery);
 
@@ -59,12 +62,12 @@
         }
 
         public function registration(object $objUser) {
-            $strQuery = "INSERT INTO users (first_name, last_name, email, phone, password, registration_time)
+            $strQuery = "INSERT INTO users (user_name, user_firstname,  user_email, user_phone, user_password, user_regist_date)
                         VALUES (:firstName, :lastName, :email, :phone, :password,  NOW())";
 
             $rqPrep	= $this->_db->prepare($strQuery);
-            $rqPrep->bindValue(':firstName', $objUser->getFirstName(), PDO::PARAM_STR);
-            $rqPrep->bindValue(':lastName', $objUser->getLastName(), PDO::PARAM_STR);
+            $rqPrep->bindValue(':lastName', $objUser->getName(), PDO::PARAM_STR);
+            $rqPrep->bindValue(':firstName', $objUser->getFirstName(), PDO::PARAM_STR); 
             $rqPrep->bindValue(':email', $objUser->getEmail(), PDO::PARAM_STR);
             $rqPrep->bindValue(':phone', $objUser->getPhone(), PDO::PARAM_STR);
             $rqPrep->bindValue(':password', $objUser->getPasswordHash(), PDO::PARAM_STR);

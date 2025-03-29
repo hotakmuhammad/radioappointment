@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-03-14 14:56:47
+/* Smarty version 4.3.4, created on 2025-03-29 21:51:11
   from 'C:\wamp64\www\radioappointment\views\registration.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_67d443afcb7481_30737755',
+  'unifunc' => 'content_67e86b4fe9e416_89053155',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6279dccc6e1f2fdd5898a80b8b77168c6fc55d26' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\registration.tpl',
-      1 => 1741964204,
+      1 => 1743285065,
       2 => 'file',
     ),
   ),
@@ -21,23 +21,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:views/_partiel/header.tpl' => 1,
   ),
 ),false)) {
-function content_67d443afcb7481_30737755 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67e86b4fe9e416_89053155 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php $_smarty_tpl->_subTemplateRender("file:views/_partiel/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_152230835367d443afc8c1a6_58460638', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_180913015867e86b4fe925d1_02837843', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_152230835367d443afc8c1a6_58460638 extends Smarty_Internal_Block
+class Block_180913015867e86b4fe925d1_02837843 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_152230835367d443afc8c1a6_58460638',
+    0 => 'Block_180913015867e86b4fe925d1_02837843',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -79,11 +79,11 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <hr>
 
             <label for="firstName"><b>Nom</b></label>
-            <input type="text" placeholder="Enter Name" id="firstName" name="firstName" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getFirstName();?>
+            <input type="text" placeholder="Enter Name" id="firstName" name="name" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getName();?>
 ">
 
             <label for="lastName"><b>Prénom</b></label>
-            <input type="text" placeholder="Enter Surname" id="lastName" name="lastName" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getLastName();?>
+            <input type="text" placeholder="Enter Surname" id="lastName" name="firstName" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getFirstName();?>
 ">
 
 

@@ -75,12 +75,12 @@ user/edit_profile" method="post" >
                 <legend>Informations personnelles</legend>
                 <p>
                     <label for="name">Nom</label>
-                    <input type="text" name="firstName" id="firstName" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getFirstname();?>
+                    <input type="text" name="firstName" id="firstName" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getName();?>
 ">
                 </p>
                 <p>
                     <label for="firstname">Prénom</label>
-                    <input type="text" name="lastName" id="lastName" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getLastName();?>
+                    <input type="text" name="lastName" id="lastName" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getFirstname();?>
 ">
                 </p>
                 <p>

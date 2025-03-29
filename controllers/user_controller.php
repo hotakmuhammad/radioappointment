@@ -31,9 +31,9 @@ class UserCtrl extends Ctrl {
                 }
             }
         } else { // Formulaire non envoyé
+            $objUser->setName("");
             $objUser->setFirstName("");
-            $objUser->setLastname("");
-            $objUser->setEmail("");
+            $objUser->setEmail(""); 
             $objUser->setPhone("");
             $objUser->setPassword("");
             
@@ -57,6 +57,7 @@ class UserCtrl extends Ctrl {
 
         if(count($_POST) > 0) {
             $objUserModel = new UserModel;
+            var_dump($this->_arrErrors);
             $arrUser = $objUserModel->searchUser($strEmail, $strPassword);
 
             if($arrUser === false) {
@@ -93,17 +94,19 @@ class UserCtrl extends Ctrl {
 
         
         $arrErrors = array();
+        
+        if($objUser->getName() == "") {
+            $arrErrors['lastName'] = "Le prènom est obligatoire.";
+        }elseif(strlen($objUser->getName()) < 3){
+            $arrErrors['lastName'] = "Le prènom est trop court.";
+        }
         if($objUser->getFirstName() == "") {
             $arrErrors['firstName'] = "Le nom est obligatoire.";
         }elseif(strlen($objUser->getFirstName()) < 3){
             $arrErrors['firstName'] = "Le nom est trop court.";
         }
 
-        if($objUser->getLastName() == "") {
-            $arrErrors['lastName'] = "Le prènom est obligatoire.";
-        }elseif(strlen($objUser->getLastName()) < 3){
-            $arrErrors['lastName'] = "Le prènom est trop court.";
-        }
+
 
         if($objUser->getPhone() == "") {
             $arrErrors['phone'] = "Le numéro du téléphone est obligatoire.";
