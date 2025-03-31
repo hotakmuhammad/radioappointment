@@ -8,7 +8,7 @@
 			
 
 		<div class="navbarItems m-5">
-			<a class="buttonLink" href="{$base_url}appointment/home">Take an appointment</a>
+			<a class="buttonLink" href="{$base_url}page/home">Take an appointment</a>
 		</div>	
 
 		<div class="navbarItems m-5 flex gap-4">

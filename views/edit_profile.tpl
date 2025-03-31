@@ -25,19 +25,19 @@
                 <legend>Informations personnelles</legend>
                 <p>
                     <label for="name">Nom</label>
-                    <input type="text" name="firstName" id="firstName" value="{$objUser->getName()}">
+                    <input type="text" name="name" id="name"  >
                 </p>
                 <p>
                     <label for="firstname">Prénom</label>
-                    <input type="text" name="lastName" id="lastName" value="{$objUser->getFirstname()}">
+                    <input type="text" name="firstName" id="firstName">
                 </p>
                 <p>
-                    <label for="mail">Email</label>
-                    <input type="email" name="email" id="email" value="{$objUser->getEmail()}">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" >
                 </p>
                 <p>
-                    <label for="mail">Phone</label>
-                    <input type="tel" name="phone" id="phone" value="{$objUser->getPhone()}">
+                    <label for="phone">Phone</label>
+                    <input type="tel" name="phone" id="phone" > 
                 </p>
                 {* <p>
                     <label for="pseudo">Pseudo</label>

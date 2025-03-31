@@ -3,6 +3,26 @@
 
 class PageCtrl extends Ctrl {
 
+
+    public function home() {
+
+
+
+        // Préparation des données pour le template de la page d'accueil.
+
+        $this->_arrData["strPage"] = "index";
+
+        $this->_arrData["strTitle"] = "Accueil";
+
+        $this->_arrData["strDesc"] = "Page d'accueil";
+
+
+
+        // Affichage du template de la page d'accueil.
+
+        $this->displayTemplate("home");
+
+	}
     public function appointment() {
 
 
@@ -47,47 +67,16 @@ class PageCtrl extends Ctrl {
 
         $this->displayTemplate("registration");
     }
- /*
- 
-        public function login() {
 
-            $this->_arrData["strPage"]     = "login";
+    public function edit_profile() {
 
-            $this->_arrData["strTitle"] = "Connexion";
+        $this->_arrData["strPage"]     = "edit_profile";
 
-            $this->_arrData["strDesc"]     = "Page de connexion";
+        $this->_arrData["strTitle"] = "Modification du profil";
 
-            $this->displayTemplate("login");
-        }
+        $this->_arrData["strDesc"]     = "Page de modification du profil";
 
-  
-		public function home(){
-
-			$this->_arrData["strPage"] 	= "index";
-
-			$this->_arrData["strTitle"] = "A propos";
-
-			$this->_arrData["strDesc"] 	= "Page de contenu";
-            
-			$this->displayTemplate("home");
-		}
-
-
-        
-        
-        public function appointment() {
-
-            $this->_arrData["strPage"]     = "appointment";
-
-            $this->_arrData["strTitle"] = "Rendez-vous";
-
-            $this->_arrData["strDesc"]     = "Page de prise de rendez-vous";
-
-            $this->displayTemplate("appointment");
-        }
-
-
-        
-*/
+        $this->displayTemplate("edit_profile");
+    }
 
 }

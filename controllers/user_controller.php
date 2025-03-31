@@ -90,11 +90,70 @@ class UserCtrl extends Ctrl {
     }
     
 
+    public function edit_profile() {
+
+        if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == ''){
+            header('Location:'.parent::BASE_URL.'error/show403');
+        }
+        $objUser = new User;
+        
+        $intUserId = $_SESSION['user']['user_id'];
+        $objUserModel = new UserModel;
+        var_dump($objUserModel);
+        $arrUser = $objUserModel->get($intUserId);
+
+     
+            $objUser->setId(0);
+            $objUser->setName("");
+            $objUser->setFirstName("");
+            $objUser->setEmail("");
+            $objUser->setPhone("");
+            $objUser->setPassword("");
+
+
+
+        $objUser->hydrate($arrUser);
+        var_dump($arrUser);
+        $strActualMail = $objUser->getEmail();
+        $strOldPassword = $objUser->getPassword();
+
+        if(count($_POST) > 0) {
+            $objUser->hydrate($_POST);
+            $boolVerifyMail = ($strActualMail != $objUser->getEmail());
+            $this->_arrErrors = $this->_verifyInfos($objUser, $boolVerifyMail);
+
+            if($objUser->getPassword() != ''){
+                if(password_verify($_POST['oldPassword'], $strOldPassword)){
+                    $this->_arrErrors = array_merge($this->_arrErrors, $this->_verifyPassword($objUser->getPassword(), PASSWORD_DEFAULT));
+                }else{
+                    $this->_arrErrors['password'] = "Le mot de passe actuel est incorrect";
+                }
+            }
+            if(count($this->_arrErrors) ==0 ) {
+                if ($objUserModel->update($objUser)){
+                    $_SESSION['user']['user_firstname'] = $objUser->getFirstname();
+                    $_SESSION['user']['user_name'] 		= $objUser->getName();
+
+                    header("Location:".parent::BASE_URL."page/appointment");
+                }else{
+                    $this->_arrErrors[] = "L'insertion s'est mal passée";
+                }
+            }
+        }
+
+        $this->_arrData["strPage"] = "edit_profile";
+
+        $this->_arrData["strTitle"] = "Editer le profil";
+
+        $this->_arrData["strDesc"] = "Page de modification du profil";
+        // $this->_arrData["email"]	= $strEmail;
+        $this->displayTemplate("edit_profile");
+    }
     private function _verifyInfos(object $objUser, $boolVerifyMail = true) {
 
         
         $arrErrors = array();
-        
+        $intUserId = $_SESSION['user']['user_id'];
         if($objUser->getName() == "") {
             $arrErrors['lastName'] = "Le prènom est obligatoire.";
         }elseif(strlen($objUser->getName()) < 3){
@@ -122,7 +181,7 @@ class UserCtrl extends Ctrl {
             $objUserModel = new UserModel;
 
             $boolMailExists = $objUserModel->verifyEmail($objUser->getEmail());
-           // $boolMailExists = $objUserModel->verifyEmail($objUser->getEmail(), $userId ?? 0);
+             var_dump($boolMailExists);
 
             if ($boolMailExists === true){
                 $arrErrors['email'] = "Le mail est déjà utilisé";
