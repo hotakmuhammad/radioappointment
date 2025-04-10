@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-03-29 21:51:11
+/* Smarty version 4.3.4, created on 2025-04-10 12:55:24
   from 'C:\wamp64\www\radioappointment\views\registration.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_67e86b4fe9e416_89053155',
+  'unifunc' => 'content_67f7bfbc6892f2_45548791',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6279dccc6e1f2fdd5898a80b8b77168c6fc55d26' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\registration.tpl',
-      1 => 1743285065,
+      1 => 1744289722,
       2 => 'file',
     ),
   ),
@@ -21,23 +21,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:views/_partiel/header.tpl' => 1,
   ),
 ),false)) {
-function content_67e86b4fe9e416_89053155 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67f7bfbc6892f2_45548791 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php $_smarty_tpl->_subTemplateRender("file:views/_partiel/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_180913015867e86b4fe925d1_02837843', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_112823994967f7bfbc681b46_35978355', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_180913015867e86b4fe925d1_02837843 extends Smarty_Internal_Block
+class Block_112823994967f7bfbc681b46_35978355 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_180913015867e86b4fe925d1_02837843',
+    0 => 'Block_112823994967f7bfbc681b46_35978355',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -45,70 +45,121 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 
 
 
-<?php if ((count($_smarty_tpl->tpl_vars['arrErrors']->value) > 0)) {?>
-
-        <div class="">
-            <ul>
-
+    <?php if ((count($_smarty_tpl->tpl_vars['arrErrors']->value) > 0)) {?>
+        <div class="max-w-md mx-auto mt-4 p-4 bg-red-50 border border-red-200 rounded-lg shadow-sm">
+            <ul class="space-y-2 text-red-700">
                 <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrErrors']->value, 'strError');
 $_smarty_tpl->tpl_vars['strError']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['strError']->value) {
 $_smarty_tpl->tpl_vars['strError']->do_else = false;
 ?>
+                    <li class="flex items-center gap-2">
+                        <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M10 0a10 10 0 1 0 10 10A10 10 0 0 0 10 0zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm1-12h-2v6h2zm0 8h-2v2h2z"/>
+                        </svg>
+                        <?php echo $_smarty_tpl->tpl_vars['strError']->value;?>
 
-                    <li><?php echo $_smarty_tpl->tpl_vars['strError']->value;?>
-</li>
-
+                    </li>
                 <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             </ul>
-
-        </div>
-
+        </div> 
     <?php }?>
 
     
-    <h1>Creation account Page</h1>
-    <div class="container">
+    <div class="w-full max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
+        <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Creation account Page</h1>
+
         <form action="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
-/user/registration" method="post" style="border:1px solid #ccc">
-            <h1>Sign Up</h1>
-            <p>Please fill in this form to create an account.</p>
-            <hr>
+/user/registration" method="post" class="space-y-6">
+            <h2 class="text-2xl font-medium text-gray-700 mb-4">Sign Up</h2>
+            <p class="text-gray-600 mb-6">Please fill in this form to create an account.</p>
+            <hr class="border-gray-300 mb-6">
 
-            <label for="firstName"><b>Nom</b></label>
-            <input type="text" placeholder="Enter Name" id="firstName" name="name" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getName();?>
-">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2"><b>Nom</b></label>
+                    <input 
+                        type="text" 
+                        placeholder="Enter Name" 
+                        id="name" 
+                        name="name" 
+                        value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getName();?>
+" 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
+                    >
+                </div>
 
-            <label for="lastName"><b>Prénom</b></label>
-            <input type="text" placeholder="Enter Surname" id="lastName" name="firstName" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getFirstName();?>
-">
+                <div>
+                    <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2"><b>Prénom</b></label>
+                    <input 
+                        type="text" 
+                        placeholder="Enter Surname" 
+                        id="lastName" 
+                        name="firstName" 
+                        value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getFirstName();?>
+" 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
+                    >
+                </div>
 
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2"><b>Email</b></label>
+                    <input 
+                        type="email" 
+                        placeholder="Enter Email" 
+                        id="email" 
+                        name="email" 
+                        value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getEmail();?>
+" 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
+                    >
+                </div>
 
-            <label for="email"><b>Email</b></label>
-            <input type="email" placeholder="Enter Email" id="email" name="email" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getEmail();?>
-">
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2"><b>Phone</b></label>
+                    <input 
+                        type="text" 
+                        placeholder="Enter Phone" 
+                        id="phone" 
+                        name="phone" 
+                        value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getPhone();?>
+" 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
+                    >
+                </div>
 
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2"><b>Mot de passe</b></label>
+                    <input 
+                        type="password" 
+                        placeholder="Enter Password" 
+                        id="password" 
+                        name="password" 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
+                    >
+                </div>
 
-            <label for="phone"><b>Phone</b></label>
-            <input type="text" placeholder="Enter Phone" id="phone" name="phone" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getPhone();?>
-">
+                <div>
+                    <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-2"><b>Confirmez mot de passe</b></label>
+                    <input 
+                        type="password" 
+                        placeholder="Confirmation du mot de passe" 
+                        id="confirmPassword" 
+                        name="confirmPassword" 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
+                    >
+                </div>
+            </div>
 
-            <label for="password"><b>Mot de passe</b></label>
-            <input type="password" placeholder="Enter Password" id="password" name="password" >
-
-            <label for="psw-repeat"><b>Confirmez mot de passe</b></label>
-            <input type="password" placeholder="Confirmation du mot de passe" id="confirmPassword" name="confirmPassword" >
-
-            
-
-            <div>
-                            </div>
-            <div>
-            Sqaan@444$hello124578
-                <input type="submit" value="Créer compte">
+            <div class="max-w-auto mx-auto">
+                <input 
+                    type="submit" 
+                    value="Créer un compte" 
+                    class="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200 cursor-pointer"
+                >
             </div>
         </form>
     </div>

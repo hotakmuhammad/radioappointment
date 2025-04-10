@@ -36,9 +36,9 @@
 
             $rqPrep->execute();
             $arrUser = $rqPrep->fetch();
-            var_dump($arrUser); 
-            var_dump($strPassword); // Check what password is entered
-            var_dump($arrUser['user_password']);
+            // var_dump($arrUser); 
+            // var_dump($strPassword); // Check what password is entered
+            // var_dump($arrUser['user_password']);
             if(is_array($arrUser) && password_verify($strPassword, $arrUser['user_password'])) {
                 unset($arrUser['user_password']);
                 return $arrUser;

@@ -57,7 +57,7 @@ class UserCtrl extends Ctrl {
 
         if(count($_POST) > 0) {
             $objUserModel = new UserModel;
-            var_dump($this->_arrErrors);
+            // var_dump($this->_arrErrors);
             $arrUser = $objUserModel->searchUser($strEmail, $strPassword);
 
             if($arrUser === false) {
@@ -66,7 +66,7 @@ class UserCtrl extends Ctrl {
 				}else{
 					
 				$_SESSION['user'] = $arrUser;
-                header("Location:".parent::BASE_URL."page/appointment");
+                header("Location:".parent::BASE_URL);
             }
         }
 
@@ -99,7 +99,7 @@ class UserCtrl extends Ctrl {
         
         $intUserId = $_SESSION['user']['user_id'];
         $objUserModel = new UserModel;
-        var_dump($objUserModel);
+        // var_dump($objUserModel);
         $arrUser = $objUserModel->get($intUserId);
 
      
@@ -113,7 +113,7 @@ class UserCtrl extends Ctrl {
 
 
         $objUser->hydrate($arrUser);
-        var_dump($arrUser);
+        // var_dump($arrUser);
         $strActualMail = $objUser->getEmail();
         $strOldPassword = $objUser->getPassword();
 
@@ -153,7 +153,7 @@ class UserCtrl extends Ctrl {
 
         
         $arrErrors = array();
-        $intUserId = $_SESSION['user']['user_id'];
+        // $intUserId = $_SESSION['user']['user_id'];
         if($objUser->getName() == "") {
             $arrErrors['lastName'] = "Le prènom est obligatoire.";
         }elseif(strlen($objUser->getName()) < 3){

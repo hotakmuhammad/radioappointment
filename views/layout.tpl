@@ -1,12 +1,11 @@
-{* La view qui appelle header/footer/scripts etc...  *}
+{include file="views/_partiel/header.tpl"}
 
-
-
-
-
-{block name="contenu"}
-
-{/block}
+	{* {include file="views/_partial/messages.tpl"} *}
+	{block name="contenu"}
+		<p>Hello</p>
+	{/block}
+	
+{* {include file="views/_partial/footer.tpl"} *}
 
 
 
