@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-10 12:36:42
+/* Smarty version 4.3.4, created on 2025-04-10 21:11:44
   from 'C:\wamp64\www\radioappointment\views\_partiel\nav.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_67f7bb5a141134_24535730',
+  'unifunc' => 'content_67f83410ab9bf4_33521059',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a975b4cffb40b9ed9fa5e543302d1a77c3cd7b96' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\_partiel\\nav.tpl',
-      1 => 1744288600,
+      1 => 1744319501,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_67f7bb5a141134_24535730 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67f83410ab9bf4_33521059 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="bg-gray-900">
     <nav class="mainNav flex items-center justify-between max-w-7xl mx-auto px-4 py-4 container mx-auto">
         <div class="navbarItems">
@@ -39,7 +39,11 @@ page/appointment">Mes rendez-vous</a>
                 </div>
 
                 <div class="text-white">
-                    <p class="text-sm"><i class="fa-solid fa-user"></i></p>
+                    <a class="text-gray-300 hover:text-white transition-colors duration-200"
+                    href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+page/profile" 
+                    ><p class="text-sm"><i class="fa-solid fa-user"></i></p></a>
+                    
                                     </div>
                 
                 <div>

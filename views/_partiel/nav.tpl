@@ -18,7 +18,10 @@
                 </div>
 
                 <div class="text-white">
-                    <p class="text-sm"><i class="fa-solid fa-user"></i></p>
+                    <a class="text-gray-300 hover:text-white transition-colors duration-200"
+                    href="{$base_url}page/profile" 
+                    ><p class="text-sm"><i class="fa-solid fa-user"></i></p></a>
+                    
                     {* {$smarty.session.user.user_firstname} *}
                 </div>
                 

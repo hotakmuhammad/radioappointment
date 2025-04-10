@@ -79,4 +79,15 @@ class PageCtrl extends Ctrl {
         $this->displayTemplate("edit_profile");
     }
 
+    public function profile() {
+
+        $this->_arrData["strPage"]     = "profile";
+
+        $this->_arrData["strTitle"] = "Mon profil";
+
+        $this->_arrData["strDesc"]     = "Page de mon profil";
+
+        $this->displayTemplate("profile");
+    }
+
 }

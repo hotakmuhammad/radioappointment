@@ -91,63 +91,105 @@ class UserCtrl extends Ctrl {
     
 
     public function edit_profile() {
-
-        if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == ''){
+        if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == '') {
             header('Location:'.parent::BASE_URL.'error/show403');
+            exit;
         }
-        $objUser = new User;
         
+        $objUser = new User; 
         $intUserId = $_SESSION['user']['user_id'];
         $objUserModel = new UserModel;
-        // var_dump($objUserModel);
-        $arrUser = $objUserModel->get($intUserId);
-
-     
-            $objUser->setId(0);
-            $objUser->setName("");
-            $objUser->setFirstName("");
-            $objUser->setEmail("");
-            $objUser->setPhone("");
-            $objUser->setPassword("");
-
-
-
+        $arrUser = $objUserModel->get($intUserId); 
+        
+        if (!$arrUser || empty($arrUser['user_password'])) {
+            $this->_arrErrors[] = "Utilisateur non trouvé ou mot de passe manquant";
+            $this->_arrData["strPage"] = "edit_profile";
+            $this->_arrData["strTitle"] = "Editer le profil";
+            $this->_arrData["strDesc"] = "Page de modification du profil";
+            $this->_arrData["objUser"] = $objUser;
+            $this->displayTemplate("edit_profile");
+            return;
+        }
+    
         $objUser->hydrate($arrUser);
-        // var_dump($arrUser);
-        $strActualMail = $objUser->getEmail();
+        $strActualMail = $objUser->getEmail(); 
         $strOldPassword = $objUser->getPassword();
 
-        if(count($_POST) > 0) {
-            $objUser->hydrate($_POST);
-            $boolVerifyMail = ($strActualMail != $objUser->getEmail());
+    
+        if (count($_POST) > 0) {
+            echo "Submitted Old Password: ";
+            var_dump($_POST['oldPassword']);
+    
+            $boolVerifyMail = ($strActualMail != ($_POST['email'] ?? $strActualMail));
             $this->_arrErrors = $this->_verifyInfos($objUser, $boolVerifyMail);
-
-            if($objUser->getPassword() != ''){
-                if(password_verify($_POST['oldPassword'], $strOldPassword)){
-                    $this->_arrErrors = array_merge($this->_arrErrors, $this->_verifyPassword($objUser->getPassword(), PASSWORD_DEFAULT));
-                }else{
-                    $this->_arrErrors['password'] = "Le mot de passe actuel est incorrect";
+    
+            $objUser->hydrate($_POST);
+    
+            if (!empty($_POST['oldPassword'])) {
+                if (!password_verify($_POST['oldPassword'], $strOldPassword)) {
+                    $this->_arrErrors['oldPassword'] = "Le mot de passe actuel est incorrect";
+                    echo "Password Verification Result: ";
+                    var_dump(password_verify($_POST['oldPassword'], $strOldPassword));
+                } elseif (!empty($_POST['password'])) {
+                    $this->_arrErrors = array_merge($this->_arrErrors, $this->_verifyPassword($_POST['password']));
+                    if (count($this->_arrErrors) == 0) {
+                        $objUser->setPassword(password_hash($_POST['password'], PASSWORD_DEFAULT));
+                    }
                 }
+            } elseif (!empty($_POST['password'])) {
+                $this->_arrErrors['oldPassword'] = "Veuillez entrer votre mot de passe actuel pour modifier le mot de passe";
             }
-            if(count($this->_arrErrors) ==0 ) {
-                if ($objUserModel->update($objUser)){
-                    $_SESSION['user']['user_firstname'] = $objUser->getFirstname();
-                    $_SESSION['user']['user_name'] 		= $objUser->getName();
-
+    
+            if (count($this->_arrErrors) == 0) {
+                if ($objUserModel->update($objUser)) {
+                    $_SESSION['user']['user_firstname'] = $objUser->getFirstName();
+                    $_SESSION['user']['user_name'] = $objUser->getName();
+                    $_SESSION['user']['user_email'] = $objUser->getEmail();
                     header("Location:".parent::BASE_URL."page/appointment");
-                }else{
-                    $this->_arrErrors[] = "L'insertion s'est mal passée";
+                    exit;
+                } else {
+                    $this->_arrErrors[] = "La mise à jour a échoué";
                 }
             }
         }
-
+    
         $this->_arrData["strPage"] = "edit_profile";
-
-        $this->_arrData["strTitle"] = "Editer le profil";
-
+        $this->_arrData["strTitle"] = "Editer le profil"; 
         $this->_arrData["strDesc"] = "Page de modification du profil";
-        // $this->_arrData["email"]	= $strEmail;
+        $this->_arrData["objUser"] = $objUser;
         $this->displayTemplate("edit_profile");
+    }
+
+    public function profile() {
+        
+        if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == '') {
+            header('Location:'.parent::BASE_URL.'error/show403');
+            exit;
+        }
+    
+        $intUserId = $_SESSION['user']['user_id'];
+        $objUserModel = new UserModel;
+        $arrUser = $objUserModel->get($intUserId);
+        
+        if (!$arrUser) {
+            // Handle case where user data isn’t found
+            $this->_arrErrors[] = "Utilisateur non trouvé";
+            $this->_arrData["strPage"] = "error";
+            $this->_arrData["strTitle"] = "Erreur";
+            $this->_arrData["strDesc"] = "Impossible de charger le profil";
+            $this->displayTemplate("error");
+            return;
+        }
+    
+        $objUser = new User;
+        $objUser->hydrate($arrUser);
+    
+        // Pass $objUser to the template
+        $this->_arrData["strPage"] = "profile";
+        $this->_arrData["strTitle"] = "Mes Informations";
+        $this->_arrData["strDesc"] = "Vos informations personnelles";
+        $this->_arrData["objUser"] = $objUser;
+        $this->displayTemplate("profile");
     }
     private function _verifyInfos(object $objUser, $boolVerifyMail = true) {
 
@@ -183,11 +225,14 @@ class UserCtrl extends Ctrl {
             $boolMailExists = $objUserModel->verifyEmail($objUser->getEmail());
              var_dump($boolMailExists);
 
-            if ($boolMailExists === true){
+            // if ($boolMailExists === true){
+            //     $arrErrors['email'] = "Le mail est déjà utilisé";
+            // }
+
+            if ($boolMailExists === true && $objUser->getEmail() != $_SESSION['user']['user_email']) {
                 $arrErrors['email'] = "Le mail est déjà utilisé";
             }
-
-        }
+        } 
         return $arrErrors;
     }
 

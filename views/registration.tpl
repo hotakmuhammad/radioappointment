@@ -33,7 +33,7 @@
                     <label for="name" class="block text-sm font-medium text-gray-700 mb-2"><b>Nom</b></label>
                     <input 
                         type="text" 
-                        placeholder="Enter Name" 
+                        placeholder="Nom" 
                         id="name" 
                         name="name" 
                         value="{$objUser->getName()}" 
@@ -45,7 +45,7 @@
                     <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2"><b>Prénom</b></label>
                     <input 
                         type="text" 
-                        placeholder="Enter Surname" 
+                        placeholder="Prénom" 
                         id="lastName" 
                         name="firstName" 
                         value="{$objUser->getFirstName()}" 

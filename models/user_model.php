@@ -16,11 +16,20 @@
 		}
 
 
+        // public function get(int $id) {
+        //     $strQuery = "SELECT user_id, user_name, user_firstname, user_email, user_phone, user_password, user_regist_date
+        //                 From users
+        //                 WHERE user_id = ".$id;
+        //     return $this->_db->query($strQuery)->fetchAll();
+        // }
+
         public function get(int $id) {
             $strQuery = "SELECT user_id, user_name, user_firstname, user_email, user_phone, user_password, user_regist_date
-                        From users
-                        WHERE user_id = ".$id;
-            return $this->_db->query($strQuery)->fetchAll();
+                         FROM users
+                         WHERE user_id = :id";
+            $stmt = $this->_db->prepare($strQuery);
+            $stmt->execute(['id' => $id]);
+            return $stmt->fetch(PDO::FETCH_ASSOC); // Single row, not an array of rows
         }
 
         public function searchUser(string $strEmail, string $strPassword) {
@@ -78,27 +87,26 @@
             return $rqPrep->execute();
         }
 
-        public function update() {
+        public function update($objUser) {
             $strQuery = "UPDATE users
                             SET user_name = :name,
                                 user_firstname = :firstname,
                                 user_email = :email,
                                 user_phone = :phone";
-                                
-            if($objUser->getPassword() != "") {
-                $strQuery .= ", user_password = :password;";
+            $params = [
+                ':name' => $objUser->getName(),
+                ':firstname' => $objUser->getFirstName(),
+                ':email' => $objUser->getEmail(),
+                ':phone' => $objUser->getPhone(),
+                ':id' => $objUser->getId()
+            ];
+            if ($objUser->getPassword() != "") {
+                $strQuery .= ", user_password = :password";
+                $params[':password'] = $objUser->getPassword();
             }
-            $strQuery .= "WHERE user_id = :id;";
+            $strQuery .= " WHERE user_id = :id";
             $rqPrep = $this->_db->prepare($strQuery);
-            $rqPrep->bindValue(':name', $objUser->getName(), PDO::PARAM_STR);  
-            $rqPrep->bindValue(':firstname', $objUser->getFirstName(), PDO::PARAM_STR);
-            $rqPrep->bindValue(':email', $objUser->getEmail(), PDO::PARAM_STR);
-            $rqPrep->bindValue(':phone', $objUser->getPhone(), PDO::PARAM_STR);
-            $rqPrep->bindValue(':id', $objUser->getId(), PDO::PARAM_INT);
-            if($objUser->getPassword() != "") {
-                $rqPrep->bindValue(':password', $objUser->getPasswordHash(), PDO::PARAM_STR);
-            }
-            return $rqPrep->execute();
+            return $rqPrep->execute($params);
         }
         
     }
