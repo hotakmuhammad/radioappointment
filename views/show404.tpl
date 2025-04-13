@@ -1,7 +1,7 @@
 {extends file="views/layout.tpl"}
 
 {block name="contenu"}
-<div class="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+<div class="min-h-screen flex items-center justify-center px-4">
     <div class="max-w-md w-full text-center">
         <h1 class="text-6xl font-bold text-red-600 mb-4">404</h1>
         <h2 class="text-3xl font-semibold text-gray-800 mb-6">Page Not Found!</h2>
@@ -14,7 +14,7 @@
             </div>
             <p class="mt-2 text-sm text-gray-500">Warning: Lost pages may attract space pirates!</p>
         </div>
-        <a href="{$base_url}" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+        <a href="{$base_url}" class="inline-block bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors">
             Beam Me Back Home
         </a>
     </div>

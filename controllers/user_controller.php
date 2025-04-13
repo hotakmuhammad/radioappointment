@@ -160,37 +160,7 @@ class UserCtrl extends Ctrl {
         $this->displayTemplate("edit_profile");
     }
 
-    public function profile() {
-        
-        if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == '') {
-            header('Location:'.parent::BASE_URL.'error/show403');
-            exit;
-        }
-    
-        $intUserId = $_SESSION['user']['user_id'];
-        $objUserModel = new UserModel;
-        $arrUser = $objUserModel->get($intUserId);
-        
-        if (!$arrUser) {
-            // Handle case where user data isn’t found
-            $this->_arrErrors[] = "Utilisateur non trouvé";
-            $this->_arrData["strPage"] = "error";
-            $this->_arrData["strTitle"] = "Erreur";
-            $this->_arrData["strDesc"] = "Impossible de charger le profil";
-            $this->displayTemplate("error");
-            return;
-        }
-    
-        $objUser = new User;
-        $objUser->hydrate($arrUser);
-    
-        // Pass $objUser to the template
-        $this->_arrData["strPage"] = "profile";
-        $this->_arrData["strTitle"] = "Mes Informations";
-        $this->_arrData["strDesc"] = "Vos informations personnelles";
-        $this->_arrData["objUser"] = $objUser;
-        $this->displayTemplate("profile");
-    }
+   
     private function _verifyInfos(object $objUser, $boolVerifyMail = true) {
 
         
@@ -253,5 +223,24 @@ class UserCtrl extends Ctrl {
 			return $arrErrors;
     }
 
-    
+    public function manage() {
+        
+        $objUserModel = new UserModel;
+        $arrUsers = $objUserModel->getAll();
+
+        $arrUsersToDisplay = array();
+        foreach($arrUsers as $arrUser) {
+            $objUser = new User;
+            $objUser->hydrate($arrUser);
+            $arrUsersToDisplay[] = $objUser;
+        }
+
+        $this->_arrData["strPage"] = "manage";
+        $this->_arrData["strTitle"] = "Gestion des utilisateurs"; 
+        $this->_arrData["strDesc"] = "Page de gestion des utilisateurs";
+        $this->_arrData["arrUsersToDisplay"] = $arrUsersToDisplay;
+        // $this->_arrData["objUser"] = $objUser;
+        $this->displayTemplate("manage");
+    }
+
 }

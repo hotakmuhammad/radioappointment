@@ -79,15 +79,26 @@ class PageCtrl extends Ctrl {
         $this->displayTemplate("edit_profile");
     }
 
-    public function profile() {
+    public function users_list() {
 
-        $this->_arrData["strPage"]     = "profile";
+        $this->_arrData["strPage"]     = "users_list";
 
-        $this->_arrData["strTitle"] = "Mon profil";
+        $this->_arrData["strTitle"] = "Liste des utilisateurs";
 
-        $this->_arrData["strDesc"]     = "Page de mon profil";
+        $this->_arrData["strDesc"]     = "Page de liste des utilisateurs";
 
-        $this->displayTemplate("profile");
+        $this->displayTemplate("users_list");
     }
 
+
+    public function appointment_list() {
+        $this->_arrData["strPage"]     = "appointment_list";
+
+        $this->_arrData["strTitle"] = "Liste des rendez-vous";
+
+        $this->_arrData["strDesc"]     = "Page de liste des rendez-vous";
+
+        $this->displayTemplate("appointment_list");
+    }
+ 
 }

@@ -12,7 +12,19 @@ class Ctrl {
 
     protected array $_arrMimesType = array("image/jpeg", "image/png", "image/gif");
 
+    protected array $_arrAdminPages = array();
 
+    public function __construct(){
+
+        	// Pages admin uniquement
+			if (count($_GET) > 0){
+				$strPage	= $_GET['ctrl'].'/'.$_GET['action'];
+				
+				if (in_array($strPage, $this->_arrAdminPages) && $_SESSION['user']['user_role'] != "admin"){
+					header("Location:".self::BASE_URL."error/show403");
+				}
+			}
+    }
     
     public function displayTemplate($strTpl, $boolDisplay = true){
         // Initialisation de Smarty
