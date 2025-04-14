@@ -224,7 +224,10 @@ class UserCtrl extends Ctrl {
     }
 
     public function manage() {
-        
+        if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == '') {
+            header('Location:'.parent::BASE_URL.'error/show403');
+            exit;
+        }
         $objUserModel = new UserModel;
         $arrUsers = $objUserModel->getAll();
 
@@ -243,4 +246,16 @@ class UserCtrl extends Ctrl {
         $this->displayTemplate("manage");
     }
 
+    public function delete() {
+
+        if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == '') {
+            header('Location:'.parent::BASE_URL.'error/show403');
+            exit;
+        }
+        $intUserId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+        
+        $objUserModel  = new UserModel(); 
+        $objUserModel->delete($intUserId);
+        header("Location:".parent::BASE_URL."user/manage");
+    }
 }

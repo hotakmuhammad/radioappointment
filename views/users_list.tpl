@@ -48,11 +48,11 @@
                     <td class="py-3 px-4 text-gray-600">{$objUser->getRegist_date()}</td>
                     <td class="py-3 px-4 ">
                         <button class="editButtonPopu" onclick="openEditPopup()">
-                            <i class="text-blue-400 fa-solid fa-pen-to-square"></i>
+                            <i class="hover:text-blue-600 text-blue-400 fa-solid fa-pen-to-square"></i>
                         </button> /
-                        <button class="deleteButtonPopup" onclick="openDeletePopup()">
-                            <i class="text-red-400 fa-solid fa-trash"></i>
-                        </button>
+                        <a class="deleteButtonPopup" data-user-id="{$objUser->getId()}" onclick="openDeletePopup(this)">
+                            <i class="hover:text-red-600 text-red-400 fa-solid fa-trash"></i>
+                        </a>
                     </td>
                 </tr>
                 {/foreach}
@@ -102,21 +102,28 @@
 </div>
 
 <!-- Delete Confirmation Popup -->
+{foreach $arrUsersToDisplay as $objUser}
 <div id="deletePopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
     <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
         <h2 class="text-xl font-bold mb-4 text-gray-800">Confirm Deletion</h2>
         <p class="mb-4 text-gray-600">Are you
             sure you want to delete this user?</p>
         <div class="flex justify-end space-x-2">
-            <button onclick="closeDeletePopup()" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700">
+            <button
+
+            onclick="closeDeletePopup()" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700">
                 Cancel
             </button>
-            <button onclick="confirmDelete()" class="bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+            <a 
+                id="confirmDeleteLink"
+                onclick="confirmDelete()" 
+                href="{$base_url}user/delete?id={$objUser->getId()}" class="bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-600">
                 Delete
-            </button>
+            </a>
         </div>
     </div>
 </div>
+{/foreach}
 <!-- Popup container -->
 <script src="{$base_url}assets/script/script_global.js"></script>
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-14 09:16:46
+/* Smarty version 4.3.4, created on 2025-04-14 21:11:22
   from 'C:\wamp64\www\radioappointment\views\users_list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_67fcd27e078008_93382685',
+  'unifunc' => 'content_67fd79faa8a473_46049706',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fc7a934197995bb9360ce0c8bad320d8306a1128' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\users_list.tpl',
-      1 => 1744622204,
+      1 => 1744665067,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_67fcd27e078008_93382685 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67fd79faa8a473_46049706 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_189500036467fcd27e06ffb5_69410534', "js_head_users_list");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_21124877367fd79faa6eae4_04327662', "js_head_users_list");
 ?>
 
 
@@ -43,12 +43,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_189500036467fcd27e
 <?php echo '</script'; ?>
 ><?php }
 /* {block "js_head_users_list"} */
-class Block_189500036467fcd27e06ffb5_69410534 extends Smarty_Internal_Block
+class Block_21124877367fd79faa6eae4_04327662 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js_head_users_list' => 
   array (
-    0 => 'Block_189500036467fcd27e06ffb5_69410534',
+    0 => 'Block_21124877367fd79faa6eae4_04327662',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -123,11 +123,12 @@ $_smarty_tpl->tpl_vars['objUser']->do_else = false;
 </td>
                     <td class="py-3 px-4 ">
                         <button class="editButtonPopu" onclick="openEditPopup()">
-                            <i class="text-blue-400 fa-solid fa-pen-to-square"></i>
+                            <i class="hover:text-blue-600 text-blue-400 fa-solid fa-pen-to-square"></i>
                         </button> /
-                        <button class="deleteButtonPopup" onclick="openDeletePopup()">
-                            <i class="text-red-400 fa-solid fa-trash"></i>
-                        </button>
+                        <a class="deleteButtonPopup" data-user-id="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getId();?>
+" onclick="openDeletePopup(this)">
+                            <i class="hover:text-red-600 text-red-400 fa-solid fa-trash"></i>
+                        </a>
                     </td>
                 </tr>
                 <?php
@@ -179,21 +180,37 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 </div>
 
 <!-- Delete Confirmation Popup -->
+<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrUsersToDisplay']->value, 'objUser');
+$_smarty_tpl->tpl_vars['objUser']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['objUser']->value) {
+$_smarty_tpl->tpl_vars['objUser']->do_else = false;
+?>
 <div id="deletePopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
     <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
         <h2 class="text-xl font-bold mb-4 text-gray-800">Confirm Deletion</h2>
         <p class="mb-4 text-gray-600">Are you
             sure you want to delete this user?</p>
         <div class="flex justify-end space-x-2">
-            <button onclick="closeDeletePopup()" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700">
+            <button
+
+            onclick="closeDeletePopup()" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700">
                 Cancel
             </button>
-            <button onclick="confirmDelete()" class="bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+            <a 
+                id="confirmDeleteLink"
+                onclick="confirmDelete()" 
+                href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+user/delete?id=<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getId();?>
+" class="bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-600">
                 Delete
-            </button>
+            </a>
         </div>
     </div>
 </div>
+<?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 <!-- Popup container -->
 <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>

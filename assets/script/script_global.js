@@ -34,3 +34,13 @@ function openDeletePopup() {
 function closeDeletePopup() {
     document.getElementById('deletePopup').classList.add('hidden');
     }
+
+// function openDeletePopup(userId) {
+//     document.getElementById('deletePopup').classList.remove('hidden');
+//     document.getElementById('confirmDeleteLink').href = 'http://localhost/radioappointment/user/delete?id' + userId;
+// }
+
+// function closeDeletePopup() {
+//     document.getElementById('deletePopup').classList.add('hidden');
+//     document.getElementById('confirmDeleteLink').href = 'http://localhost/radioappointment/user/manage';
+// }

@@ -114,5 +114,13 @@
             $rqPrep = $this->_db->prepare($strQuery);
             return $rqPrep->execute($params);
         }
+
+        public function delete(int $id) {
+            $strQuery = "DELETE FROM users WHERE user_id = :id";
+            $stmt = $this->_db->prepare($strQuery);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->rowCount() > 0;
+        }
         
     }
