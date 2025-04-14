@@ -93,7 +93,8 @@
                     class="cursor-pointer bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-600">
                     Cancel
                 </div>
-                <input type="submit" class="cursor-pointer bg-gray-600 text-white rounded-lg hover:bg-gray-700 px-4 py-2 ">
+                <input type="submit"
+                    class="cursor-pointer bg-gray-600 text-white rounded-lg hover:bg-gray-700 px-4 py-2 ">
 
             </div>
         </form>
@@ -104,20 +105,20 @@
 <div id="deletePopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
     <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
         <h2 class="text-xl font-bold mb-4 text-gray-800">Confirm Deletion</h2>
-            <p class="mb-4 text-gray-600">Are you
+        <p class="mb-4 text-gray-600">Are you
             sure you want to delete this user?</p>
-            <div class="flex justify-end space-x-2">
-                <button onclick="closeDeletePopup()" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700">
-                    Cancel
-                </button>
-                <button onclick="confirmDelete()" class="bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-600">
-                    Delete
-                </button>
-            </div>
+        <div class="flex justify-end space-x-2">
+            <button onclick="closeDeletePopup()" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700">
+                Cancel
+            </button>
+            <button onclick="confirmDelete()" class="bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+                Delete
+            </button>
+        </div>
     </div>
 </div>
 <!-- Popup container -->
-
+<script src="{$base_url}assets/script/script_global.js"></script>
 
 {/block}
 
@@ -133,21 +134,4 @@
         }
 
     });
-
-    function openEditPopup() {
-        document.getElementById('editPopup').classList.remove('hidden');
-    }
-
-    function closeEditPopup() {
-        document.getElementById('editPopup').classList.add('hidden');
-    }
-
-    function openDeletePopup() {
-        document.getElementById('deletePopup').classList.remove('hidden');
-    }
-
-    function closeDeletePopup() {
-        document.getElementById('deletePopup').classList.add('hidden');
-    }
-
 </script>

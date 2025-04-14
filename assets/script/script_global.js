@@ -1,4 +1,4 @@
-
+// Radio button to display on table at time (usrs table / appointment table) in espace admin
 document.addEventListener('DOMContentLoaded', ()=> {
     const userListDiv = document.querySelector('.usersList');
     const aptListDiv = document.querySelector('.aptList');
@@ -17,4 +17,20 @@ document.addEventListener('DOMContentLoaded', ()=> {
     });
 });
 
+// Edite profiles - delete profiels popups in espace admin
 
+function openEditPopup() {
+    document.getElementById('editPopup').classList.remove('hidden');
+}
+
+function closeEditPopup() {
+    document.getElementById('editPopup').classList.add('hidden');
+}
+
+function openDeletePopup() {
+    document.getElementById('deletePopup').classList.remove('hidden');
+}
+
+function closeDeletePopup() {
+    document.getElementById('deletePopup').classList.add('hidden');
+    }

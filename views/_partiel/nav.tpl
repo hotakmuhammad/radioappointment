@@ -9,35 +9,38 @@
             <a class="buttonLink px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors duration-200" 
                href="{$base_url}page/home">Take an appointment</a>
         </div> *}
-
-        <div class="navbarItems flex items-center gap-4">
+        <div class="navbarItems">
+            <a class="buttonLink px-4 py-2 text-white hover:text-gray-300 transition-colors  duration-200"
+                href="{$base_url}page/about">
+                <p class="text-xl">A propos</p>
+            </a>
+        </div>
+        <div class="navbarItems">
+            <a class="buttonLink px-4 py-2 text-white hover:text-gray-300 transition-colors  duration-200"
+                href="{$base_url}page/about">
+                <p class="text-xl">Service</p>
+            </a>
+        </div>
+        <div class="navbarItems flex gap-4">
             {if isset($user.user_id) && $user.user_id != ''}
-                <div>
+                <div class="navbarItems"> 
                     <a class="buttonLink px-4 py-2 text-white hover:text-gray-300 transition-colors text-xl duration-200"
                         href="{$base_url}page/appointment">Mes rendez-vous</a>
                 </div>
-
-                <div class="text-white">
-                    <a class="buttonLink px-4 py-2 text-white hover:text-gray-300 transition-colors  duration-200"
-                        href="{$base_url}page/about">
-                        <p class="text-xl">A propos</p>
-                    </a>
-
-
-                </div>
+ 
                 {if $user.user_role == 'admin'}
-                    <div>
+                    <div class="navbarItems">
                         <a class="buttonLink px-4 py-2 text-white hover:text-gray-300 transition-colors text-xl duration-200"
-                            href="{$base_url}user/manage">Menage</i></a>
+                            href="{$base_url}user/manage">Manage</i></a>
                     </div>
                 {/if}
 
-                <div>
+                <div class="navbarItems">
                     <a class="buttonLink px-4 py-2 text-white hover:text-gray-300 transition-colors text-xl duration-200"
                         href="{$base_url}user/logout"><i class="fa-solid fa-right-from-bracket text-xl"></i></a>
                 </div>
 
-                <div>
+                <div class="navbarItems">
                     <a class="buttonLink px-4 py-2 text-white hover:text-gray-300 transition-colors text-xl duration-200"
                         href="{$base_url}user/edit_profile"><i class="fa-solid fa-pen-to-square text-xl"></i></a>
                 </div>
