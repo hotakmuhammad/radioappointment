@@ -19,5 +19,5 @@
     {* <div class="w-full max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
     
     </div> *}
-    <script src="{$base_url}assets/script/script_global.js"></script>
+    {* <script src="{$base_url}assets/script/script_global.js"></script> *}
 {/block}

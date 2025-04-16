@@ -115,12 +115,21 @@
             return $rqPrep->execute($params);
         }
 
+        // public function delete(int $id) {
+        //     $strQuery = "DELETE FROM users WHERE user_id = :id";
+        //     $stmt = $this->_db->prepare($strQuery);
+        //     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        //     $stmt->execute();
+        //     return $stmt->rowCount() > 0;
+        // }
+
         public function delete(int $id) {
-            $strQuery = "DELETE FROM users WHERE user_id = :id";
-            $stmt = $this->_db->prepare($strQuery);
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            $stmt->execute();
-            return $stmt->rowCount() > 0;
+            $strQuery = "DELETE FROM users WHERE user_id = " .$id;
+            return $this->_db->exec($strQuery);
+            // $rqPrep = $this->_db->prepare($strQuery);
+            // $rqPrep->bindValue(':id', $id, PDO::PARAM_INT);
+            // return $rqPrep->execute();
+            // return $rqPrep->rowCount($strQuery);
         }
         
     }

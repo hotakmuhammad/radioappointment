@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-13 17:03:41
+/* Smarty version 4.3.4, created on 2025-04-16 19:31:52
   from 'C:\wamp64\www\radioappointment\views\manage.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_67fbee6db9ac72_36099370',
+  'unifunc' => 'content_680005a879d8b5_37232041',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd814314e2bb7ac5f34286e7f58402555a0b979b5' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\manage.tpl',
-      1 => 1744563820,
+      1 => 1744831910,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:views/appointment_list.tpl' => 1,
   ),
 ),false)) {
-function content_67fbee6db9ac72_36099370 (Smarty_Internal_Template $_smarty_tpl) {
+function content_680005a879d8b5_37232041 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
@@ -30,16 +30,16 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_89396090667fbee6db975a4_03333376', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_872104903680005a879b674_96076250', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_89396090667fbee6db975a4_03333376 extends Smarty_Internal_Block
+class Block_872104903680005a879b674_96076250 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_89396090667fbee6db975a4_03333376',
+    0 => 'Block_872104903680005a879b674_96076250',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -61,11 +61,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
         <?php $_smarty_tpl->_subTemplateRender("file:views/appointment_list.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
     </div>
-        <?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
-assets/script/script_global.js"><?php echo '</script'; ?>
->
-<?php
+        <?php
 }
 }
 /* {/block "contenu"} */

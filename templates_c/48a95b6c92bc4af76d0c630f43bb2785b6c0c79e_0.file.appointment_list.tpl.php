@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-13 17:42:04
+/* Smarty version 4.3.4, created on 2025-04-16 20:37:20
   from 'C:\wamp64\www\radioappointment\views\appointment_list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_67fbf76c14a206_24184375',
+  'unifunc' => 'content_680015000424d1_41253969',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '48a95b6c92bc4af76d0c630f43bb2785b6c0c79e' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\appointment_list.tpl',
-      1 => 1744566121,
+      1 => 1744835838,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_67fbf76c14a206_24184375 (Smarty_Internal_Template $_smarty_tpl) {
+function content_680015000424d1_41253969 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_48718669567fbf76c1483b2_46589867', "js_head_users_list");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_6863397386800150003bf73_86564698', "js_head_users_list");
 ?>
 
 
@@ -44,12 +44,12 @@ var table = new DataTable('#aptTable', {
 <?php echo '</script'; ?>
 ><?php }
 /* {block "js_head_users_list"} */
-class Block_48718669567fbf76c1483b2_46589867 extends Smarty_Internal_Block
+class Block_6863397386800150003bf73_86564698 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js_head_users_list' => 
   array (
-    0 => 'Block_48718669567fbf76c1483b2_46589867',
+    0 => 'Block_6863397386800150003bf73_86564698',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -84,7 +84,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 >
 
     <div class="container mx-auto p-4">
-        <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Users List</h2>
+        <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Appointment List</h2>
         <p class="text-gray-600 mb-6">List of users</p>
         <hr class="border-gray-300 mb-6">
 

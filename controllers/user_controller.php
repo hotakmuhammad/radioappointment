@@ -248,10 +248,10 @@ class UserCtrl extends Ctrl {
 
     public function delete() {
 
-        if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == '') {
-            header('Location:'.parent::BASE_URL.'error/show403');
-            exit;
-        }
+        // if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == '') {
+        //     header('Location:'.parent::BASE_URL.'error/show403');
+        //     exit;
+        // }
         $intUserId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
         
         $objUserModel  = new UserModel(); 

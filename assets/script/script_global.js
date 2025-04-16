@@ -25,22 +25,5 @@ function openEditPopup() {
 
 function closeEditPopup() {
     document.getElementById('editPopup').classList.add('hidden');
-}
-
-function openDeletePopup() {
-    document.getElementById('deletePopup').classList.remove('hidden');
-}
-
-function closeDeletePopup() {
-    document.getElementById('deletePopup').classList.add('hidden');
-    }
-
-// function openDeletePopup(userId) {
-//     document.getElementById('deletePopup').classList.remove('hidden');
-//     document.getElementById('confirmDeleteLink').href = 'http://localhost/radioappointment/user/delete?id' + userId;
-// }
-
-// function closeDeletePopup() {
-//     document.getElementById('deletePopup').classList.add('hidden');
-//     document.getElementById('confirmDeleteLink').href = 'http://localhost/radioappointment/user/manage';
-// }
+} 
+ 

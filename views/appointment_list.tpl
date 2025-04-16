@@ -17,7 +17,7 @@
     <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.html5.min.js"></script>
 
     <div class="container mx-auto p-4">
-        <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Users List</h2>
+        <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Appointment List</h2>
         <p class="text-gray-600 mb-6">List of users</p>
         <hr class="border-gray-300 mb-6">
 
