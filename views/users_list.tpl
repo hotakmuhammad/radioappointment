@@ -28,8 +28,8 @@
                         <th class="py-3 px-4 font-semibold text-sm">Prénom</th>
                         <th class="py-3 px-4 font-semibold text-sm">Email</th>
                         <th class="py-3 px-4 font-semibold text-sm">Phone</th> 
-                        <th class="py-3 px-4 font-semibold text-sm">Date d'inscription</th>
-                            <th class="py-3 px-4 font-semibold text-sm">Action</th>
+                        <th class="py-3 px-4 font-semibold test-sm">Role</th>
+                        <th class="py-3 px-4 font-semibold text-sm">Action</th>
                     </tr>
                 </thead>
                     <tbody>
@@ -40,12 +40,13 @@
                                 <td class="py-3 px-4 text-gray-600">{$objUser->getFirstName()}</td>
                                 <td class="py-3 px-4 text-gray-600">{$objUser->getEmail()}</td>
                                 <td class="py-3 px-4 text-gray-600">{$objUser->getPhone()}</td>
-                                <td class="py-3 px-4 text-gray-600">{$objUser->getRegist_date()}</td>
+                                <td class="py-3 px-4 text-gray-600">{$objUser->getRole()}</td>
+
                                 <td class="py-3 px-4 ">
                                     <button class="editButtonPopu" onclick="openEditPopup()">
                                         <i class="hover:text-blue-600 text-blue-400 fa-solid fa-pen-to-square"></i>
                                     </button> / 
-                                    {if (isset($smarty.session.user.user_id) && $smarty.session.user.user_role == "admin")}
+                                    {if (isset($smarty.session.user.user_id) && $smarty.session.user.user_role == "SUPERADMIN")}
                                         <a 
                                         id="confirmDeleteLink" onclick="confirmDelete()" 
                                             href="{$base_url}user/delete?id={$objUser->getId()}"
