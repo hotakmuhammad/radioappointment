@@ -97,12 +97,12 @@
             $strQuery = "UPDATE users
                             SET user_name = :name,
                                 user_firstname = :firstname,
-                                user_email = :email,
+                                -- user_email = :email,
                                 user_phone = :phone";
             $params = [
                 ':name' => $objUser->getName(),
                 ':firstname' => $objUser->getFirstName(),
-                ':email' => $objUser->getEmail(),
+                // ':email' => $objUser->getEmail(),
                 ':phone' => $objUser->getPhone(),
                 ':id' => $objUser->getId()
             ];
