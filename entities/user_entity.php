@@ -14,7 +14,8 @@ class User extends Entity{
     private string $_email;
     private string $_phone;
     private string $_password;
-
+    private string $_role;
+    private string $_isbanned;
     private string $_regist_date;
     
     // Getters and Setters ID
@@ -78,6 +79,24 @@ class User extends Entity{
         return password_hash($this->_password, PASSWORD_DEFAULT);
     }
     
+    // Getter and setter for user role
+    public function getRole() :string{
+        return $this->_role;
+    }
+
+    public function setRole(string $strRole){
+        $this->_role = $strRole;
+    }
+
+    // Getter and setters isBanned
+    public function getIsBanned() :string{
+        return $this->_isbanned;
+    }
+
+    public function setIsBanned(string $strIsBanned){
+        $this->_isbanned = $strIsBanned;
+    }
+
     // Getters and Setters Registration Date
     public function getRegist_date() :string{
         return $this->_regist_date;

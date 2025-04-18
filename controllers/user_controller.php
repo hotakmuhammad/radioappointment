@@ -35,6 +35,7 @@ class UserCtrl extends Ctrl {
             $objUser->setFirstName("");
             $objUser->setEmail(""); 
             $objUser->setPhone("");
+            $objUser->setRole("");
             $objUser->setPassword("");
             
         }
@@ -64,9 +65,18 @@ class UserCtrl extends Ctrl {
                 $this->_arrErrors[] = "Erreur de connexion";
 
 				}else{
-					
-				$_SESSION['user'] = $arrUser;
-                header("Location:".parent::BASE_URL);
+                    if (isset($arrUser['user_isbanned']) && $arrUser['user_isbanned'] == 'ISBANNED') {
+                        session_destroy();
+
+                        header('Location:'.parent::BASE_URL.'error/banned');
+
+                        $arrErrors[] = "Your account has been banned, please contact the admin as quick as possable";
+                    } else {
+
+                        $_SESSION['user'] = $arrUser;
+                        header("Location:".parent::BASE_URL);
+                        exit;
+                    }
             }
         }
 
@@ -110,7 +120,7 @@ class UserCtrl extends Ctrl {
             $this->displayTemplate("edit_profile");
             return;
         }
-    
+        // $objUser->setRole("");
         $objUser->hydrate($arrUser);
         $strActualMail = $objUser->getEmail(); 
         $strOldPassword = $objUser->getPassword();
@@ -235,6 +245,7 @@ class UserCtrl extends Ctrl {
         foreach($arrUsers as $arrUser) {
             $objUser = new User;
             $objUser->hydrate($arrUser);
+            // $objUser->setRole("default");
             $arrUsersToDisplay[] = $objUser;
         }
 

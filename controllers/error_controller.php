@@ -24,5 +24,13 @@
 			$this->_arrData["strDesc"] 	= "Page affichant le fait que l'utilisateur n'a pas les droits suffisants";
 			$this->displayTemplate("show403");
 		}
+
+
+		public function banned(){
+			$this->_arrData["strPage"] 	= "banned";
+			$this->_arrData["strTitle"] = "You are abanned";
+			$this->_arrData["strDesc"] 	= "Page display if the user is banned";
+			$this->displayTemplate("banned");
+		}
 		
 	}
