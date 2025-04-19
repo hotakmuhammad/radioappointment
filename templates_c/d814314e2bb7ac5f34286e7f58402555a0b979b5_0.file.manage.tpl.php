@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-16 19:31:52
+/* Smarty version 4.3.4, created on 2025-04-19 21:46:18
   from 'C:\wamp64\www\radioappointment\views\manage.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_680005a879d8b5_37232041',
+  'unifunc' => 'content_680419aa5849f7_78537772',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd814314e2bb7ac5f34286e7f58402555a0b979b5' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\manage.tpl',
-      1 => 1744831910,
+      1 => 1745099082,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:views/appointment_list.tpl' => 1,
   ),
 ),false)) {
-function content_680005a879d8b5_37232041 (Smarty_Internal_Template $_smarty_tpl) {
+function content_680419aa5849f7_78537772 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
@@ -30,16 +30,16 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_872104903680005a879b674_96076250', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_294194611680419aa582c16_43655243', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_872104903680005a879b674_96076250 extends Smarty_Internal_Block
+class Block_294194611680419aa582c16_43655243 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_872104903680005a879b674_96076250',
+    0 => 'Block_294194611680419aa582c16_43655243',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -51,17 +51,20 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
         <input type="radio" name="listType" id="user" value="users" checked>
         <label for="user">User</label>
         <input type="radio" name="listType" id="apt" value="appointments">
-        <label for="apt">Aappointment</label>
+        <label for="apt">Appointment</label>
     </div>
-    <div class="usersList w-full max-w-7xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
+
+    <div id="userList" class="list w-full max-w-7xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
         <?php $_smarty_tpl->_subTemplateRender("file:views/users_list.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
     </div>
-    <div class="aptList w-full max-w-7xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
+
+    <div id="aptList" class="list w-full max-w-7xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
         <?php $_smarty_tpl->_subTemplateRender("file:views/appointment_list.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-    </div>
-        <?php
+</div>
+
+<?php
 }
 }
 /* {/block "contenu"} */

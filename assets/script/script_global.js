@@ -1,37 +1,41 @@
 // Radio button to display on table at time (usrs table / appointment table) in espace admin
 document.addEventListener('DOMContentLoaded', ()=> {
-    const userListDiv = document.querySelector('.usersList');
-    const aptListDiv = document.querySelector('.aptList');
-    const radios = document.querySelectorAll('input[name="listType"]');
+    const userListDiv = document.getElementById('userList');
+    const aptListDiv = document.getElementById('aptList');
+    const userRadio = document.getElementById('user');
+    const aptRadio = document.getElementById('apt');
 
-    radios.forEach(radio =>{
-        radio.addEventListener('change', () => {
-            if(radio.value ==='users') {
-                userListDiv.style.display = 'block';
-                aptListDiv.style.display = 'none';
-            } else if( radio.value === 'appointments') {
-                userListDiv.style.display = 'none';
-                aptListDiv.style.display = 'block';
-            }
-        });
-    });
-
-    const areBanned = document.getElementsByClassName('isBanned');
-
-    for(let isBanned of areBanned) {
-
-        if(isBanned && isBanned.textContent.trim() === "ISBANNED"){
-            isBanned.style.color = "red";
+    function toggleList() {
+        if (userRadio.checked) {
+            userListDiv.classList.remove('hidden');
+            userListDiv.classList.add('block');
+            aptListDiv.classList.remove('block');
+            aptListDiv.classList.add('hidden');
+        } else {
+            aptListDiv.classList.remove('hidden');
+            aptListDiv.classList.add('block');
+            userListDiv.classList.remove('block');
+            userListDiv.classList.add('hidden');
         }
-        console.log('Role:', isBanned.textContent);
-    }
+      }
+  
+      userRadio.addEventListener('change', toggleList);
+      aptRadio.addEventListener('change', toggleList);
+  
+      toggleList();
+
 });
 
+const areBanned = document.getElementsByClassName('isBanned');
 
+for(let isBanned of areBanned) {
 
+    if(isBanned && isBanned.textContent.trim() === "ISBANNED"){
+        isBanned.style.color = "red";
+    } 
+}
 
-// Edite profiles - delete profiels popups in espace admin
-
+ 
 function openEditPopup() {
     document.getElementById('editPopup').classList.remove('hidden');
 }

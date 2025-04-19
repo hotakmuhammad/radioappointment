@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-16 20:37:20
+/* Smarty version 4.3.4, created on 2025-04-19 21:39:52
   from 'C:\wamp64\www\radioappointment\views\appointment_list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_680015000424d1_41253969',
+  'unifunc' => 'content_68041828622338_31815464',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '48a95b6c92bc4af76d0c630f43bb2785b6c0c79e' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\appointment_list.tpl',
-      1 => 1744835838,
+      1 => 1745098787,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_680015000424d1_41253969 (Smarty_Internal_Template $_smarty_tpl) {
+function content_68041828622338_31815464 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_6863397386800150003bf73_86564698', "js_head_users_list");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2139221032680418286206f7_95886647', "js_head_users_list");
 ?>
 
 
@@ -44,12 +44,12 @@ var table = new DataTable('#aptTable', {
 <?php echo '</script'; ?>
 ><?php }
 /* {block "js_head_users_list"} */
-class Block_6863397386800150003bf73_86564698 extends Smarty_Internal_Block
+class Block_2139221032680418286206f7_95886647 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js_head_users_list' => 
   array (
-    0 => 'Block_6863397386800150003bf73_86564698',
+    0 => 'Block_2139221032680418286206f7_95886647',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -89,8 +89,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
         <hr class="border-gray-300 mb-6">
 
 
-        <div class="container mx-auto p-4">
-            <table id="aptTable" class="w-full border-collapse bg-white shadow-md rounded-lg">
+                    <table id="aptTable" class="w-full border-collapse bg-white shadow-md rounded-lg">
                 <thead>
                     <tr class="bg-gray-100 text-gray-700 text-left">
                         <th class="py-3 px-4 font-semibold text-sm">Id</th>
@@ -100,6 +99,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                         <th class="py-3 px-4 font-semibold text-sm">Phone</th>
                         <th class="py-3 px-4 font-semibold text-sm">Role</th>
                         <th class="py-3 px-4 font-semibold text-sm">Date d'inscription</th>
+                        <th class="py-3 px-4 font-semibold text-sm">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -111,11 +111,11 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                         <td class="py-3 px-4 text-gray-600">+33 6 12 34 56 78</td>
                         <td class="py-3 px-4 text-gray-600">Admin</td>
                         <td class="py-3 px-4 text-gray-600">2023-10-01</td>
+                        <td class="py-3 px-4 text-gray-600">Action</td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-
+        
     </div>
 
 <?php

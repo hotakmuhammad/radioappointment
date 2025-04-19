@@ -22,7 +22,7 @@
         <hr class="border-gray-300 mb-6">
 
 
-        <div class="container mx-auto p-4">
+        {* <div class="container mx-auto p-4"> *}
             <table id="aptTable" class="w-full border-collapse bg-white shadow-md rounded-lg">
                 <thead>
                     <tr class="bg-gray-100 text-gray-700 text-left">
@@ -33,6 +33,7 @@
                         <th class="py-3 px-4 font-semibold text-sm">Phone</th>
                         <th class="py-3 px-4 font-semibold text-sm">Role</th>
                         <th class="py-3 px-4 font-semibold text-sm">Date d'inscription</th>
+                        <th class="py-3 px-4 font-semibold text-sm">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,10 +45,11 @@
                         <td class="py-3 px-4 text-gray-600">+33 6 12 34 56 78</td>
                         <td class="py-3 px-4 text-gray-600">Admin</td>
                         <td class="py-3 px-4 text-gray-600">2023-10-01</td>
+                        <td class="py-3 px-4 text-gray-600">Action</td>
                     </tr>
                 </tbody>
             </table>
-        </div>
+        {* </div> *}
 
     </div>
 

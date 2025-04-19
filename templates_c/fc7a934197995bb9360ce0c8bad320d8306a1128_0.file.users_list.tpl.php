@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-19 20:22:38
+/* Smarty version 4.3.4, created on 2025-04-19 21:40:34
   from 'C:\wamp64\www\radioappointment\views\users_list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6804060e8c1644_17210402',
+  'unifunc' => 'content_68041852eab924_10051779',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fc7a934197995bb9360ce0c8bad320d8306a1128' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\users_list.tpl',
-      1 => 1745094156,
+      1 => 1745098832,
       2 => 'file',
     ),
   ),
@@ -20,22 +20,22 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6804060e8c1644_17210402 (Smarty_Internal_Template $_smarty_tpl) {
+function content_68041852eab924_10051779 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_4979140166804060e8a4859_07776803', "js_head_users_list");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_145290950468041852e99228_56989073', "js_head_users_list");
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2850826186804060e8c0763_12182870', "js_footer");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_161018448168041852eaae01_98817909', "js_footer");
 }
 /* {block "js_head_users_list"} */
-class Block_4979140166804060e8a4859_07776803 extends Smarty_Internal_Block
+class Block_145290950468041852e99228_56989073 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js_head_users_list' => 
   array (
-    0 => 'Block_4979140166804060e8a4859_07776803',
+    0 => 'Block_145290950468041852e99228_56989073',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -74,8 +74,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
         <hr class="border-gray-300 mb-6">
 
 
-        <div class="container mx-auto p-4">
-            <table id="usersTable" class="w-full border-collapse bg-white shadow-md rounded-lg">
+                    <table id="usersTable" class="w-full border-collapse bg-white shadow-md rounded-lg">
                 <thead>
                     <tr class="bg-gray-100 text-gray-700 text-left">
                         <th class="py-3 px-4 font-semibold text-sm">Id</th>
@@ -134,8 +133,7 @@ user/delete?id=<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getId();?>
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </tbody>
             </table>
-        </div>
-    </div>
+            </div>
     </div>
 
     <div id="editPopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
@@ -188,12 +186,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 }
 /* {/block "js_head_users_list"} */
 /* {block "js_footer"} */
-class Block_2850826186804060e8c0763_12182870 extends Smarty_Internal_Block
+class Block_161018448168041852eaae01_98817909 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js_footer' => 
   array (
-    0 => 'Block_2850826186804060e8c0763_12182870',
+    0 => 'Block_161018448168041852eaae01_98817909',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -203,7 +201,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
         <?php echo '<script'; ?>
 >
             var table = new DataTable('#usersTable', {
-                pageLength: 50,
+                pageLength: 10,
                 layout: {
                     topStart: {
                         buttons: ['copyHtml5', 'excelHtml5', 'csvHtml5', 'pdfHtml5']

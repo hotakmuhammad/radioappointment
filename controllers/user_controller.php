@@ -244,13 +244,13 @@ class UserCtrl extends Ctrl {
         $arrUsersToDisplay = array();
         $loggedInUserRole = $_SESSION['user']['user_role'];
 
-        
+
         foreach($arrUsers as $arrUser) {
             $objUser = new User;
             $objUser->hydrate($arrUser);
-            // $objUser->setRole("default");
+
             if ($loggedInUserRole === 'ADMIN' && $objUser->getRole() !== 'USER') {
-                continue; // Skip non-USERs if logged-in user is ADMIN
+                continue; 
             }
             $arrUsersToDisplay[] = $objUser;
         }
@@ -261,31 +261,7 @@ class UserCtrl extends Ctrl {
         $this->_arrData["arrUsersToDisplay"] = $arrUsersToDisplay;
         // $this->_arrData["objUser"] = $objUser;
         $this->displayTemplate("manage");
-    }
-
-    public function admin_manage() {
-        if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_role'] == 'ADMIN') {
-            header('Location:'.parent::BASE_URL.'error/show403');
-            exit;
-        }
-        $objUserModel = new UserModel;
-        $arrUsers = $objUserModel->getUsers();
-
-        $arrUsersToDisplay = array();
-        foreach($arrUsers as $arrUser) {
-            $objUser = new User;
-            $objUser->hydrate($arrUser);
-            // $objUser->setRole("default");
-            $arrUsersToDisplay[] = $objUser;
-        }
-
-        $this->_arrData["strPage"] = "admin-manage";
-        $this->_arrData["strTitle"] = "Gestion des utilisateurs"; 
-        $this->_arrData["strDesc"] = "Page de gestion des utilisateurs";
-        $this->_arrData["arrUsersToDisplay"] = $arrUsersToDisplay;
-        // $this->_arrData["objUser"] = $objUser;
-        $this->displayTemplate("admin_manage");
-    }
+    } 
     public function delete() { 
         $intUserId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
         

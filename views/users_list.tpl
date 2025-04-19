@@ -19,7 +19,7 @@
         <hr class="border-gray-300 mb-6">
 
 
-        <div class="container mx-auto p-4">
+        {* <div class="container mx-auto p-4"> *}
             <table id="usersTable" class="w-full border-collapse bg-white shadow-md rounded-lg">
                 <thead>
                     <tr class="bg-gray-100 text-gray-700 text-left">
@@ -64,7 +64,7 @@
                     {/foreach}
                 </tbody>
             </table>
-        </div>
+        {* </div> *}
     </div>
     </div>
 
@@ -115,7 +115,7 @@
     {literal}
         <script>
             var table = new DataTable('#usersTable', {
-                pageLength: 50,
+                pageLength: 10,
                 layout: {
                     topStart: {
                         buttons: ['copyHtml5', 'excelHtml5', 'csvHtml5', 'pdfHtml5']

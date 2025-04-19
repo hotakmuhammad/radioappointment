@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-19 19:11:17
+/* Smarty version 4.3.4, created on 2025-04-19 20:41:28
   from 'C:\wamp64\www\radioappointment\views\edit_profile.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6803f555ae4b28_94639840',
+  'unifunc' => 'content_68040a78b2cd16_66999113',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e1d1280a7f614edc7aad90fd51fdcf72625e83b0' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\edit_profile.tpl',
-      1 => 1745089249,
+      1 => 1745095287,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6803f555ae4b28_94639840 (Smarty_Internal_Template $_smarty_tpl) {
+function content_68040a78b2cd16_66999113 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_18068285636803f555aad511_89385092', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_6764027368040a78b1ae56_18034269', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_18068285636803f555aad511_89385092 extends Smarty_Internal_Block
+class Block_6764027368040a78b1ae56_18034269 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_18068285636803f555aad511_89385092',
+    0 => 'Block_6764027368040a78b1ae56_18034269',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -124,7 +124,7 @@ user/edit_profile" method="post" class="space-y-8">
                         </div>
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                            <input type="email" name="email" id="email" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getEmail();?>
+                            <input disabled type="email" name="email" id="email" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getEmail();?>
 "
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
                         </div>
