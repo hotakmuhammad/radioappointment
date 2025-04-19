@@ -31,9 +31,19 @@
             $stmt->execute(['id' => $id]);
             return $stmt->fetch(PDO::FETCH_ASSOC); // Single row, not an array of rows
         }
+        
         public function getAll() {
             $strQuery = "SELECT user_id, user_name, user_firstname, user_email, user_phone, user_role, user_isbanned, user_regist_date
                          FROM users";
+            $stmt = $this->_db->prepare($strQuery);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Returns all rows
+        }
+
+        public function getUsers() {
+            $strQuery = "SELECT user_id, user_name, user_firstname, user_email, user_phone, user_role, user_isbanned, user_regist_date
+                         FROM users
+                         WHERE user_role = 'USER'";
             $stmt = $this->_db->prepare($strQuery);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC); // Returns all rows
