@@ -32,7 +32,7 @@
             return $stmt->fetch(PDO::FETCH_ASSOC); // Single row, not an array of rows
         }
         public function getAll() {
-            $strQuery = "SELECT user_id, user_name, user_firstname, user_email, user_phone, user_role, user_regist_date
+            $strQuery = "SELECT user_id, user_name, user_firstname, user_email, user_phone, user_role, user_isbanned, user_regist_date
                          FROM users";
             $stmt = $this->_db->prepare($strQuery);
             $stmt->execute();

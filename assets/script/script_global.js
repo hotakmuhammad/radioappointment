@@ -15,7 +15,20 @@ document.addEventListener('DOMContentLoaded', ()=> {
             }
         });
     });
+
+    const areBanned = document.getElementsByClassName('isBanned');
+
+    for(let isBanned of areBanned) {
+
+        if(isBanned && isBanned.textContent.trim() === "ISBANNED"){
+            isBanned.style.color = "red";
+        }
+        console.log('Role:', isBanned.textContent);
+    }
 });
+
+
+
 
 // Edite profiles - delete profiels popups in espace admin
 

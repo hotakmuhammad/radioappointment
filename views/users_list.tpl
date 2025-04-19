@@ -27,7 +27,8 @@
                         <th class="py-3 px-4 font-semibold text-sm">Nom</th>
                         <th class="py-3 px-4 font-semibold text-sm">Prénom</th>
                         <th class="py-3 px-4 font-semibold text-sm">Email</th>
-                        <th class="py-3 px-4 font-semibold text-sm">Phone</th> 
+                        {* <th class="py-3 px-4 font-semibold text-sm">Phone</th>  *}
+                        <th class="py-3 px-4 font-semibold text-sm">Situation</th> 
                         {if (isset($smarty.session.user.user_id) && $smarty.session.user.user_role == "SUPERADMIN")}
                             <th class="py-3 px-4 font-semibold test-sm">Role</th>
                         {/if}
@@ -44,9 +45,10 @@
                                 <td class="py-3 px-4 text-gray-600">{$objUser->getName()}</td>
                                 <td class="py-3 px-4 text-gray-600">{$objUser->getFirstName()}</td>
                                 <td class="py-3 px-4 text-gray-600">{$objUser->getEmail()}</td>
-                                <td class="py-3 px-4 text-gray-600">{$objUser->getPhone()}</td>
+                                {* <td class="py-3 px-4 text-gray-600">{$objUser->getPhone()}</td> *}
+                                <td class="isBanned py-3 px-4 text-gray-600">{$objUser->getIsBanned()}</td>
                                 {if (isset($smarty.session.user.user_id) && $smarty.session.user.user_role == "SUPERADMIN")}
-                                    <td class="py-3 px-4 text-gray-600">{$objUser->getRole()}</td>
+                                    <td class=" py-3 px-4 text-gray-600">{$objUser->getRole()}</td>
                                 {/if}
                                 {if (isset($smarty.session.user.user_id) && $smarty.session.user.user_role == "ADMIN")}
                                     <td class="py-3 px-4 text-gray-600">{$objUser->getRegist_date()}</td>
@@ -114,13 +116,14 @@
                 </form>
             </div>
         </div>
-        <script src="{$base_url}assets/script/script_global.js"></script>
+        <script src="{$base_url}/assets/script/script_global.js"></script>
 
 {/block}
 {block name="js_footer"}
     {literal}
         <script>
             var table = new DataTable('#usersTable', {
+                pageLength: 50,
                 layout: {
                     topStart: {
                         buttons: ['copyHtml5', 'excelHtml5', 'csvHtml5', 'pdfHtml5']

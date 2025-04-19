@@ -42,7 +42,7 @@
                         <!-- Email -->
                         <div class="flex items-center justify-between">
                             <dt class="text-sm font-medium text-gray-600">Email</dt>
-                            <dd class="text-lg text-gray-900">{$objUser->getEmail()}</dd>
+                            <dd  class="text-lg text-gray-900">{$objUser->getEmail()}</dd>
                         </div>
                     </dl>
                 </div>
