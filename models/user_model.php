@@ -16,7 +16,7 @@
 		} 
  
         public function get(int $id) {
-            $strQuery = "SELECT user_id, user_name, user_firstname, user_email, user_phone, user_password, user_regist_date
+            $strQuery = "SELECT user_id, user_name, user_firstname, user_email, user_phone, user_password, user_role, user_isbanned, user_regist_date
                          FROM users
                          WHERE user_id = :id";
             $stmt = $this->_db->prepare($strQuery);
@@ -32,10 +32,19 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        public function getRoles() {
+            $strQuery = "SELECT user_id, user_role FROM users";
+            return $this->_db->query($strQuery)->fetchAll();
+        }
+    
+        public function getBanStatuses() {
+            $strQuery = "SELECT user_id, user_isbanned FROM users";
+            return $this->_db->query($strQuery)->fetchAll();
+        }
 
         public function searchUser(string $strEmail, string $strPassword) {
 
-            $strQuery = "SELECT user_id, user_name, user_firstname, user_email, user_phone, user_password, user_role, user_isbanned, user_regist_date
+            $strQuery = "SELECT user_id, user_name, user_firstname,  user_phone, user_password, user_role, user_isbanned, user_regist_date
                          FROM users
                          WHERE user_email = :email;
             ";
@@ -108,4 +117,22 @@
 
         }
         
+        public function moderate($objUser) {
+            $strQuery = "UPDATE users
+                            SET user_name = :name,
+                                user_firstname = :firstname, 
+                                user_phone = :phone,
+                                user_role = :role,
+                                user_isbanned = :isbanned
+                        WHERE user_id = :id";
+            $rqPrep = $this->_db->prepare($strQuery);
+            $rqPrep->bindValue(':name', $objUser->getName(), PDO::PARAM_STR);
+            $rqPrep->bindValue(':firstname', $objUser->getFirstName(), PDO::PARAM_STR);
+            $rqPrep->bindValue(':phone', $objUser->getPhone(), PDO::PARAM_STR);
+            $rqPrep->bindValue(':role', $objUser->getRole(), PDO::PARAM_STR);
+            $rqPrep->bindValue(':isbanned', $objUser->getIsBanned(), PDO::PARAM_STR);
+            $rqPrep->bindValue(':id', $objUser->getId(), PDO::PARAM_INT);
+            return $rqPrep->execute();
+
+        }
     }

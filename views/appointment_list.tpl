@@ -23,49 +23,50 @@
 
 
         {* <div class="container mx-auto p-4"> *}
-            <table id="aptTable" class="w-full border-collapse bg-white shadow-md rounded-lg">
-                <thead>
-                    <tr class="bg-gray-100 text-gray-700 text-left">
-                        <th class="py-3 px-4 font-semibold text-sm">Id</th>
-                        <th class="py-3 px-4 font-semibold text-sm">Nom</th>
-                        <th class="py-3 px-4 font-semibold text-sm">Prénom</th>
-                        <th class="py-3 px-4 font-semibold text-sm">Email</th>
-                        <th class="py-3 px-4 font-semibold text-sm">Phone</th>
-                        <th class="py-3 px-4 font-semibold text-sm">Role</th>
-                        <th class="py-3 px-4 font-semibold text-sm">Date d'inscription</th>
-                        <th class="py-3 px-4 font-semibold text-sm">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4 text-gray-600">1</td>
-                        <td class="py-3 px-4 text-gray-600">Doe</td>
-                        <td class="py-3 px-4 text-gray-600">John</td>
-                        <td class="py-3 px-4 text-gray-600">jhon@doe.com</td>
-                        <td class="py-3 px-4 text-gray-600">+33 6 12 34 56 78</td>
-                        <td class="py-3 px-4 text-gray-600">Admin</td>
-                        <td class="py-3 px-4 text-gray-600">2023-10-01</td>
-                        <td class="py-3 px-4 text-gray-600">Action</td>
-                    </tr>
-                </tbody>
-            </table>
-        {* </div> *}
+        <table id="aptTable" class="w-full border-collapse bg-white shadow-md rounded-lg">
+            <thead>
+                <tr class="bg-gray-100 text-gray-700 text-left">
+                    <th class="py-3 px-4 font-semibold text-sm">Id</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Nom</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Prénom</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Email</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Phone</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Role</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Date d'inscription</th>
+                <th class="py-3 px-4 font-semibold text-sm">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="border-b hover:bg-gray-50">
+                <td class="py-3 px-4 text-gray-600">1</td>
+                <td class="py-3 px-4 text-gray-600">Doe</td>
+                <td class="py-3 px-4 text-gray-600">John</td>
+                <td class="py-3 px-4 text-gray-600">jhon@doe.com</td>
+                <td class="py-3 px-4 text-gray-600">+33 6 12 34 56 78</td>
+                <td class="py-3 px-4 text-gray-600">Admin</td>
+                <td class="py-3 px-4 text-gray-600">2023-10-01</td>
+                <td class="py-3 px-4 text-gray-600">Action</td>
+            </tr>
+        </tbody>
+    </table>
+    {* </div> *}
 
-    </div>
-
+</div>
+<script src="{$base_url}/assets/script/script_global.js"></script>
 {/block}
-
-<script>
-var table = new DataTable('#aptTable', {
-    layout: {
-        topStart: {
-            buttons: ['copyHtml5', 'excelHtml5', 'csvHtml5', 'pdfHtml5']
-        }
-    },
-    language: {
-    url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/fr-FR.json'
-    }
-
-    
-});
-</script>
+{block name="js_footer"}
+    {literal}
+        <script>
+            var table = new DataTable('#aptTable', {
+                layout: {
+                    topStart: {
+                        buttons: ['copyHtml5', 'excelHtml5', 'csvHtml5', 'pdfHtml5']
+                    }
+                },
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/fr-FR.json'
+                }
+            });
+        </script>
+    {/literal}
+{/block}

@@ -127,8 +127,8 @@ class UserCtrl extends Ctrl {
 
     
         if (count($_POST) > 0) {
-            echo "Submitted Old Password: ";
-            var_dump($_POST['oldPassword']);
+            // echo "Submitted Old Password: ";
+            // var_dump($_POST['oldPassword']);
     
             $boolVerifyMail = ($strActualMail != ($_POST['email'] ?? $strActualMail));
             $this->_arrErrors = $this->_verifyInfos($objUser, $boolVerifyMail);
@@ -170,7 +170,56 @@ class UserCtrl extends Ctrl {
         $this->displayTemplate("edit_profile");
     }
 
-   
+    public function edit_user() {
+
+        if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == '' ||
+        ($_SESSION['user']['user_role'] != 'ADMIN' && $_SESSION['user']['user_role'] != 'SUPERADMIN')) {
+            header('Location:'.parent::BASE_URL.'error/show403');
+            exit;
+        }
+        $intUserId = $_GET['id'] ?? 0;
+
+        $objUser = new User();
+        $objUserModel = new UserModel();
+
+        $arrUser = $objUserModel->get($intUserId);
+        if($arrUser === false) {
+                $objUser->setId(0);
+                $objUser->setName("");
+                $objUser->setFirstName("");
+                $objUser->setEmail("");
+                $objUser->setPhone("");
+                $objUser->setRole("");
+                // $objUser->setPassword("");
+                $objUser->setIsBanned("");
+			}else{
+				/* j'hydrate en fonction de l'article */
+            $objUser->hydrate($arrUser);
+            }
+            $arrRoles = $objUserModel->getRoles();
+            $arrBanStatuses = $objUserModel->getBanStatuses();
+
+            if(count($_POST) > 0) {
+
+                $objUser->hydrate($_POST);
+                $this->_arrErrors = $this->_verifyInfos($objUser, false);
+                if (empty($this->_arrErrors)) {
+                    if ($objUserModel->moderate($objUser)) {
+                        header("Location:".parent::BASE_URL."user/manage");
+                        exit;
+                    } else {
+                        $this->_arrErrors[] = "La modification s'est mal passée";
+                    }
+                }
+        }
+
+        $this->_arrData["strPage"] = "edit_user";
+        $this->_arrData["strTitle"] = "Editer le profil"; 
+        $this->_arrData["strDesc"] = "Page de modification du profil";
+        $this->_arrData["objUser"] = $objUser;
+        $this->displayTemplate("edit_user");
+    }
+    
     private function _verifyInfos(object $objUser, $boolVerifyMail = true) {
 
         
@@ -191,7 +240,7 @@ class UserCtrl extends Ctrl {
 
         if($objUser->getPhone() == "") {
             $arrErrors['phone'] = "Le numéro du téléphone est obligatoire.";
-        }elseif(strlen($objUser->getPhone()) < 10){
+        }elseif(strlen($objUser->getPhone()) < 9){
             $arrErrors['phone'] = "Le numéro du téléphone n'est pas bon.";
         }
 

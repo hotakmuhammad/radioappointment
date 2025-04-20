@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-19 21:40:34
+/* Smarty version 4.3.4, created on 2025-04-20 19:53:03
   from 'C:\wamp64\www\radioappointment\views\users_list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_68041852eab924_10051779',
+  'unifunc' => 'content_6805509fae5585_50065782',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fc7a934197995bb9360ce0c8bad320d8306a1128' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\users_list.tpl',
-      1 => 1745098832,
+      1 => 1745178782,
       2 => 'file',
     ),
   ),
@@ -20,22 +20,22 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_68041852eab924_10051779 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6805509fae5585_50065782 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_145290950468041852e99228_56989073', "js_head_users_list");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_20494970496805509facb4b1_15065106', "js_head_users_list");
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_161018448168041852eaae01_98817909', "js_footer");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_14915446766805509fae4651_32009480', "js_footer");
 }
 /* {block "js_head_users_list"} */
-class Block_145290950468041852e99228_56989073 extends Smarty_Internal_Block
+class Block_20494970496805509facb4b1_15065106 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js_head_users_list' => 
   array (
-    0 => 'Block_145290950468041852e99228_56989073',
+    0 => 'Block_20494970496805509facb4b1_15065106',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -74,108 +74,69 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
         <hr class="border-gray-300 mb-6">
 
 
-                    <table id="usersTable" class="w-full border-collapse bg-white shadow-md rounded-lg">
-                <thead>
-                    <tr class="bg-gray-100 text-gray-700 text-left">
-                        <th class="py-3 px-4 font-semibold text-sm">Id</th>
-                        <th class="py-3 px-4 font-semibold text-sm">Nom</th>
-                        <th class="py-3 px-4 font-semibold text-sm">Prénom</th>
-                        <th class="py-3 px-4 font-semibold text-sm">Email</th>
-                        <th class="py-3 px-4 font-semibold text-sm">Situation</th>
-                        <?php if (((isset($_SESSION['user']['user_id'])) && $_SESSION['user']['user_role'] == "SUPERADMIN" || $_SESSION['user']['user_role'] == "ADMIN")) {?>
-                            <th class="py-3 px-4 font-semibold test-sm">Role</th>
-                        <?php }?>
+                <table id="usersTable" class="w-full border-collapse bg-white shadow-md rounded-lg">
+            <thead>
+                <tr class="bg-gray-100 text-gray-700 text-left">
+                    <th class="py-3 px-4 font-semibold text-sm">Id</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Nom</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Prénom</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Email</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Situation</th>
+                    <?php if (((isset($_SESSION['user']['user_id'])) && $_SESSION['user']['user_role'] == "SUPERADMIN" || $_SESSION['user']['user_role'] == "ADMIN")) {?>
+                        <th class="py-3 px-4 font-semibold test-sm">Role</th>
+                    <?php }?>
 
-                        <th class="py-3 px-4 font-semibold text-sm">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
+                    <th class="py-3 px-4 font-semibold text-sm">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrUsersToDisplay']->value, 'objUser');
 $_smarty_tpl->tpl_vars['objUser']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['objUser']->value) {
 $_smarty_tpl->tpl_vars['objUser']->do_else = false;
 ?>
-                        <tr class="border-b hover:bg-gray-50">
-                            <td class="py-3 px-4 text-gray-600"><?php echo $_smarty_tpl->tpl_vars['objUser']->value->getId();?>
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="py-3 px-4 text-gray-600"><?php echo $_smarty_tpl->tpl_vars['objUser']->value->getId();?>
 </td>
-                            <td class="py-3 px-4 text-gray-600"><?php echo $_smarty_tpl->tpl_vars['objUser']->value->getName();?>
+                        <td class="py-3 px-4 text-gray-600"><?php echo $_smarty_tpl->tpl_vars['objUser']->value->getName();?>
 </td>
-                            <td class="py-3 px-4 text-gray-600"><?php echo $_smarty_tpl->tpl_vars['objUser']->value->getFirstName();?>
+                        <td class="py-3 px-4 text-gray-600"><?php echo $_smarty_tpl->tpl_vars['objUser']->value->getFirstName();?>
 </td>
-                            <td class="py-3 px-4 text-gray-600"><?php echo $_smarty_tpl->tpl_vars['objUser']->value->getEmail();?>
+                        <td class="py-3 px-4 text-gray-600"><?php echo $_smarty_tpl->tpl_vars['objUser']->value->getEmail();?>
 </td>
-                            <td class="isBanned py-3 px-4 text-gray-600"><?php echo $_smarty_tpl->tpl_vars['objUser']->value->getIsBanned();?>
+                        <td class="isBanned py-3 px-4 text-gray-600"><?php echo $_smarty_tpl->tpl_vars['objUser']->value->getIsBanned();?>
 </td>
-                            <?php if (((isset($_SESSION['user']['user_id'])) && $_SESSION['user']['user_role'] == "SUPERADMIN" || $_SESSION['user']['user_role'] == "ADMIN")) {?>
-                                <td class=" py-3 px-4 text-gray-600"><?php echo $_smarty_tpl->tpl_vars['objUser']->value->getRole();?>
+                        <?php if (((isset($_SESSION['user']['user_id'])) && $_SESSION['user']['user_role'] == "SUPERADMIN" || $_SESSION['user']['user_role'] == "ADMIN")) {?>
+                            <td class=" py-3 px-4 text-gray-600"><?php echo $_smarty_tpl->tpl_vars['objUser']->value->getRole();?>
 </td>
-                            <?php }?>
+                        <?php }?>
 
-                            <td class="py-3 px-4 ">
-                                <button class="editButtonPopu" onclick="openEditPopup()">
-                                    <i class="hover:text-blue-600 text-blue-400 fa-solid fa-pen-to-square"></i>
-                                </button> /
-                                <?php if (((isset($_SESSION['user']['user_id'])) && $_SESSION['user']['user_role'] == "SUPERADMIN" || $_SESSION['user']['user_role'] == "ADMIN")) {?>
-                                    <a id="confirmDeleteLink" onclick="confirmDelete()"
-                                        href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+                        <td class="py-3 px-4 ">
+                            <a
+                                href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+user/edit_user?id=<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getId();?>
+" class="">
+                                <i class="hover:text-blue-600 text-blue-400 fa-solid fa-pen-to-square"></i>
+                            </a> /
+                            <?php if (((isset($_SESSION['user']['user_id'])) && $_SESSION['user']['user_role'] == "SUPERADMIN" || $_SESSION['user']['user_role'] == "ADMIN")) {?>
+                                <a
+                                    href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 user/delete?id=<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getId();?>
 " class="">
-                                        <i class="hover:text-red-600 text-red-400 fa-solid fa-trash"></i>
-                                    </a>
+                                    <i class="hover:text-red-600 text-red-400 fa-solid fa-trash"></i>
+                                </a>
 
-                                <?php }?>
-                            </td>
-                        </tr>
+                            <?php }?>
+                        </td>
+                    </tr>
 
-                    <?php
+                <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                </tbody>
-            </table>
-            </div>
-    </div>
-
-    <div id="editPopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-        <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-            <h2 class="text-xl font-bold mb-4">Edit User</h2>
-            <form id="editUserForm">
-                <input type="hidden" id="userId">
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Name</label>
-                    <input type="text" id="name" class="w-full p-2 border rounded" required>
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="firstName">First Name</label>
-                    <input type="text" id="firstName" class="w-full p-2 border rounded" required>
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
-                    <input type="email" id="email" class="w-full p-2 border rounded" required>
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">Phone</label>
-                    <input type="text" id="phone" class="w-full p-2 border rounded">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">isEnabled</label>
-                    <select type="option" id="isEnabled" class="w-full p-2 border rounded">
-                        <option>Enable</option>
-                        <option>Ban</option>
-                    </select>
-                </div>
-                <div class="flex justify-end space-x-2">
-                    <div type="button" onclick="closeEditPopup()"
-                        class="cursor-pointer bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-600">
-                        Cancel
-                    </div>
-                    <input type="submit"
-                        class="cursor-pointer bg-gray-600 text-white rounded-lg hover:bg-gray-700 px-4 py-2 ">
-
-                </div>
-            </form>
-        </div>
-    </div>
+            </tbody>
+        </table>
+            </div> 
     <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 /assets/script/script_global.js"><?php echo '</script'; ?>
@@ -186,12 +147,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 }
 /* {/block "js_head_users_list"} */
 /* {block "js_footer"} */
-class Block_161018448168041852eaae01_98817909 extends Smarty_Internal_Block
+class Block_14915446766805509fae4651_32009480 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js_footer' => 
   array (
-    0 => 'Block_161018448168041852eaae01_98817909',
+    0 => 'Block_14915446766805509fae4651_32009480',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
