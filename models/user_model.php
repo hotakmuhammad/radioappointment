@@ -91,14 +91,16 @@
             return $rqPrep->execute();
         }
         public function insert(object $objUser) {
-            $strQuery = "INSERT INTO users (user_name, user_firstname,  user_email, user_phone, user_regist_date)
-                        VALUES (:firstName, :lastName, :email, :phone,  NOW())";
+            $strQuery = "INSERT INTO users (user_name, user_firstname,  user_phone, user_role, user_isbanned, user_regist_date)
+                        VALUES (:firstName, :lastName,  :phone, :role, :isBanned,  NOW())";
 
-            $rqPrep	= $this->_db->prepare($strQuery);
-            $rqPrep->bindValue(':lastName', $objUser->getName(), PDO::PARAM_STR);
+            $rqPrep	= $this->_db->prepare($strQuery); 
             $rqPrep->bindValue(':firstName', $objUser->getFirstName(), PDO::PARAM_STR); 
-            $rqPrep->bindValue(':email', $objUser->getEmail(), PDO::PARAM_STR);
+            $rqPrep->bindValue(':lastName', $objUser->getName(), PDO::PARAM_STR);
+            // $rqPrep->bindValue(':email', $objUser->getEmail(), PDO::PARAM_STR);
             $rqPrep->bindValue(':phone', $objUser->getPhone(), PDO::PARAM_STR);
+            $rqPrep->bindValue(':role', $objUser->getRole(), PDO::PARAM_STR);
+            $rqPrep->bindValue(':isBanned', $objUser->getIsBanned(), PDO::PARAM_STR);
             // $rqPrep->bindValue(':password', $objUser->getPasswordHash(), PDO::PARAM_STR);
             
             return $rqPrep->execute();
