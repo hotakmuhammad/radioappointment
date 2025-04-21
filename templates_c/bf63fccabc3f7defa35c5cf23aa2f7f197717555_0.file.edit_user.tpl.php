@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-20 22:01:43
+/* Smarty version 4.3.4, created on 2025-04-21 20:22:50
   from 'C:\wamp64\www\radioappointment\views\edit_user.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_68056ec7dac952_51967069',
+  'unifunc' => 'content_6806a91acf5978_77961095',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'bf63fccabc3f7defa35c5cf23aa2f7f197717555' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\edit_user.tpl',
-      1 => 1745186501,
+      1 => 1745266969,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_68056ec7dac952_51967069 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6806a91acf5978_77961095 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_94888346268056ec7d9fd32_23366361', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_5230458336806a91aced489_79473367', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_94888346268056ec7d9fd32_23366361 extends Smarty_Internal_Block
+class Block_5230458336806a91aced489_79473367 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_94888346268056ec7d9fd32_23366361',
+    0 => 'Block_5230458336806a91aced489_79473367',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -88,7 +88,7 @@ user/edit_user" method="post" class="space-y-8">
                     </div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                        <input type="email" name="email" id="email" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getEmail();?>
+                        <input disabled type="email" name="email" id="email" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getEmail();?>
 "
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
                     </div>
@@ -102,20 +102,10 @@ user/edit_user" method="post" class="space-y-8">
                         <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Roles</label>
                         <select name="role" id="role"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
-                            <option value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getRole();?>
-">Select Role</option>
-                            <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrRoles']->value, 'role');
-$_smarty_tpl->tpl_vars['role']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['role']->value) {
-$_smarty_tpl->tpl_vars['role']->do_else = false;
-?>
-                                <option value="<?php echo $_smarty_tpl->tpl_vars['role']->value;?>
-" <?php if ($_smarty_tpl->tpl_vars['role']->value == $_smarty_tpl->tpl_vars['objUser']->value->getRole()) {?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['role']->value;?>
-</option>
-                            <?php
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                                                        <option value="USER" selected >USER</option>
+                            <option value="ADMIN">ADMIN</option>
+                            <option value="SUPERADMIN">SUPERADMIN</option>
+
 
                         </select>
                     </div>
@@ -123,10 +113,11 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <label for="isBanned" class="block text-sm font-medium text-gray-700 mb-2">Situation</label>
                         <select name="isBanned" id="isBanned"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
-                            <option value="0">---</option>
-                                                        <option value="ISNOTBANNED" <?php if ($_smarty_tpl->tpl_vars['objUser']->value->getIsBanned() == 'ISNOTBANNED') {?>selected<?php }?>>NotBanned </option>
-                            <option value="ISBANNED" <?php if ($_smarty_tpl->tpl_vars['objUser']->value->getIsBanned() == 'ISBANNED') {?>selected<?php }?>>Banned </option>
-                                                    </select>
+
+                            <option value="ISBANNED" selected>Is banned </option>
+                            <option value="ISNOTBANNED"  >Is not Banned </option>
+
+                        </select>
                     </div>
                                     </div>
             </fieldset>

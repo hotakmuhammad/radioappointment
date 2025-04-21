@@ -175,7 +175,7 @@ class UserCtrl extends Ctrl {
         if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == '' ||
         ($_SESSION['user']['user_role'] != 'ADMIN' && $_SESSION['user']['user_role'] != 'SUPERADMIN')) {
             header('Location:'.parent::BASE_URL.'error/show403');
-            exit;
+            // exit;
         }
         $intUserId = $_GET['id'] ?? 0;
 
@@ -195,6 +195,11 @@ class UserCtrl extends Ctrl {
 			}else{
 				/* j'hydrate en fonction de l'article */
             $objUser->hydrate($arrUser);
+            if ($_SESSION['user']['user_role'] != "ADMIN" &&
+                $_SESSION['user']['user_role'] != 'SUPERADMIN' &&
+                $_SESSION['user']['user_id'] != $objUser->getId()){
+            header("Location:".parent::BASE_URL."error/show403");
+        }
             }
             $arrRoles = $objUserModel->getRoles();
             $arrBanStatuses = $objUserModel->getBanStatuses();
@@ -202,22 +207,47 @@ class UserCtrl extends Ctrl {
             if(count($_POST) > 0) {
 
                 $objUser->hydrate($_POST);
-                $this->_arrErrors = $this->_verifyInfos($objUser, false);
-                if (empty($this->_arrErrors)) {
-                    if ($objUserModel->moderate($objUser)) {
-                        header("Location:".parent::BASE_URL."user/manage");
-                        exit;
-                    } else {
-                        $this->_arrErrors[] = "La modification s'est mal passée";
+                if ($objUser->getName() == ""){
+					$this->_arrErrors['name'] = "name";
+				}
+				if (strlen($objUser->getFirstName()) < 10){
+					$this->_arrErrors['firstName'] = "firstname";
+				}
+				if ($objUser->getPhone() == ""){
+					$this->_arrErrors['phone'] = "Phone";
+				}
+				if ($objUser->getRole() == ""){
+					$this->_arrErrors['role'] = "role";
+				}
+				if ($objUser->getIsBanned() == ""){
+					$this->_arrErrors['isBanned'] = "isBanned";
+				}
+                // $this->_arrErrors = $this->_verifyInfos($objUser, false);
+                if (count($this->_arrErrors) == 0) {
+                    if($objUser->getId() === 0) {
+                        if ($objUserModel->insert($objUser)){
+							header("Location:".parent::BASE_URL."user/manage");
+						}else{
+							$this->_arrErrors[] = "L'insertion s'est mal passée";
+						}
+                    }else {
+
+                        if ($objUserModel->moderate($objUser)) {
+                            header("Location:".parent::BASE_URL."user/manage");
+                        } else {
+                            $this->_arrErrors[] = "La modification s'est mal passée";
+                        }
                     }
                 }
         }
-
-        $this->_arrData["strPage"] = "edit_user";
-        $this->_arrData["strTitle"] = "Editer le profil"; 
-        $this->_arrData["strDesc"] = "Page de modification du profil";
         $this->_arrData["objUser"] = $objUser;
-        $this->displayTemplate("edit_user");
+        // if($objUser->getId() === 0) {
+            $this->_arrData["strPage"] = "edit_user";
+            $this->_arrData["strTitle"] = "Editer le profil"; 
+            $this->_arrData["strDesc"] = "Page de modification du profil";
+            $this->_arrData["objUser"] = $objUser;
+            $this->displayTemplate("edit_user");
+        // }
     }
     
     private function _verifyInfos(object $objUser, $boolVerifyMail = true) {

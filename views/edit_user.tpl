@@ -44,7 +44,7 @@
                     </div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                        <input type="email" name="email" id="email" value="{$objUser->getEmail()}"
+                        <input disabled type="email" name="email" id="email" value="{$objUser->getEmail()}"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
                     </div>
                     <div>
@@ -56,10 +56,14 @@
                         <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Roles</label>
                         <select name="role" id="role"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
-                            <option value="{$objUser->getRole()}">Select Role</option>
+                            {* <option value="{$objUser->getRole()}">Select Role</option>
                             {foreach from=$arrRoles item=role}
                                 <option value="{$role}" {if $role == $objUser->getRole()}selected{/if}>{$role}</option>
-                            {/foreach}
+                            {/foreach} *}
+                            <option value="USER" selected >USER</option>
+                            <option value="ADMIN">ADMIN</option>
+                            <option value="SUPERADMIN">SUPERADMIN</option>
+
 
                         </select>
                     </div>
@@ -67,11 +71,10 @@
                         <label for="isBanned" class="block text-sm font-medium text-gray-700 mb-2">Situation</label>
                         <select name="isBanned" id="isBanned"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
-                            <option value="0">---</option>
-                            {* {foreach from=$arrUsersToDisplay item=objUser} *}
-                            <option value="ISNOTBANNED" {if $objUser->getIsBanned() == 'ISNOTBANNED'}selected{/if}>NotBanned </option>
-                            <option value="ISBANNED" {if $objUser->getIsBanned() == 'ISBANNED'}selected{/if}>Banned </option>
-                            {* {/foreach}  *}
+
+                            <option value="ISBANNED" selected>Is banned </option>
+                            <option value="ISNOTBANNED"  >Is not Banned </option>
+
                         </select>
                     </div>
                     {* Uncomment and style if needed
