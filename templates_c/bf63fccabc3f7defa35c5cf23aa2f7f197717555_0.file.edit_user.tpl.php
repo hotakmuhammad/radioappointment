@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-21 20:22:50
+/* Smarty version 4.3.4, created on 2025-04-22 19:43:31
   from 'C:\wamp64\www\radioappointment\views\edit_user.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6806a91acf5978_77961095',
+  'unifunc' => 'content_6807f1633f8dd1_36860078',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'bf63fccabc3f7defa35c5cf23aa2f7f197717555' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\edit_user.tpl',
-      1 => 1745266969,
+      1 => 1745351008,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,24 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6806a91acf5978_77961095 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6807f1633f8dd1_36860078 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
+
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_5230458336806a91aced489_79473367', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_61662796807f1633eb646_92602110', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_5230458336806a91aced489_79473367 extends Smarty_Internal_Block
+class Block_61662796807f1633eb646_92602110 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_5230458336806a91aced489_79473367',
+    0 => 'Block_61662796807f1633eb646_92602110',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -70,7 +71,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Modification</h1>
 
         <form action="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
-user/edit_user" method="post" class="space-y-8">
+user/edit_user" method="POST" class="space-y-8">
             <fieldset class="space-y-6">
                 <legend class="text-xl font-medium text-gray-700 border-b pb-2">Informations personnelles</legend>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -88,7 +89,7 @@ user/edit_user" method="post" class="space-y-8">
                     </div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                        <input disabled type="email" name="email" id="email" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getEmail();?>
+                        <input type="email" name="email" id="email" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getEmail();?>
 "
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
                     </div>
@@ -102,10 +103,11 @@ user/edit_user" method="post" class="space-y-8">
                         <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Roles</label>
                         <select name="role" id="role"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
-                                                        <option value="USER" selected >USER</option>
-                            <option value="ADMIN">ADMIN</option>
-                            <option value="SUPERADMIN">SUPERADMIN</option>
-
+                                                        <option value="USER" <?php if ($_smarty_tpl->tpl_vars['objUser']->value->getRole() == "USER") {?>selected<?php }?>  >USER</option>
+                            <option value="ADMIN" <?php if ($_smarty_tpl->tpl_vars['objUser']->value->getRole() == "ADMIN") {?>selected<?php }?> >ADMIN</option>
+                            <?php if ($_smarty_tpl->tpl_vars['user']->value['user_role'] == 'SUPERADMIN') {?>
+                                <option value="SUPERADMIN" <?php if ($_smarty_tpl->tpl_vars['objUser']->value->getRole() == 'SUPERADMIN') {?> selected <?php }?>>SUPERADMIN</option>
+                            <?php }?>
 
                         </select>
                     </div>
@@ -114,8 +116,8 @@ user/edit_user" method="post" class="space-y-8">
                         <select name="isBanned" id="isBanned"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
 
-                            <option value="ISBANNED" selected>Is banned </option>
-                            <option value="ISNOTBANNED"  >Is not Banned </option>
+                            <option value="ISNOTBANNED" <?php if ($_smarty_tpl->tpl_vars['objUser']->value->getIsBanned() == 'ISNOTBANNED') {?>selected<?php }?>>ISNOTBANNED</option>
+                            <option value="ISBANNED" <?php if ($_smarty_tpl->tpl_vars['objUser']->value->getIsBanned() == 'ISBANNED') {?>selected<?php }?> >ISBANNED</option>
 
                         </select>
                     </div>

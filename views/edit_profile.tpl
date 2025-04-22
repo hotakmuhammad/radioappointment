@@ -52,7 +52,7 @@
         <div class="w-full max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
             <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Modification</h1>
 
-            <form action="{$base_url}user/edit_profile" method="post" class="space-y-8">
+            <form action="{$base_url}user/edit_profile" method="POST" class="space-y-8">
                 <fieldset class="space-y-6">
                     <legend class="text-xl font-medium text-gray-700 border-b pb-2">Informations personnelles</legend>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

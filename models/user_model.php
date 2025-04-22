@@ -90,32 +90,32 @@
             
             return $rqPrep->execute();
         }
-        public function insert(object $objUser) {
-            $strQuery = "INSERT INTO users (user_name, user_firstname,  user_phone, user_role, user_isbanned, user_regist_date)
-                        VALUES (:firstName, :lastName,  :phone, :role, :isBanned,  NOW())";
+        // public function insert(object $objUser) {
+        //     $strQuery = "INSERT INTO users (user_name, user_firstname,  user_phone, user_role, user_isbanned, user_regist_date)
+        //                 VALUES (:firstName, :lastName,  :phone, :role, :isBanned,  NOW())";
 
-            $rqPrep	= $this->_db->prepare($strQuery); 
-            $rqPrep->bindValue(':firstName', $objUser->getFirstName(), PDO::PARAM_STR); 
-            $rqPrep->bindValue(':lastName', $objUser->getName(), PDO::PARAM_STR);
-            // $rqPrep->bindValue(':email', $objUser->getEmail(), PDO::PARAM_STR);
-            $rqPrep->bindValue(':phone', $objUser->getPhone(), PDO::PARAM_STR);
-            $rqPrep->bindValue(':role', $objUser->getRole(), PDO::PARAM_STR);
-            $rqPrep->bindValue(':isBanned', $objUser->getIsBanned(), PDO::PARAM_STR);
-            // $rqPrep->bindValue(':password', $objUser->getPasswordHash(), PDO::PARAM_STR);
+        //     $rqPrep	= $this->_db->prepare($strQuery); 
+        //     $rqPrep->bindValue(':firstName', $objUser->getFirstName(), PDO::PARAM_STR); 
+        //     $rqPrep->bindValue(':lastName', $objUser->getName(), PDO::PARAM_STR);
+        //     // $rqPrep->bindValue(':email', $objUser->getEmail(), PDO::PARAM_STR);
+        //     $rqPrep->bindValue(':phone', $objUser->getPhone(), PDO::PARAM_STR);
+        //     $rqPrep->bindValue(':role', $objUser->getRole(), PDO::PARAM_STR);
+        //     $rqPrep->bindValue(':isBanned', $objUser->getIsBanned(), PDO::PARAM_STR);
+        //     // $rqPrep->bindValue(':password', $objUser->getPasswordHash(), PDO::PARAM_STR);
             
-            return $rqPrep->execute();
-        }
+        //     return $rqPrep->execute();
+        // }
 
 
 
         public function update($objUser) {
             $strQuery = "UPDATE users
                             SET user_name = :name,
-                                user_firstname = :firstname, 
+                                user_firstname = :firstName, 
                                 user_phone = :phone";
             $params = [
                 ':name' => $objUser->getName(), 
-                ':firstname' => $objUser->getFirstName() ,
+                ':firstName' => $objUser->getFirstName() ,
                 ':phone' => $objUser->getPhone(),
                 ':id' => $objUser->getId() 
             ];
@@ -137,19 +137,20 @@
         public function moderate($objUser) {
             $strQuery = "UPDATE users
                             SET user_name = :name,
-                                user_firstname = :firstname, 
+                                user_firstname = :firstName, 
                                 user_phone = :phone,
                                 user_role = :role,
-                                user_isbanned = :isbanned,
-                                user_regist_date = NOW()
+                                user_isbanned = :isBanned
+                                -- user_regist_date = NOW()
                         WHERE user_id = :id";
             $rqPrep = $this->_db->prepare($strQuery);
             $rqPrep->bindValue(':name', $objUser->getName(), PDO::PARAM_STR);
-            $rqPrep->bindValue(':firstname', $objUser->getFirstName(), PDO::PARAM_STR);
+            $rqPrep->bindValue(':firstName', $objUser->getFirstName(), PDO::PARAM_STR);
             $rqPrep->bindValue(':phone', $objUser->getPhone(), PDO::PARAM_STR);
             $rqPrep->bindValue(':role', $objUser->getRole(), PDO::PARAM_STR);
-            $rqPrep->bindValue(':isbanned', $objUser->getIsBanned(), PDO::PARAM_STR);
+            $rqPrep->bindValue(':isBanned', $objUser->getIsBanned(), PDO::PARAM_STR);
             $rqPrep->bindValue(':id', $objUser->getId(), PDO::PARAM_INT);
+
             return $rqPrep->execute();
 
         }

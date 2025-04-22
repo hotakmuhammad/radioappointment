@@ -1,13 +1,6 @@
 {extends file="views/layout.tpl"}
 
-{* 
 
-<input type="text" name="name" id="name" value="{$objUser->getName()}">
-<input type="text" name="firstName" id="firstName" value="{$objUser->getFirstName()}">
-<input type="email" name="email" id="email" value="{$objUser->getEmail()}">
-<input type="tel" name="phone" id="phone" value="{$objUser->getPhone()}">
-
-*}
 {block name="contenu"}
     {if (count($arrErrors) > 0)}
         <div class="max-w-md mx-auto mt-4 p-4 bg-red-50 border border-red-200 rounded-lg shadow-sm">
@@ -28,7 +21,7 @@
     <div class="w-full max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
         <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Modification</h1>
 
-        <form action="{$base_url}user/edit_user" method="post" class="space-y-8">
+        <form action="{$base_url}user/edit_user" method="POST" class="space-y-8">
             <fieldset class="space-y-6">
                 <legend class="text-xl font-medium text-gray-700 border-b pb-2">Informations personnelles</legend>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -44,7 +37,7 @@
                     </div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                        <input disabled type="email" name="email" id="email" value="{$objUser->getEmail()}"
+                        <input type="email" name="email" id="email" value="{$objUser->getEmail()}"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
                     </div>
                     <div>
@@ -60,10 +53,11 @@
                             {foreach from=$arrRoles item=role}
                                 <option value="{$role}" {if $role == $objUser->getRole()}selected{/if}>{$role}</option>
                             {/foreach} *}
-                            <option value="USER" selected >USER</option>
-                            <option value="ADMIN">ADMIN</option>
-                            <option value="SUPERADMIN">SUPERADMIN</option>
-
+                            <option value="USER" {if $objUser->getRole() == "USER"}selected{/if}  >USER</option>
+                            <option value="ADMIN" {if $objUser->getRole() == "ADMIN"}selected{/if} >ADMIN</option>
+                            {if $user.user_role == 'SUPERADMIN'}
+                                <option value="SUPERADMIN" {if $objUser->getRole() == 'SUPERADMIN'} selected {/if}>SUPERADMIN</option>
+                            {/if}
 
                         </select>
                     </div>
@@ -72,8 +66,8 @@
                         <select name="isBanned" id="isBanned"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
 
-                            <option value="ISBANNED" selected>Is banned </option>
-                            <option value="ISNOTBANNED"  >Is not Banned </option>
+                            <option value="ISNOTBANNED" {if $objUser->getIsBanned() == 'ISNOTBANNED'}selected{/if}>ISNOTBANNED</option>
+                            <option value="ISBANNED" {if $objUser->getIsBanned() == 'ISBANNED'}selected{/if} >ISBANNED</option>
 
                         </select>
                     </div>

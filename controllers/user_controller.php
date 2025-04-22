@@ -122,6 +122,7 @@ class UserCtrl extends Ctrl {
         }
         // $objUser->setRole("");
         $objUser->hydrate($arrUser);
+        var_dump($objUser);
         $strActualMail = $objUser->getEmail(); 
         $strOldPassword = $objUser->getPassword();
 
@@ -134,7 +135,7 @@ class UserCtrl extends Ctrl {
             $this->_arrErrors = $this->_verifyInfos($objUser, $boolVerifyMail);
     
             $objUser->hydrate($_POST);
-    
+            var_dump($objUser);
             if (!empty($_POST['oldPassword'])) {
                 if (!password_verify($_POST['oldPassword'], $strOldPassword)) {
                     $this->_arrErrors['oldPassword'] = "Le mot de passe actuel est incorrect";
@@ -155,7 +156,7 @@ class UserCtrl extends Ctrl {
                     $_SESSION['user']['user_firstname'] = $objUser->getFirstName();
                     $_SESSION['user']['user_name'] = $objUser->getName();
                     $_SESSION['user']['user_email'] = $objUser->getEmail();
-                    header("Location:".parent::BASE_URL."page/appointment");
+                    // header("Location:".parent::BASE_URL."page/appointment");
                     exit;
                 } else {
                     $this->_arrErrors[] = "La mise à jour a échoué";
@@ -177,11 +178,12 @@ class UserCtrl extends Ctrl {
             header('Location:'.parent::BASE_URL.'error/show403');
             // exit;
         }
-        $intUserId = $_GET['id'] ?? 0;
+        $intUserId = $_GET['id']??0;
 
-        $objUser = new User();
-        $objUserModel = new UserModel();
-
+        $objUser = new User;
+        var_dump($objUser);
+        $objUserModel = new UserModel;
+        var_dump($objUserModel);
         $arrUser = $objUserModel->get($intUserId);
         if($arrUser === false) {
                 $objUser->setId(0);
@@ -189,58 +191,71 @@ class UserCtrl extends Ctrl {
                 $objUser->setFirstName("");
                 $objUser->setEmail("");
                 $objUser->setPhone("");
-                $objUser->setRole("");
+                $objUser->setRole("USER");
                 // $objUser->setPassword("");
-                $objUser->setIsBanned("");
+                $objUser->setIsBanned("ISNOTBANNED");
 			}else{
 				/* j'hydrate en fonction de l'article */
             $objUser->hydrate($arrUser);
-            if ($_SESSION['user']['user_role'] != "ADMIN" &&
-                $_SESSION['user']['user_role'] != 'SUPERADMIN' &&
-                $_SESSION['user']['user_id'] != $objUser->getId()){
-            header("Location:".parent::BASE_URL."error/show403");
-        }
+            var_dump($objUser);
+            //     if ($_SESSION['user']['user_role'] != "ADMIN" &&
+            //         $_SESSION['user']['user_role'] != 'SUPERADMIN' &&
+            //         $_SESSION['user']['user_id'] != $objUser->getId()){
+            //     header("Location:".parent::BASE_URL."error/show403");
+            // }
             }
-            $arrRoles = $objUserModel->getRoles();
-            $arrBanStatuses = $objUserModel->getBanStatuses();
+            // $arrRoles = $objUserModel->getRoles();
+            // $arrBanStatuses = $objUserModel->getBanStatuses();
 
             if(count($_POST) > 0) {
 
                 $objUser->hydrate($_POST);
+                var_dump($objUser);
+                $this->_arrErrors = [];
                 if ($objUser->getName() == ""){
-					$this->_arrErrors['name'] = "name";
+					$this->_arrErrors['name'] = "Name is required";
 				}
-				if (strlen($objUser->getFirstName()) < 10){
-					$this->_arrErrors['firstName'] = "firstname";
+				if ($objUser->getFirstName() == ""){
+					$this->_arrErrors['firstName'] = "First name is required";
 				}
 				if ($objUser->getPhone() == ""){
-					$this->_arrErrors['phone'] = "Phone";
+					$this->_arrErrors['phone'] = "PhPhone is requiredone";
 				}
-				if ($objUser->getRole() == ""){
-					$this->_arrErrors['role'] = "role";
+                if ($_SESSION['user']['user_role'] !== 'SUPERADMIN' && $objUser->getRole() === 'SUPERADMIN') {
+                    $this->_arrErrors['isBanned'] = "Only SUPERADMIN can assign SUPERADMIN role";
+                }
+				if (!in_array($objUser->getIsBanned(), ['ISBANNED', 'ISNOTBANNED'])){
+					$this->_arrErrors['role'] = "Invalid ban status. Must be ISBANNED or ISNOTBANNED";
 				}
-				if ($objUser->getIsBanned() == ""){
-					$this->_arrErrors['isBanned'] = "isBanned";
-				}
+
                 // $this->_arrErrors = $this->_verifyInfos($objUser, false);
+                if ($_SESSION['user']['user_role'] !== 'SUPERADMIN' && $objUser->getRole() === 'SUPERADMIN') {
+                    $this->_arrErrors['role'] = "Only SUPERADMIN can assign SUPERADMIN role";
+                }
                 if (count($this->_arrErrors) == 0) {
-                    if($objUser->getId() === 0) {
-                        if ($objUserModel->insert($objUser)){
-							header("Location:".parent::BASE_URL."user/manage");
-						}else{
-							$this->_arrErrors[] = "L'insertion s'est mal passée";
-						}
-                    }else {
+                    // if($objUser->getId() === 0) {
+                        // if ($objUserModel->insert($objUser)){
+						// 	header("Location:".parent::BASE_URL."user/manage");
+						// }else{
+						// 	$this->_arrErrors[] = "L'insertion s'est mal passée";
+						// }
+                    // }
+                    // else {
 
                         if ($objUserModel->moderate($objUser)) {
-                            header("Location:".parent::BASE_URL."user/manage");
+                            // if ($_SESSION['user']['user_id'] === $objUser->getId()) {
+                            //     $_SESSION['user']['user_name'] = $objUser->getName();
+                            //     $_SESSION['user']['user_firstname'] = $objUser->getFirstName();
+                            //     $_SESSION['user']['user_email'] = $objUser->getEmail();
+                            // }
+                            // header("Location:".parent::BASE_URL."user/manage");
                         } else {
                             $this->_arrErrors[] = "La modification s'est mal passée";
                         }
                     }
-                }
+                // }
         }
-        $this->_arrData["objUser"] = $objUser;
+        // $this->_arrData["objUser"] = $objUser;
         // if($objUser->getId() === 0) {
             $this->_arrData["strPage"] = "edit_user";
             $this->_arrData["strTitle"] = "Editer le profil"; 
