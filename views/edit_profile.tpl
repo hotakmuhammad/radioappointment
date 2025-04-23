@@ -22,7 +22,8 @@
             <div class="container mx-auto px-4">
 
                 <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-6">
-                    <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Mes Informations personnelles</h1>
+                    <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">
+                        {if $isOwnProfile}Mon profil{else}Profil de {$objUser->getName()}{/if}</h1>
                     <dl class="space-y-6">
                         <!-- Name -->
                         <div class="flex items-center justify-between border-b border-gray-200 pb-4">
@@ -78,12 +79,12 @@
                             <input type="tel" name="phone" id="phone" value="{$objUser->getPhone()}"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
                         </div>
-                        {* Role and isBanned fields only for ADMIN and SUPERADMIN *}
+                        
                         {if $isAdminOrSuperAdmin}
                             <div>
                                 <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Roles</label>
                                 <select name="role" id="role"
-                                    >
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
                                     <option value="USER" {if $objUser->getRole() == "USER"}selected{/if}  >USER</option>
                                     <option value="ADMIN" {if $objUser->getRole() == "ADMIN"}selected{/if} >ADMIN</option>
                                     {if $user.user_role == 'SUPERADMIN'}
@@ -95,8 +96,7 @@
                             <div>
                                 <label for="isBanned" >Situation</label>
                                 <select name="isBanned" id="isBanned"
-                                    >
-    
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
                                     <option value="ISNOTBANNED" {if $objUser->getIsBanned() == 'ISNOTBANNED'}selected{/if}>ISNOTBANNED</option>
                                     <option value="ISBANNED" {if $objUser->getIsBanned() == 'ISBANNED'}selected{/if} >ISBANNED</option>
     
@@ -104,16 +104,16 @@
                             </div>
                             {/if}
                         {* Uncomment and style if needed
-                    <div>
-                        <label for="pseudo" class="block text-sm font-medium text-gray-700 mb-2">Pseudo</label>
-                        <input 
-                            type="text" 
-                            name="pseudo" 
-                            id="pseudo" 
-                            value="{if isset($smarty.cookies.pseudo)}{$smarty.cookies.pseudo}{/if}"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
-                        >
-                    </div>
+                        <div>
+                            <label for="pseudo" class="block text-sm font-medium text-gray-700 mb-2">Pseudo</label>
+                            <input 
+                                type="text" 
+                                name="pseudo" 
+                                id="pseudo" 
+                                value="{if isset($smarty.cookies.pseudo)}{$smarty.cookies.pseudo}{/if}"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
+                            >
+                        </div>
                     *}
                     </div>
                 
