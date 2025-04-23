@@ -10,16 +10,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.html5.min.js"></script>
-    {* {/block}
-
-{block name="contenu"} *}
+ 
     <div class="container mx-auto p-4">
         <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Users List</h2>
         <p class="text-gray-600 mb-6">List of users</p>
         <hr class="border-gray-300 mb-6">
 
 
-        {* <div class="container mx-auto p-4"> *}
+
         <table id="usersTable" class="w-full border-collapse bg-white shadow-md rounded-lg">
             <thead>
                 <tr class="bg-gray-100 text-gray-700 text-left">
@@ -65,7 +63,7 @@
                 {/foreach}
             </tbody>
         </table>
-        {* </div> *}
+
     </div> 
     <script src="{$base_url}/assets/script/script_global.js"></script>
 
