@@ -49,7 +49,7 @@
 
                         <td class="py-3 px-4 ">
                             <a
-                                href="{$base_url}user/edit_user?id={$objUser->getId()}" class="">
+                                href="{$base_url}user/edit_profile?id={$objUser->getId()}" class="">
                                 <i class="hover:text-blue-600 text-blue-400 fa-solid fa-pen-to-square"></i>
                             </a> /
                             {if (isset($smarty.session.user.user_id) && $smarty.session.user.user_role == "SUPERADMIN" || $smarty.session.user.user_role == "ADMIN")}

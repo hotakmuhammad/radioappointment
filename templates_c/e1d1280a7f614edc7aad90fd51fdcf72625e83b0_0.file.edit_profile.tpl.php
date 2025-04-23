@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-22 20:36:16
+/* Smarty version 4.3.4, created on 2025-04-23 20:34:05
   from 'C:\wamp64\www\radioappointment\views\edit_profile.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6807fdc08cc992_68444887',
+  'unifunc' => 'content_68094ebd97c375_95488846',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e1d1280a7f614edc7aad90fd51fdcf72625e83b0' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\edit_profile.tpl',
-      1 => 1745350136,
+      1 => 1745440435,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6807fdc08cc992_68444887 (Smarty_Internal_Template $_smarty_tpl) {
+function content_68094ebd97c375_95488846 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_19305450436807fdc08c2381_92084097', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_194684328068094ebd950432_72375873', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_19305450436807fdc08c2381_92084097 extends Smarty_Internal_Block
+class Block_194684328068094ebd950432_72375873 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_19305450436807fdc08c2381_92084097',
+    0 => 'Block_194684328068094ebd950432_72375873',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -106,9 +106,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Modification</h1>
 
             <form action="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
-user/edit_profile" method="POST" class="space-y-8">
-                <fieldset class="space-y-6">
+user/edit_profile<?php if (!$_smarty_tpl->tpl_vars['isOwnProfile']->value) {?>?id=<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getId();
+}?>" method="POST" class="space-y-8">
+            <fieldset class="space-y-6">
+            <?php if ((isset($_smarty_tpl->tpl_vars['user']->value['user_id'])) && $_smarty_tpl->tpl_vars['user']->value['user_id'] != '') {?>
                     <legend class="text-xl font-medium text-gray-700 border-b pb-2">Informations personnelles</legend>
+                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nom</label>
@@ -124,7 +127,7 @@ user/edit_profile" method="POST" class="space-y-8">
                         </div>
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                            <input disabled type="email" name="email" id="email" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getEmail();?>
+                            <input <?php if (!$_smarty_tpl->tpl_vars['isOwnProfile']->value) {?>disabled<?php }?> type="email" name="email" id="email" value="<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getEmail();?>
 "
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
                         </div>
@@ -134,9 +137,35 @@ user/edit_profile" method="POST" class="space-y-8">
 "
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
                         </div>
+                                                <?php if ($_smarty_tpl->tpl_vars['isAdminOrSuperAdmin']->value) {?>
+                            <div>
+                                <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Roles</label>
+                                <select name="role" id="role"
+                                    >
+                                    <option value="USER" <?php if ($_smarty_tpl->tpl_vars['objUser']->value->getRole() == "USER") {?>selected<?php }?>  >USER</option>
+                                    <option value="ADMIN" <?php if ($_smarty_tpl->tpl_vars['objUser']->value->getRole() == "ADMIN") {?>selected<?php }?> >ADMIN</option>
+                                    <?php if ($_smarty_tpl->tpl_vars['user']->value['user_role'] == 'SUPERADMIN') {?>
+                                        <option value="SUPERADMIN" <?php if ($_smarty_tpl->tpl_vars['objUser']->value->getRole() == 'SUPERADMIN') {?> selected <?php }?>>SUPERADMIN</option>
+                                    <?php }?>
+    
+                                </select>
+                            </div>
+                            <div>
+                                <label for="isBanned" >Situation</label>
+                                <select name="isBanned" id="isBanned"
+                                    >
+    
+                                    <option value="ISNOTBANNED" <?php if ($_smarty_tpl->tpl_vars['objUser']->value->getIsBanned() == 'ISNOTBANNED') {?>selected<?php }?>>ISNOTBANNED</option>
+                                    <option value="ISBANNED" <?php if ($_smarty_tpl->tpl_vars['objUser']->value->getIsBanned() == 'ISBANNED') {?>selected<?php }?> >ISBANNED</option>
+    
+                                </select>
+                            </div>
+                            <?php }?>
                                             </div>
+                
+                <?php }?>
                 </fieldset>
-
+                                <?php if ($_smarty_tpl->tpl_vars['isOwnProfile']->value) {?>
                 <fieldset class="space-y-6">
                     <legend class="text-xl font-medium text-gray-700 border-b pb-2">Informations de connexion</legend>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -160,8 +189,7 @@ user/edit_profile" method="POST" class="space-y-8">
                         </div>
                     </div>
                 </fieldset>
-
-
+            <?php }?>
                 <div class="max-w-auto mx-auto">
                     <input type="submit" value="Enregistrer"
                         class="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200 cursor-pointer">

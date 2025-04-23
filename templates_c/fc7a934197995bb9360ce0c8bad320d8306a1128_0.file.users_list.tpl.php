@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-20 19:53:03
+/* Smarty version 4.3.4, created on 2025-04-23 19:52:45
   from 'C:\wamp64\www\radioappointment\views\users_list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6805509fae5585_50065782',
+  'unifunc' => 'content_6809450d354702_41844985',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fc7a934197995bb9360ce0c8bad320d8306a1128' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\users_list.tpl',
-      1 => 1745178782,
+      1 => 1745437960,
       2 => 'file',
     ),
   ),
@@ -20,22 +20,22 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6805509fae5585_50065782 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6809450d354702_41844985 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_20494970496805509facb4b1_15065106', "js_head_users_list");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_14818059146809450d33de51_37888571', "js_head_users_list");
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_14915446766805509fae4651_32009480', "js_footer");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_18980844386809450d353a31_99090052', "js_footer");
 }
 /* {block "js_head_users_list"} */
-class Block_20494970496805509facb4b1_15065106 extends Smarty_Internal_Block
+class Block_14818059146809450d33de51_37888571 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js_head_users_list' => 
   array (
-    0 => 'Block_20494970496805509facb4b1_15065106',
+    0 => 'Block_14818059146809450d33de51_37888571',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -115,7 +115,7 @@ $_smarty_tpl->tpl_vars['objUser']->do_else = false;
                         <td class="py-3 px-4 ">
                             <a
                                 href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
-user/edit_user?id=<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getId();?>
+user/edit_profile?id=<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getId();?>
 " class="">
                                 <i class="hover:text-blue-600 text-blue-400 fa-solid fa-pen-to-square"></i>
                             </a> /
@@ -147,12 +147,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 }
 /* {/block "js_head_users_list"} */
 /* {block "js_footer"} */
-class Block_14915446766805509fae4651_32009480 extends Smarty_Internal_Block
+class Block_18980844386809450d353a31_99090052 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js_footer' => 
   array (
-    0 => 'Block_14915446766805509fae4651_32009480',
+    0 => 'Block_18980844386809450d353a31_99090052',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

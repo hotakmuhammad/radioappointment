@@ -100,14 +100,23 @@ class UserCtrl extends Ctrl {
     }
     
 
-    public function edit_profile() {
+    public function edit_profile($user_id = null) {
         if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == '') {
             header('Location:'.parent::BASE_URL.'error/show403');
             exit;
         }
-        
-        $objUser = new User; 
-        $intUserId = $_SESSION['user']['user_id'];
+
+        $loggedInUser = $_SESSION['user'];
+        $isAdminOrSuperAdmin = in_array($loggedInUser['user_role'], ['ADMIN', 'SUPERADMIN']);
+        $intUserId = $user_id ?? ($_GET['id'] ?? $loggedInUser['user_id']);
+
+        if ($intUserId != $loggedInUser['user_id'] && !$isAdminOrSuperAdmin) {
+            header('Location:'.parent::BASE_URL.'error/show403');
+            exit;
+        }
+
+        // $objUser = new User; 
+        // $intUserId = $_SESSION['user']['user_id'];
         $objUserModel = new UserModel;
         $arrUser = $objUserModel->get($intUserId); 
         
@@ -120,27 +129,22 @@ class UserCtrl extends Ctrl {
             $this->displayTemplate("edit_profile");
             return;
         }
-        // $objUser->setRole("");
-        $objUser->hydrate($arrUser);
-        var_dump($objUser);
+
+        $objUser = new User; 
+        $objUser->hydrate($arrUser); 
         $strActualMail = $objUser->getEmail(); 
         $strOldPassword = $objUser->getPassword();
 
     
-        if (count($_POST) > 0) {
-            // echo "Submitted Old Password: ";
-            // var_dump($_POST['oldPassword']);
+        if (count($_POST) > 0) { 
     
             $boolVerifyMail = ($strActualMail != ($_POST['email'] ?? $strActualMail));
             $this->_arrErrors = $this->_verifyInfos($objUser, $boolVerifyMail);
     
-            $objUser->hydrate($_POST);
-            var_dump($objUser);
+            $objUser->hydrate($_POST); 
             if (!empty($_POST['oldPassword'])) {
                 if (!password_verify($_POST['oldPassword'], $strOldPassword)) {
-                    $this->_arrErrors['oldPassword'] = "Le mot de passe actuel est incorrect";
-                    echo "Password Verification Result: ";
-                    var_dump(password_verify($_POST['oldPassword'], $strOldPassword));
+                    $this->_arrErrors['oldPassword'] = "Le mot de passe actuel est incorrect"; 
                 } elseif (!empty($_POST['password'])) {
                     $this->_arrErrors = array_merge($this->_arrErrors, $this->_verifyPassword($_POST['password']));
                     if (count($this->_arrErrors) == 0) {
@@ -150,13 +154,34 @@ class UserCtrl extends Ctrl {
             } elseif (!empty($_POST['password'])) {
                 $this->_arrErrors['oldPassword'] = "Veuillez entrer votre mot de passe actuel pour modifier le mot de passe";
             }
+
+            if ($isAdminOrSuperAdmin) {
+                if (isset($_POST['role'])) {
+                    // Restrict SUPERADMIN role assignment to SUPERADMIN only
+                    if ($_POST['role'] === 'SUPERADMIN' && $loggedInUser['user_role'] !== 'SUPERADMIN') {
+                        $this->_arrErrors['role'] = "Vous n'êtes pas autorisé à attribuer le rôle SUPERADMIN";
+                    } else {
+                        $objUser->setRole($_POST['role']);
+                    }
+                }
+                if (isset($_POST['isBanned'])) {
+                    $objUser->setIsBanned($_POST['isBanned']);
+                }
+            }
     
             if (count($this->_arrErrors) == 0) {
                 if ($objUserModel->update($objUser)) {
-                    $_SESSION['user']['user_firstname'] = $objUser->getFirstName();
-                    $_SESSION['user']['user_name'] = $objUser->getName();
-                    $_SESSION['user']['user_email'] = $objUser->getEmail();
-                    // header("Location:".parent::BASE_URL."page/appointment");
+                    if ($intUserId == $loggedInUser['user_id']) {
+                        $_SESSION['user']['user_firstname'] = $objUser->getFirstName();
+                        $_SESSION['user']['user_name'] = $objUser->getName();
+                        $_SESSION['user']['user_email'] = $objUser->getEmail();
+                    }
+
+                    if($isAdminOrSuperAdmin) {
+                        header("Location:".parent::BASE_URL."user/manage");
+                    }else {
+                        header("Location:".parent::BASE_URL."page/appointment");
+                    }
                     exit;
                 } else {
                     $this->_arrErrors[] = "La mise à jour a échoué";
@@ -168,6 +193,8 @@ class UserCtrl extends Ctrl {
         $this->_arrData["strTitle"] = "Editer le profil"; 
         $this->_arrData["strDesc"] = "Page de modification du profil";
         $this->_arrData["objUser"] = $objUser;
+        $this->_arrData["isAdminOrSuperAdmin"] = $isAdminOrSuperAdmin;
+        $this->_arrData["isOwnProfile"] = ($intUserId == $loggedInUser['user_id']);
         $this->displayTemplate("edit_profile");
     }
 

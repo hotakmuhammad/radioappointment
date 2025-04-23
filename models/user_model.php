@@ -89,24 +89,7 @@
             $rqPrep->bindValue(':password', $objUser->getPasswordHash(), PDO::PARAM_STR);
             
             return $rqPrep->execute();
-        }
-        // public function insert(object $objUser) {
-        //     $strQuery = "INSERT INTO users (user_name, user_firstname,  user_phone, user_role, user_isbanned, user_regist_date)
-        //                 VALUES (:firstName, :lastName,  :phone, :role, :isBanned,  NOW())";
-
-        //     $rqPrep	= $this->_db->prepare($strQuery); 
-        //     $rqPrep->bindValue(':firstName', $objUser->getFirstName(), PDO::PARAM_STR); 
-        //     $rqPrep->bindValue(':lastName', $objUser->getName(), PDO::PARAM_STR);
-        //     // $rqPrep->bindValue(':email', $objUser->getEmail(), PDO::PARAM_STR);
-        //     $rqPrep->bindValue(':phone', $objUser->getPhone(), PDO::PARAM_STR);
-        //     $rqPrep->bindValue(':role', $objUser->getRole(), PDO::PARAM_STR);
-        //     $rqPrep->bindValue(':isBanned', $objUser->getIsBanned(), PDO::PARAM_STR);
-        //     // $rqPrep->bindValue(':password', $objUser->getPasswordHash(), PDO::PARAM_STR);
-            
-        //     return $rqPrep->execute();
-        // }
-
-
+        } 
 
         public function update($objUser) {
             $strQuery = "UPDATE users
@@ -123,6 +106,17 @@
                 $strQuery .= ", user_password = :password";
                 $params[':password'] = $objUser->getPassword();
             }
+
+            if ($objUser->getRole() != "") {
+                $strQuery .= ", user_role = :role";
+                $params[':role'] = $objUser->getRole();
+            }
+        
+            if ($objUser->getIsBanned() != "") {
+                $strQuery .= ", user_isBanned = :isBanned";
+                $params[':isBanned'] = $objUser->getIsBanned();
+            }
+            
             $strQuery .= " WHERE user_id = :id";
             $rqPrep = $this->_db->prepare($strQuery);
             return $rqPrep->execute($params);
