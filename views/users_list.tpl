@@ -65,7 +65,7 @@
         </table>
 
     </div> 
-    <script src="{$base_url}/assets/script/script_global.js"></script>
+
 
 {/block}
 {block name="js_footer"}

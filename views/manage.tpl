@@ -8,7 +8,7 @@
         <div>
             <input type="radio" name="listType" id="user" value="users" checked>
             <label for="user">User</label>
-            <input type="radio" name="listType" id="apt" value="appointments">
+            <input type="radio" name="listType" id="apt" value="appointments" >
             <label for="apt">Appointment</label>
         </div>
 

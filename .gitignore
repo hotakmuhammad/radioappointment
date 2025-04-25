@@ -6,6 +6,12 @@ vendor/
 .env.local
 .env.*.local
 
+
+node_modules
+dist
+dist-ssr
+*.local
+
 # Ignore IDE/editor settings
 .vscode/
 .idea/
