@@ -23,25 +23,25 @@ class PageCtrl extends Ctrl {
         $this->displayTemplate("home");
 
 	}
-    public function appointment() {
+    // public function appointment() {
 
 
 
-        // Préparation des données pour le template de la page d'accueil.
+    //     // Préparation des données pour le template de la page d'accueil.
 
-        $this->_arrData["strPage"] = "index";
+    //     $this->_arrData["strPage"] = "index";
 
-        $this->_arrData["strTitle"] = "Accueil";
+    //     $this->_arrData["strTitle"] = "Accueil";
 
-        $this->_arrData["strDesc"] = "Page d'accueil";
+    //     $this->_arrData["strDesc"] = "Page d'accueil";
 
 
 
-        // Affichage du template de la page d'accueil.
+    //     // Affichage du template de la page d'accueil.
 
-        $this->displayTemplate("appointment");
+    //     $this->displayTemplate("appointment");
 
-	}
+	// }
 
     public function about() {
 
