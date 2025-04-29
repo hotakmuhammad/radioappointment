@@ -11,60 +11,34 @@ class AppointmentCtrl extends Ctrl {
 
     const MAX_CONTENT = 220;
     public function mesrdv() {
-        if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == '') {
-            header('Location:'.parent::BASE_URL.'error/show403');
+        if (!isset($_SESSION['user']['user_id']) || empty($_SESSION['user']['user_id'])) {
+            header('Location: ' . parent::BASE_URL . 'error/show403');
             exit;
-        }
-        // echo '<pre>';
-        // var_dump($_SESSION);
-        // echo '</pre>';
-        $objAptModel = new AppointmentModel();
-        $objUser = new User(); // Get current user (e.g., from session or authentication)
+        } 
+
         
+        $objUser = new User(); // Get current user (e.g., from session or authentication)
         $objUser->setId($_SESSION['user']['user_id']);
         $objUser->setName($_SESSION['user']['user_name'] ?? '');
-        $objUser->setFirstname($_SESSION['user']['user_firstname'] ?? '');
-        // $objUser->setName("");
-        // $objUser->setFirstName("");
-        // $objUser->setEmail(""); 
-        // $objUser->setPhone("");
-        // $objUser->setRole("");
-        // $objUser->setPassword("");
-        // $objUser->setId($_SESSION['user_id']);
-        // var_dump($objUser);
-        
+        $objUser->setFirstname($_SESSION['user']['user_firstname'] ?? ''); 
 
-        // $intAptId = $_GET['apt_id']??0;
+        $objAptModel = new AppointmentModel();
         $arrApt = $objAptModel->getAll($objUser);
-        
-        
-        $arrAptToDisplay = array();
+        $arrAptToDisplay = [];
         foreach ($arrApt as $arrDetailApt) {
             $objApt = new Appointment();
             $objApt->hydrate($arrDetailApt);
             $arrAptToDisplay[] = $objApt;
-        } 
-        // $arrApt 	= $objAptModel->get($intAptId);
-        // if($arrApt === false) {
-        //     // $objApt->setId(0);
-        //     $objApt->setUserName("");
-        //     $objApt->setUserFirstName("");
-        //     $objApt->setStatus("");
-        // }
-        
+            $objApt->setUserName(isset($arrDetailApt['user_name']) ? $arrDetailApt['user_name'] : '');
+            $objApt->setUserFirstName(isset($arrDetailApt['user_firstname']) ? $arrDetailApt['user_firstname'] : '');
+            $objApt->setStatus(isset($arrDetailApt['apt_status']) ? $arrDetailApt['apt_status'] : '');
 
-        // echo '<pre>';
-        // var_dump($arrAptToDisplay);
-        // echo '</pre>';
-        // Prepare data for the template
+        }  
         $this->_arrData["strPage"] = "rdv";
         $this->_arrData["strTitle"] = "Appointment";
         $this->_arrData["strDesc"] = "Page de rendez-vous";
         $this->_arrData["arrAptToDisplay"] = $arrAptToDisplay;
-        echo '<pre>';
-        var_dump($arrAptToDisplay);
-        echo '</pre>';
-        // Display the template
+
         $this->displayTemplate("myAptList");
     }
 

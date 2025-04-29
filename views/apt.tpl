@@ -30,6 +30,10 @@
                 <dt class="text-sm font-medium text-gray-600">Date</dt>
                 <dd  class="text-lg text-gray-900">{$objApt->getDateFr()}</dd>
             </div>
+            <div class="flex items-center justify-between">
+                <dt class="text-sm font-medium text-gray-600">Time</dt>
+                <dd  class="text-lg text-gray-900">{$objApt->getTime()}</dd>
+            </div>
 
             <div class="flex items-center justify-between">
                 <dt class="text-sm font-medium text-gray-600">Status</dt>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-29 14:12:44
+/* Smarty version 4.3.4, created on 2025-04-29 20:10:46
   from 'C:\wamp64\www\radioappointment\views\apt.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6810de5c40e920_91166837',
+  'unifunc' => 'content_681132469baf03_19465422',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '406fca5b2439ecac14ec766430e3b475f35ee013' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\apt.tpl',
-      1 => 1745935964,
+      1 => 1745957262,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6810de5c40e920_91166837 (Smarty_Internal_Template $_smarty_tpl) {
+function content_681132469baf03_19465422 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <section class="">
@@ -50,6 +50,11 @@ function content_6810de5c40e920_91166837 (Smarty_Internal_Template $_smarty_tpl)
             <div class="flex items-center justify-between">
                 <dt class="text-sm font-medium text-gray-600">Date</dt>
                 <dd  class="text-lg text-gray-900"><?php echo $_smarty_tpl->tpl_vars['objApt']->value->getDateFr();?>
+</dd>
+            </div>
+            <div class="flex items-center justify-between">
+                <dt class="text-sm font-medium text-gray-600">Time</dt>
+                <dd  class="text-lg text-gray-900"><?php echo $_smarty_tpl->tpl_vars['objApt']->value->getTime();?>
 </dd>
             </div>
 
