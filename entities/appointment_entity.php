@@ -1,8 +1,6 @@
 <?php
-include_once("parent_entity.php");
-
-
-
+include_once("parent_entity.php"); 
+ 
 class Appointment extends Entity{
 
 

@@ -34,23 +34,23 @@ class AppointmentCtrl extends Ctrl {
         // var_dump($objUser);
         
 
-        $intAptId = $_GET['apt_id']??0;
+        // $intAptId = $_GET['apt_id']??0;
         $arrApt = $objAptModel->getAll($objUser);
         
         
-        $arrAptToDisplay = [];
+        $arrAptToDisplay = array();
         foreach ($arrApt as $arrDetailApt) {
             $objApt = new Appointment();
             $objApt->hydrate($arrDetailApt);
             $arrAptToDisplay[] = $objApt;
         } 
-        $arrApt 	= $objAptModel->get($intAptId);
-        if($arrApt === false) {
-            // $objApt->setId(0);
-            $objApt->setUserName("");
-            $objApt->setUserFirstName("");
-            $objApt->setStatus("");
-        }
+        // $arrApt 	= $objAptModel->get($intAptId);
+        // if($arrApt === false) {
+        //     // $objApt->setId(0);
+        //     $objApt->setUserName("");
+        //     $objApt->setUserFirstName("");
+        //     $objApt->setStatus("");
+        // }
         
 
         // echo '<pre>';
