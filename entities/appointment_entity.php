@@ -11,10 +11,14 @@ class Appointment extends Entity{
     private int $_id;
     private string $_date;
     private string $_time;
-    private string $_status;
+    private string $_status ;
     private string $_registdate;
-    private int $_user_id;
+    private int $_user_id ;
+    private string $_user_name; // Added for user_name
+    private string $_user_firstname; // Added for user_firstname
     private int $_test_id;
+    private string $_appointment;
+    // private string $
 
     public function getId() :int{
         return $this->_id;
@@ -76,13 +80,35 @@ class Appointment extends Entity{
     public function setUserId(int $intUserId){
         $this->_user_id = $intUserId;
     }
+    public function getUserName(): string {
+        return $this->_user_name;
+    }
 
+    public function setUserName(string $userName) {
+        $this->_user_name = $userName;
+    }
+
+    public function getUserFirstname(): string {
+        return $this->_user_firstname;
+    }
+
+    public function setUserFirstname(string $userFirstname) {
+        $this->_user_firstname = $userFirstname;
+    }
     public function getTestId() :int{
         return $this->_test_id;
     }
 
     public function setTestId(int $intTestId){
         $this->_test_id = $intTestId;
+    }
+
+    public function getAppointment(): string {
+        return $this->_appointment;
+    }
+
+    public function setAppointment(string $appointment) {
+        $this->_appointment = $appointment;
     }
 
 }
