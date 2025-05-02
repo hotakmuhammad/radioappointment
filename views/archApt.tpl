@@ -1,8 +1,6 @@
 {* {extends file="views/layout.tpl"} *}
 
-{* {include file="views/_partiel/header.tpl"} *}
-{* {block name="contenu"} *}
-
+{* {block name="contenu"}  *}
 <section class="">
     <div class="container mx-auto px-4">
 
@@ -44,4 +42,5 @@
 
     </div>
 </section>
+    
 {* {/block} *}

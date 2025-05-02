@@ -25,7 +25,11 @@
             {if isset($user.user_id) && $user.user_id != ''}
                 <div class="navbarItems"> 
                     <a class="buttonLink px-4 py-2 text-white hover:text-gray-300 transition-colors text-xl duration-200"
-                        href="{$base_url}appointment/mesrdv">Mes rendez-vous</a>
+                        href="{$base_url}appointment/my_appointments">Mes rendez-vous</a>
+                </div>
+                <div class="navbarItems"> 
+                    <a class="buttonLink px-4 py-2 text-white hover:text-gray-300 transition-colors text-xl duration-200"
+                        href="{$base_url}appointment/archived">Archivés</a>
                 </div>
  
                 {if isset($user) && ($user.user_role == 'SUPERADMIN' || $user.user_role == 'ADMIN')}
