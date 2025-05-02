@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-29 20:10:46
+/* Smarty version 4.3.4, created on 2025-05-02 21:14:05
   from 'C:\wamp64\www\radioappointment\views\myAptList.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_681132468e8904_21063449',
+  'unifunc' => 'content_6815359df007f3_94756317',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ea751fc2d6f2727c943e8397e95330267562d894' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\myAptList.tpl',
-      1 => 1745957171,
+      1 => 1746220418,
       2 => 'file',
     ),
   ),
@@ -21,23 +21,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:views/apt.tpl' => 1,
   ),
 ),false)) {
-function content_681132468e8904_21063449 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6815359df007f3_94756317 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1348371161681132468e08c6_12863058', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_12102426336815359defb103_01878878', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_1348371161681132468e08c6_12863058 extends Smarty_Internal_Block
+class Block_12102426336815359defb103_01878878 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_1348371161681132468e08c6_12863058',
+    0 => 'Block_12102426336815359defb103_01878878',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -49,7 +49,7 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\wamp64\\www\\radioappoin
 
 
     <div class="w-full max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
-        <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Mes RDV</h1> 
+        <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Mes RDV à venir</h1> 
         <?php if (smarty_modifier_count($_smarty_tpl->tpl_vars['arrAptToDisplay']->value) > 0) {?>
             <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrAptToDisplay']->value, 'objApt');
