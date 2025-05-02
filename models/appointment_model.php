@@ -9,6 +9,14 @@
 			parent::__construct();
 		}
 
+        public function updateStatusToPassed() {
+            $strQuery = "UPDATE appointment 
+                         SET apt_status = 'PASSED' 
+                         WHERE apt_status = 'UPCOMING' 
+                         AND apt_date < CURRENT_DATE";
+            $rqPrep = $this->_db->prepare($strQuery);
+            $rqPrep->execute();
+        }
         
         public function getUpcomming($objUser, $status = 'UPCOMING') {
             $strQuery = "SELECT 
@@ -44,7 +52,7 @@
             return $results;
         }
 
-        
+
         public function getArchived($objUser, $status = 'UPCOMING') {
             $strQuery = "SELECT 
                 u.user_name,

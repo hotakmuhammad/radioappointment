@@ -23,6 +23,7 @@ class AppointmentCtrl extends Ctrl {
         $objUser->setFirstname($_SESSION['user']['user_firstname'] ?? ''); 
 
         $objAptModel = new AppointmentModel();
+        // $objAptModel->updateStatusToPassed();
         $arrApt = $objAptModel->getUpcomming($objUser);
         $arrAptToDisplay = [];
         foreach ($arrApt as $arrDetailApt) {
@@ -56,6 +57,7 @@ class AppointmentCtrl extends Ctrl {
         $objUser->setFirstname($_SESSION['user']['user_firstname'] ?? ''); 
 
         $objAptModel = new AppointmentModel();
+        $objAptModel->updateStatusToPassed();
         $arrApt = $objAptModel->getArchived($objUser);
         $arrAptToDisplay = [];
         foreach ($arrApt as $arrDetailApt) {
