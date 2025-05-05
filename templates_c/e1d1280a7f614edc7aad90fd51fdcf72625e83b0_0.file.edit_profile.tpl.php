@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-23 21:01:31
+/* Smarty version 4.3.4, created on 2025-05-05 10:28:51
   from 'C:\wamp64\www\radioappointment\views\edit_profile.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6809552bd70c33_20469065',
+  'unifunc' => 'content_681892e3de8da5_59048293',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e1d1280a7f614edc7aad90fd51fdcf72625e83b0' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\edit_profile.tpl',
-      1 => 1745442088,
+      1 => 1746440930,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6809552bd70c33_20469065 (Smarty_Internal_Template $_smarty_tpl) {
+function content_681892e3de8da5_59048293 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_14983960116809552bd47121_31774222', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1863191787681892e3dd4851_84689788', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_14983960116809552bd47121_31774222 extends Smarty_Internal_Block
+class Block_1863191787681892e3dd4851_84689788 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_14983960116809552bd47121_31774222',
+    0 => 'Block_1863191787681892e3dd4851_84689788',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -74,6 +74,13 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">
                         <?php if ($_smarty_tpl->tpl_vars['isOwnProfile']->value) {?>Mon profil<?php } else { ?>Profil de <?php echo $_smarty_tpl->tpl_vars['objUser']->value->getName();
 }?></h1>
+                            <div class="flex justify-center">
+                                <img class="w-32 h-32 rounded-full mx-auto m-4 object-cover"
+                                    src="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+/uploads/profil_pic_default.png"
+                                    alt="Avatar de <?php echo $_smarty_tpl->tpl_vars['objUser']->value->getName();?>
+" />                                                        
+                            </div>
                     <dl class="space-y-6">
                         <!-- Name -->
                         <div class="flex items-center justify-between border-b border-gray-200 pb-4">

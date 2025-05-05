@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-25 10:03:32
+/* Smarty version 4.3.4, created on 2025-05-05 20:06:58
   from 'C:\wamp64\www\radioappointment\views\_partiel\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_680b5df44c8819_51915891',
+  'unifunc' => 'content_68191a62d85f37_43474670',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f10df641f2da7d1bf20b313dd677192e2d6248cb' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\_partiel\\header.tpl',
-      1 => 1745575409,
+      1 => 1746475618,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:views/_partiel/nav.tpl' => 1,
   ),
 ),false)) {
-function content_680b5df44c8819_51915891 (Smarty_Internal_Template $_smarty_tpl) {
+function content_68191a62d85f37_43474670 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -34,8 +34,13 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
     <base href="http://localhost/radioappointment/" />
         <link href="./assets/style/output.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/flatpickr"><?php echo '</script'; ?>
+>
     <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2045959265680b5df44c6793_60607701', "js_head_users_list");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_88838327868191a62d73923_18285184', "js_head_users_list");
 ?>
 
         <title>Appointment</title>
@@ -57,12 +62,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2045959265680b5df4
 >
 <?php }
 /* {block "js_head_users_list"} */
-class Block_2045959265680b5df44c6793_60607701 extends Smarty_Internal_Block
+class Block_88838327868191a62d73923_18285184 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js_head_users_list' => 
   array (
-    0 => 'Block_2045959265680b5df44c6793_60607701',
+    0 => 'Block_88838327868191a62d73923_18285184',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

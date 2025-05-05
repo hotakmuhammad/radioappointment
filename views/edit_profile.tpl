@@ -24,6 +24,11 @@
                 <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-6">
                     <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">
                         {if $isOwnProfile}Mon profil{else}Profil de {$objUser->getName()}{/if}</h1>
+                            <div class="flex justify-center">
+                                <img class="w-32 h-32 rounded-full mx-auto m-4 object-cover"
+                                    src="{$base_url}/uploads/profil_pic_default.png"
+                                    alt="Avatar de {$objUser->getName()}" />                                                        
+                            </div>
                     <dl class="space-y-6">
                         <!-- Name -->
                         <div class="flex items-center justify-between border-b border-gray-200 pb-4">
