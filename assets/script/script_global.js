@@ -26,6 +26,36 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 });
 
+const serviceSelect = document.getElementById('services');
+const subServiceSelect = document.getElementById('subServices');
+
+const subServicesData = {
+    "MRI": ["Brain MRI", "Spine MRI", "Joint MRI"],
+    "Ultrasound": ["Abdominal Ultrasound", "Pelvic Ultrasound", "Breast Ultrasound"],
+    "CT Scan": ["Head CT", "Chest CT", "Abdomen CT"],
+    "X-Ray": ["Chest X-Ray", "Bone X-Ray", "Dental X-Ray"],
+    "Blood Test": ["Complete Blood Count", "Lipid Profile", "Liver Function Test"],
+    "Dental X-ray": ["Dental X-ray"],
+    "Angiography": ["Angiography"]
+
+}
+
+function populateSubServices() {
+    const selectedService = serviceSelect.value;
+    subServiceSelect.innerHTML = "";
+    if(subServicesData[selectedService]) {
+        subServicesData[selectedService].forEach(subService => {
+            const option = document.createElement("option");
+            option.value = subService;
+            option.textContent = subService;
+            subServiceSelect.appendChild(option);
+        })
+    }
+} 
+
+
+serviceSelect.addEventListener("change", populateSubServices);
+
 const areBanned = document.getElementsByClassName('isBanned');
 
 for(let isBanned of areBanned) {
