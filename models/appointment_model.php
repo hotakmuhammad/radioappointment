@@ -102,6 +102,10 @@ class AppointmentModel extends Model{
         return $results;
     }
     public function insert(object $objApt) {
+        if (!isset($_SESSION['user']['user_id']) || !is_numeric($_SESSION['user']['user_id'])) {
+            $this->_arrErrors["general"] = "Utilisateur non connecté.";
+            return false;
+        }
         // try {
             $strQuery = "INSERT INTO appointment (apt_date, apt_time, apt_status, apt_registdate, apt_user_id, apt_test_id) 
                          VALUES (:date, :time, :status, :registdate, :user_id, :test_id)";

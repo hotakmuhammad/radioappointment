@@ -79,6 +79,10 @@ class AppointmentCtrl extends Ctrl {
 
 
    public function home() {
+    // if (!isset($_SESSION['user']['user_id']) || empty($_SESSION['user']['user_id'])) {
+    //     header('Location: ' . parent::BASE_URL . 'error/show403');
+    //     exit;
+    // } 
     $objAptModel = new AppointmentModel();
     $objApt = new Appointment();
     $objApt->setDate("");
@@ -93,6 +97,7 @@ class AppointmentCtrl extends Ctrl {
         // Hydrate the Appointment object with form data
         $objApt->hydrate($_POST);
 
+        var_dump($_POST);
         // Simple validation checks
         if ($objApt->getDate() == "") {
             $this->_arrErrors["date"] = "Veuillez choisir une date";
@@ -119,7 +124,7 @@ class AppointmentCtrl extends Ctrl {
             }
 
             // Fetch tests for the selected exam to get test_id
-            $tests = $examId ? $objAptModel->getTestsByExam($examId) : [];
+            $tests = $examId ? $objAptModel->getTestsByExam($examId):[];
             $testId = null;
             foreach ($tests as $test) {
                 if ($test['test_name'] == $_POST['subServices']) {
@@ -140,7 +145,7 @@ class AppointmentCtrl extends Ctrl {
                 ];
 
                 // Call insert function
-                if ($this->insert()) {
+                if ($this->insert($objApt)) {
                     $this->_arrData['success'] = "Rendez-vous enregistré avec succès!";
                     $_POST = []; // Clear form data after success
                 } else {
@@ -166,7 +171,8 @@ class AppointmentCtrl extends Ctrl {
     $this->_arrData["strPage"] = "index";
     $this->_arrData["strTitle"] = "Accueil";
     $this->_arrData["strDesc"] = "Page d'accueil";
-    $this->_arrData["arrErrors"] = $this->_arrErrors; // Match template variable
+    $this->_arrData["objApt"] = $objApt; // Pass the Appointment object to the template
+    // $this->_arrData["arrErrors"] = $this->_arrErrors; // Match template variable
 
     // Display the template
     $this->displayTemplate("home");
