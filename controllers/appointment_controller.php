@@ -76,24 +76,100 @@ class AppointmentCtrl extends Ctrl {
 
         $this->displayTemplate("archivedAptList");
     }
-    public function home() {
 
 
+   public function home() {
+    $objAptModel = new AppointmentModel();
+    $objApt = new Appointment();
+    $objApt->setDate("");
+    $objApt->setTime("");
+    // Fetch all exams for the services dropdown
+    $this->_arrData['exams'] = $objAptModel->getExams();
 
-        // Préparation des données pour le template de la page d'accueil.
+    // Initialize errors array
+    $this->_arrErrors = [];
 
-        $this->_arrData["strPage"] = "index";
+    if (count($_POST) > 0) {
+        // Hydrate the Appointment object with form data
+        $objApt->hydrate($_POST);
 
-        $this->_arrData["strTitle"] = "Accueil";
+        // Simple validation checks
+        if ($objApt->getDate() == "") {
+            $this->_arrErrors["date"] = "Veuillez choisir une date";
+        }
+        if ($objApt->getTime() == "") {
+            $this->_arrErrors["time"] = "Veuillez choisir une heure";
+        }
+        if (empty($_POST['services'])) {
+            $this->_arrErrors["services"] = "Veuillez choisir un examen";
+        }
+        if (empty($_POST['subServices'])) {
+            $this->_arrErrors["subServices"] = "Veuillez choisir un test";
+        }
 
-        $this->_arrData["strDesc"] = "Page d'accueil";
+        // If no validation errors, proceed to insert
+        if (empty($this->_arrErrors)) {
+            // Map services (exam_name) to exam_id and subServices (test_name) to test_id
+            $examId = null;
+            foreach ($this->_arrData['exams'] as $exam) {
+                if ($exam['exam_name'] == $_POST['services']) {
+                    $examId = $exam['exam_id'];
+                    break;
+                }
+            }
 
+            // Fetch tests for the selected exam to get test_id
+            $tests = $examId ? $objAptModel->getTestsByExam($examId) : [];
+            $testId = null;
+            foreach ($tests as $test) {
+                if ($test['test_name'] == $_POST['subServices']) {
+                    $testId = $test['test_id'];
+                    break;
+                }
+            }
 
+            if (!$testId) {
+                $this->_arrErrors["subServices"] = "Test invalide";
+            } else {
+                // Prepare data for insert
+                $this->_arrData = [
+                    'date' => $objApt->getDate(),
+                    'time' => $objApt->getTime(),
+                    'status' => 'UPCOMING',
+                    'test_id' => $testId
+                ];
 
-        // Affichage du template de la page d'accueil.
+                // Call insert function
+                if ($this->insert()) {
+                    $this->_arrData['success'] = "Rendez-vous enregistré avec succès!";
+                    $_POST = []; // Clear form data after success
+                } else {
+                    $this->_arrErrors["general"] = "Une erreur est survenue lors de l'enregistrement.";
+                }
+            }
+        }
+    }
 
-        $this->displayTemplate("home");
+    // Fetch tests for subServices based on selected exam (for form persistence)
+    $examId = null;
+    if (!empty($_POST['services'])) {
+        foreach ($this->_arrData['exams'] as $exam) {
+            if ($exam['exam_name'] == $_POST['services']) {
+                $examId = $exam['exam_id'];
+                break;
+            }
+        }
+    }
+    $this->_arrData['tests'] = $examId ? $objAptModel->getTestsByExam($examId) : [];
 
-	}
+    // Prepare data for the template
+    $this->_arrData["strPage"] = "index";
+    $this->_arrData["strTitle"] = "Accueil";
+    $this->_arrData["strDesc"] = "Page d'accueil";
+    $this->_arrData["arrErrors"] = $this->_arrErrors; // Match template variable
+
+    // Display the template
+    $this->displayTemplate("home");
+}
 
 }

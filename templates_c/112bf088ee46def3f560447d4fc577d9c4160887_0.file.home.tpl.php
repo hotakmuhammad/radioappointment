@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-06 09:54:03
+/* Smarty version 4.3.4, created on 2025-05-06 14:03:18
   from 'C:\wamp64\www\radioappointment\views\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6819dc3bea25f1_57321825',
+  'unifunc' => 'content_681a16a6156434_16313618',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '112bf088ee46def3f560447d4fc577d9c4160887' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\home.tpl',
-      1 => 1746525038,
+      1 => 1746540195,
       2 => 'file',
     ),
   ),
@@ -20,25 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6819dc3bea25f1_57321825 (Smarty_Internal_Template $_smarty_tpl) {
+function content_681a16a6156434_16313618 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_17272429166819dc3bea0d20_03389711', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1068825368681a16a605d080_57474858', "contenu");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_17272429166819dc3bea0d20_03389711 extends Smarty_Internal_Block
+class Block_1068825368681a16a605d080_57474858 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_17272429166819dc3bea0d20_03389711',
+    0 => 'Block_1068825368681a16a605d080_57474858',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -46,8 +46,33 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 
     <div class="max-w-lg mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
 
+
+    <?php if ((count($_smarty_tpl->tpl_vars['arrErrors']->value) > 0)) {?>
+      <div class="max-w-md mx-auto mt-4 p-4 m-5 bg-red-50 border border-red-200 rounded-lg shadow-sm">
+          <ul class="space-y-2 text-red-700">
+              <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrErrors']->value, 'strError');
+$_smarty_tpl->tpl_vars['strError']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['strError']->value) {
+$_smarty_tpl->tpl_vars['strError']->do_else = false;
+?>
+                  <li class="flex items-center gap-2">
+                      <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                          <path
+                              d="M10 0a10 10 0 1 0 10 10A10 10 0 0 0 10 0zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm1-12h-2v6h2zm0 8h-2v2h2z" />
+                      </svg>
+                      <?php echo $_smarty_tpl->tpl_vars['strError']->value;?>
+
+                  </li>
+              <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+          </ul>
+      </div>
+  <?php }?> 
         <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">HomePage</h1>
-        <form action="" method="post" class="space-y-6">
+        <form action="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+" method="post" class="space-y-6">
 
             <select
                 id="services"
@@ -69,20 +94,28 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 
             </select>
 
-            <input type="text" id="datePicker" 
+            <input 
+            
+              type="text" id="datePicker"  name="apt_date"
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
-                placeholder="Select a date...">
+                placeholder="Select a date..."
+              value="<?php if ((isset($_POST['apt_date']))) {
+echo $_POST['apt_date'];
+}?>">
 
                 <input 
-                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
-                type="text" id="timePicker" placeholder="Select a time...">
+                    type="text" id="timePicker" name="apt_time"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
+                    placeholder="Select a time..."
+                    value="<?php if ((isset($_POST['apt_time']))) {
+echo $_POST['apt_time'];
+}?>">
             <div class="max-w-auto mx-auto">
             <input type="submit" value="Enregistrer"
                 class="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200 cursor-pointer">
         </div>
         </form>
-
-    </div>
+    </div> 
     <?php echo '<script'; ?>
 >
     

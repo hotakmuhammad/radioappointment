@@ -42,7 +42,7 @@ const subServicesData = {
 
 function populateSubServices() {
     const selectedService = serviceSelect.value;
-    subServiceSelect.innerHTML = "";
+    subServiceSelect.innerHTML = `<option value="">Select a sub-test</option>`;
     if(subServicesData[selectedService]) {
         subServicesData[selectedService].forEach(subService => {
             const option = document.createElement("option");

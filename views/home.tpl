@@ -3,8 +3,24 @@
 {block name="contenu"}
     <div class="max-w-lg mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
 
+
+    {if (count($arrErrors) > 0)}
+      <div class="max-w-md mx-auto mt-4 p-4 m-5 bg-red-50 border border-red-200 rounded-lg shadow-sm">
+          <ul class="space-y-2 text-red-700">
+              {foreach from=$arrErrors item=strError}
+                  <li class="flex items-center gap-2">
+                      <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                          <path
+                              d="M10 0a10 10 0 1 0 10 10A10 10 0 0 0 10 0zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm1-12h-2v6h2zm0 8h-2v2h2z" />
+                      </svg>
+                      {$strError}
+                  </li>
+              {/foreach}
+          </ul>
+      </div>
+  {/if} 
         <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">HomePage</h1>
-        <form action="" method="post" class="space-y-6">
+        <form action="{$base_url}" method="post" class="space-y-6">
 
             <select
                 id="services"
@@ -26,13 +42,18 @@
 
             </select>
 
-            <input type="text" id="datePicker" 
+            <input 
+            
+              type="text" id="datePicker"  name="apt_date"
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
-                placeholder="Select a date...">
+                placeholder="Select a date..."
+              value="{if isset($smarty.post.apt_date)}{$smarty.post.apt_date}{/if}">
 
                 <input 
-                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
-                type="text" id="timePicker" placeholder="Select a time...">
+                    type="text" id="timePicker" name="apt_time"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
+                    placeholder="Select a time..."
+                    value="{if isset($smarty.post.apt_time)}{$smarty.post.apt_time}{/if}">
             <div class="max-w-auto mx-auto">
             <input type="submit" value="Enregistrer"
                 class="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200 cursor-pointer">
