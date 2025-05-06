@@ -79,93 +79,132 @@ class AppointmentCtrl extends Ctrl {
 
 
    public function home() {
-    // if (!isset($_SESSION['user']['user_id']) || empty($_SESSION['user']['user_id'])) {
-    //     header('Location: ' . parent::BASE_URL . 'error/show403');
-    //     exit;
-    // } 
-    $objAptModel = new AppointmentModel();
-    $objApt = new Appointment();
-    $objApt->setDate("");
-    $objApt->setTime("");
-    // Fetch all exams for the services dropdown
-    $this->_arrData['exams'] = $objAptModel->getExams();
+            // if (!isset($_SESSION['user']['user_id']) || empty($_SESSION['user']['user_id'])) {
+            //     header('Location: ' . parent::BASE_URL . 'error/show403');
+            //     exit;
+            // } 
+            // var_dump($_GET['id']);
+            $intAptId = $_GET['id']??0;
+           
+            $objAptModel = new AppointmentModel();
+            $objApt = new Appointment();
+            // $objApt->setDate("");
+            // $objApt->setTime("");
+            // Fetch all exams for the services dropdown
 
-    // Initialize errors array
-    $this->_arrErrors = [];
+            $arrApt = $objAptModel->get($intAptId);
+            // $this->_arrData['exams'] = $objAptModel->getExams();
 
-    if (count($_POST) > 0) {
-        // Hydrate the Appointment object with form data
-        $objApt->hydrate($_POST);
+            // Initialize errors array
+            // $this->_arrErrors = [];
 
-        var_dump($_POST);
-        // Simple validation checks
-        if ($objApt->getDate() == "") {
-            $this->_arrErrors["date"] = "Veuillez choisir une date";
-        }
-        if ($objApt->getTime() == "") {
-            $this->_arrErrors["time"] = "Veuillez choisir une heure";
-        }
-        if (empty($_POST['services'])) {
-            $this->_arrErrors["services"] = "Veuillez choisir un examen";
-        }
-        if (empty($_POST['subServices'])) {
-            $this->_arrErrors["subServices"] = "Veuillez choisir un test";
-        }
-
-        // If no validation errors, proceed to insert
-        if (empty($this->_arrErrors)) {
-            // Map services (exam_name) to exam_id and subServices (test_name) to test_id
-            $examId = null;
-            foreach ($this->_arrData['exams'] as $exam) {
-                if ($exam['exam_name'] == $_POST['services']) {
-                    $examId = $exam['exam_id'];
-                    break;
-                }
-            }
-
-            // Fetch tests for the selected exam to get test_id
-            $tests = $examId ? $objAptModel->getTestsByExam($examId):[];
-            $testId = null;
-            foreach ($tests as $test) {
-                if ($test['test_name'] == $_POST['subServices']) {
-                    $testId = $test['test_id'];
-                    break;
-                }
-            }
-
-            if (!$testId) {
-                $this->_arrErrors["subServices"] = "Test invalide";
+            if($arrApt === false) {
+                $objApt->setId(0);
+                $objApt->setDate("");
+                $objApt->setTime("");
+                $objApt->setStatus("UPCOMING");
+                $objApt->setRegistdate("");
+                $objApt->setUserId($_SESSION['user']['user_id']);
+                $objApt->setTestId(isset($data['test_id']) ? (int)$data['test_id'] : 0);
+                // $objApt->setTestId($testId);
             } else {
-                // Prepare data for insert
-                $this->_arrData = [
-                    'date' => $objApt->getDate(),
-                    'time' => $objApt->getTime(),
-                    'status' => 'UPCOMING',
-                    'test_id' => $testId
-                ];
-
-                // Call insert function
-                if ($this->insert($objApt)) {
-                    $this->_arrData['success'] = "Rendez-vous enregistré avec succès!";
-                    $_POST = []; // Clear form data after success
-                } else {
-                    $this->_arrErrors["general"] = "Une erreur est survenue lors de l'enregistrement.";
-                }
+                $objApt->hydrate($arrApt);
+                // if ($_SESSION['user']['user_role'] != "SUPERADMIN" && 
+                //     $_SESSION['user']['user_id'] != $objArticle->user_id()){
+                //     header("Location:".parent::BASE_URL."error/show403");
+                // }
             }
-        }
-    }
+            if (count($_POST) > 0) {
+            // Hydrate the Appointment object with form data
+            $objApt->hydrate($_POST);
+            var_dump($data['test_id'] ?? 'No test_id in data');
+            var_dump($objApt);
+            // Simple validation checks
+            if ($objApt->getDate() == "") {
+                $this->_arrErrors["date"] = "Veuillez choisir une date";
+            }
+            if ($objApt->getTime() == "") {
+                $this->_arrErrors["time"] = "Veuillez choisir une heure";
+            }
+            // if (empty($_POST['services'])) {
+            //     $this->_arrErrors["services"] = "Veuillez choisir un examen";
+            // }
+            // if (empty($_POST['subServices'])) {
+            //     $this->_arrErrors["subServices"] = "Veuillez choisir un test";
+            // }
+
+            // If no validation errors, proceed to insert
+            if (count($this->_arrErrors) == 0) {
+                // Map services (exam_name) to exam_id and subServices (test_name) to test_id
+                // $examId = null;
+                // foreach ($this->_arrData['exams'] as $exam) {
+                //     if ($exam['exam_name'] == $_POST['services']) {
+                //         $examId = $exam['exam_id'];
+                //         break;
+                //     }
+                // }
+
+                // // Fetch tests for the selected exam to get test_id
+                // $tests = $examId ? $objAptModel->getTestsByExam($examId):[];
+                // $testId = null;
+                // foreach ($tests as $test) {
+                //     if ($test['test_name'] == $_POST['subServices']) {
+                //         $testId = $test['test_id'];
+                //         break;
+                //     }
+                // }
+
+                // if (!$testId) {
+                //     $this->_arrErrors["subServices"] = "Test invalide";
+                // } else {
+                //     // Prepare data for insert
+                //     $this->_arrData = [
+                //         'date' => $objApt->getDate(),
+                //         'time' => $objApt->getTime(),
+                //         'status' => 'UPCOMING',
+                //         'test_id' => $testId
+                //     ];
+
+                    // Call insert function
+                if($objApt->getId() === 0) {
+                    // if ($objApt->getTestId() == 0) {
+                    //     $this->_arrErrors["test_id"] = "Veuillez sélectionner un test valide";
+                    // }
+                    if($objAptModel->insert($objApt)) {
+                        header('Location:'.parent::BASE_URL);
+                    }
+                        else {
+                            $this->_arrErrors[] = "Erreur lors de l'insertion de prendre rendez vous";
+                        }
+                    } 
+                    else {
+
+                        if ($objAptModel->update($objApt)){
+                            header("Location:".parent::BASE_URL."page/about");
+                        }else{
+                            $this->_arrErrors[] = "La modification s'est mal passée";
+                        }
+    
+                    }
+                
+                }
+            } else {
+    
+            }
+            // $this->_arrData["objApt"] = $objApt;
+
 
     // Fetch tests for subServices based on selected exam (for form persistence)
-    $examId = null;
-    if (!empty($_POST['services'])) {
-        foreach ($this->_arrData['exams'] as $exam) {
-            if ($exam['exam_name'] == $_POST['services']) {
-                $examId = $exam['exam_id'];
-                break;
-            }
-        }
-    }
-    $this->_arrData['tests'] = $examId ? $objAptModel->getTestsByExam($examId) : [];
+    // $examId = null;
+    // if (!empty($_POST['services'])) {
+    //     foreach ($this->_arrData['exams'] as $exam) {
+    //         if ($exam['exam_name'] == $_POST['services']) {
+    //             $examId = $exam['exam_id'];
+    //             break;
+    //         }
+    //     }
+    // }
+    // $this->_arrData['tests'] = $examId ? $objAptModel->getTestsByExam($examId) : [];
 
     // Prepare data for the template
     $this->_arrData["strPage"] = "index";
@@ -176,6 +215,7 @@ class AppointmentCtrl extends Ctrl {
 
     // Display the template
     $this->displayTemplate("home");
+    }
 }
 
-}
+// }

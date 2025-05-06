@@ -1,7 +1,7 @@
 {extends file="views/layout.tpl"}
 
 {block name="contenu"}
-    <div class="max-w-lg mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
+    <div class="max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
 
 
     {if (count($arrErrors) > 0)}
@@ -19,7 +19,8 @@
           </ul>
       </div>
   {/if} 
-        <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">HomePage</h1>
+        <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Pour prendre un rendez vous veuillez créer un compte utilisiteur</h1>
+        {if isset($user.user_id) && $user.user_id != ''}
         <form action="{$base_url}" method="post" class="space-y-6">
 
             <select
@@ -37,7 +38,7 @@
             </select>
             <select
                 id="subServices"
-                name="subServices"
+                name="test_id"
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
 
             </select>
@@ -47,18 +48,21 @@
               type="text" id="datePicker"  name="apt_date"
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
                 placeholder="Select a date..."
-              value="{if isset($smarty.post.apt_date)}{$smarty.post.apt_date}{/if}">
+                {* value="{if isset($smarty.post.apt_date)}{$smarty.post.apt_date}{/if}" *}
+                  >
 
                 <input 
                     type="text" id="timePicker" name="apt_time"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
                     placeholder="Select a time..."
-                    value="{if isset($smarty.post.apt_time)}{$smarty.post.apt_time}{/if}">
+                    {* value="{if isset($smarty.post.apt_time)}{$smarty.post.apt_time}{/if}" *}
+                      >
             <div class="max-w-auto mx-auto">
             <input type="submit" value="Enregistrer"
                 class="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200 cursor-pointer">
         </div>
         </form>
+      {/if}
     </div> 
     <script>
     

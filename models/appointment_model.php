@@ -9,6 +9,12 @@ class AppointmentModel extends Model{
         parent::__construct();
     }
 
+    public function get($intAptId) : array|false {
+        $strQuery = "SELECT *
+                     FROM appointment
+                     WHERE apt_id  =" .$intAptId;
+                     return $this->_db->query($strQuery)->fetch();
+    }
     // Fetch all exams
     public function getExams() {
         $strQuery = "SELECT exam_id, exam_name FROM exams ORDER BY exam_name";
@@ -102,20 +108,20 @@ class AppointmentModel extends Model{
         return $results;
     }
     public function insert(object $objApt) {
-        if (!isset($_SESSION['user']['user_id']) || !is_numeric($_SESSION['user']['user_id'])) {
-            $this->_arrErrors["general"] = "Utilisateur non connecté.";
-            return false;
-        }
+        // if (!isset($_SESSION['user']['user_id']) || !is_numeric($_SESSION['user']['user_id'])) {
+        //     $this->_arrErrors["general"] = "Utilisateur non connecté.";
+        //     return false;
+        // }
         // try {
             $strQuery = "INSERT INTO appointment (apt_date, apt_time, apt_status, apt_registdate, apt_user_id, apt_test_id) 
                          VALUES (:date, :time, :status, :registdate, :user_id, :test_id)";
             $rqPrep = $this->_db->prepare($strQuery);
-            $rqPrep->bindValue(':date', $this->_arrData['date'], PDO::PARAM_STR);
-            $rqPrep->bindValue(':time', $this->_arrData['time'], PDO::PARAM_STR);
-            $rqPrep->bindValue(':status', $this->_arrData['status'], PDO::PARAM_STR);
-            $rqPrep->bindValue(':registdate', date("Y-m-d H:i:s"), PDO::PARAM_STR);
-            $rqPrep->bindValue(':user_id', $_SESSION['user']['user_id'], PDO::PARAM_INT);
-            $rqPrep->bindValue(':test_id', $this->_arrData['test_id'], PDO::PARAM_INT);
+            $rqPrep->bindValue(":date", $objApt->getDate(), PDO::PARAM_STR);
+            $rqPrep->bindValue(":time", $objApt->getTime(), PDO::PARAM_STR);
+            $rqPrep->bindValue(":status", $objApt->getStatus(), PDO::PARAM_STR);
+            $rqPrep->bindValue(":registdate", $objApt->getRegistdate(), PDO::PARAM_STR);
+            $rqPrep->bindValue(":user_id", $_SESSION['user']['user_id'], PDO::PARAM_INT);
+            $rqPrep->bindValue(":test_id", $objApt->getTestId(), PDO::PARAM_INT);
             return $rqPrep->execute();
     //     } catch (PDOException $e) {
     //         error_log("Insert appointment failed: " . $e->getMessage());
