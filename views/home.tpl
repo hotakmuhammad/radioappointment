@@ -23,7 +23,7 @@
         {if isset($user.user_id) && $user.user_id != ''}
         <form action="{$base_url}" method="post" class="space-y-6">
 
-            <select
+            {* <select
                 id="services"
                 name="services"
                 class="selects w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
@@ -41,8 +41,31 @@
                 name="test_id"
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
 
+            </select> *}
+            <div class="form-group">
+            <label for="exam_id">Exam:</label>
+            <select class="form-select" id="exam_id" name="exam_id" onchange="this.form.submit()">
+                <option value="">Select an exam</option>
+                {foreach from=$arrExams item=exam}
+                    <option value="{$exam.exam_id}" {if $intExamId eq $exam.exam_id}selected{/if}>
+                        {$exam.exam_name|escape}
+                    </option>
+                {/foreach}
             </select>
-
+        </div>
+    
+        <!-- Test dropdown -->
+        <div class="form-group">
+            <label for="test_id">Test:</label>
+            <select class="form-select" id="test_id" name="test_id">
+                <option value="">Select a test</option>
+                {foreach from=$arrTests item=test}
+                    <option value="{$test.test_id}">
+                        {$test.test_name|escape}
+                    </option>
+                {/foreach}
+            </select>
+        </div>
             <input 
             
               type="text" id="datePicker"  name="apt_date"

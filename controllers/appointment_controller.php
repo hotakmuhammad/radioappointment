@@ -79,99 +79,77 @@ class AppointmentCtrl extends Ctrl {
 
 
    public function home() {
-            // if (!isset($_SESSION['user']['user_id']) || empty($_SESSION['user']['user_id'])) {
-            //     header('Location: ' . parent::BASE_URL . 'error/show403');
-            //     exit;
-            // } 
-            // var_dump($_GET['id']);
+
             $intAptId = $_GET['id']??0;
-           
+
             $objAptModel = new AppointmentModel();
-            $objApt = new Appointment();
-            // $objApt->setDate("");
-            // $objApt->setTime("");
-            // Fetch all exams for the services dropdown
+            $objApt = new Appointment(); 
 
-            $arrApt = $objAptModel->get($intAptId);
-            // $this->_arrData['exams'] = $objAptModel->getExams();
+            $arrExams = $objAptModel->getExams();
+            $intExamId = $_POST['exam_id']??0;
 
-            // Initialize errors array
-            // $this->_arrErrors = [];
+            $arrTests = $intExamId ? $objAptModel->getTestsByExam($intExamId) : [];
 
+            
+            
+            
+            
+            $arrApt = $objAptModel->get($intAptId); 
             if($arrApt === false) {
+                
+                // $objApt->setId(['appointment']['apt_id']);
+                // $objApt->hydrate($arrApt);
                 $objApt->setId(0);
                 $objApt->setDate("");
                 $objApt->setTime("");
-                $objApt->setStatus("UPCOMING");
+                $objApt->setStatus("");
                 $objApt->setRegistdate("");
                 $objApt->setUserId($_SESSION['user']['user_id']);
-                $objApt->setTestId(isset($data['test_id']) ? (int)$data['test_id'] : 0);
-                // $objApt->setTestId($testId);
+                $objApt->setUserName($_SESSION['user']['user_name']);
+                $objApt->setUserFirstName($_SESSION['user']['user_firstname']);
+                // $objApt->setTestId(isset($data['test_id']) ? (int)$data['test_id'] : 0);
+                // $objApt->setTestId(['appointment']['apt_test_id']);
+                // $objApt->setTestId(['appointment']['apt_test_id']);
+                $objApt->setTestId($_GET['test_id'] ?? 0);
+                // $objApt->setTestName("");
             } else {
                 $objApt->hydrate($arrApt);
-                // if ($_SESSION['user']['user_role'] != "SUPERADMIN" && 
-                //     $_SESSION['user']['user_id'] != $objArticle->user_id()){
-                //     header("Location:".parent::BASE_URL."error/show403");
-                // }
+
             }
-            if (count($_POST) > 0) {
-            // Hydrate the Appointment object with form data
-            $objApt->hydrate($_POST);
-            var_dump($data['test_id'] ?? 'No test_id in data');
+            echo"<br>-----------------objAPt -----------<br>";
             var_dump($objApt);
-            // Simple validation checks
-            if ($objApt->getDate() == "") {
-                $this->_arrErrors["date"] = "Veuillez choisir une date";
-            }
-            if ($objApt->getTime() == "") {
-                $this->_arrErrors["time"] = "Veuillez choisir une heure";
-            }
-            // if (empty($_POST['services'])) {
-            //     $this->_arrErrors["services"] = "Veuillez choisir un examen";
-            // }
-            // if (empty($_POST['subServices'])) {
-            //     $this->_arrErrors["subServices"] = "Veuillez choisir un test";
-            // }
-
-            // If no validation errors, proceed to insert
-            if (count($this->_arrErrors) == 0) {
-                // Map services (exam_name) to exam_id and subServices (test_name) to test_id
-                // $examId = null;
-                // foreach ($this->_arrData['exams'] as $exam) {
-                //     if ($exam['exam_name'] == $_POST['services']) {
-                //         $examId = $exam['exam_id'];
-                //         break;
-                //     }
+ 
+            
+            if (count($_POST) > 0) {
+                // $arrPostData = [
+                //     'apt_id' => $objApt->getId(),
+                //     'apt_date' => $_POST['apt_date'] ?? '',
+                //     'apt_time' => $_POST['apt_time'] ?? '',
+                //     'apt_status' => 'UPCOMING',
+                //     'apt_registdate' => date("Y-m-d H:i:s"),
+                //     'apt_user_id' => $_SESSION['user']['user_id'],
+                //     'apt_test_id' => $_POST['test_id'] ?? 0,
+                // ];
+                $objApt->hydrate($_POST);
+                echo"<br>-----------------_Post -----------<br>";
+                var_dump($_POST);
+                echo"<br>-----------------objApt in post -----------<br>";
+                var_dump($objApt);
+                // Simple validation checks
+                if ($objApt->getDate() == "") {
+                    $this->_arrErrors["date"] = "Veuillez choisir une date";
+                }
+                if ($objApt->getTime() == "") {
+                    $this->_arrErrors["time"] = "Veuillez choisir une heure";
+                }
+                // if (empty($_POST['test_id']) || !$objAptModel->testExists($_POST['test_id'])) {
+                //     $this->_arrErrors["test_id"] = "Veuillez sélectionner un test valide";
                 // }
-
-                // // Fetch tests for the selected exam to get test_id
-                // $tests = $examId ? $objAptModel->getTestsByExam($examId):[];
-                // $testId = null;
-                // foreach ($tests as $test) {
-                //     if ($test['test_name'] == $_POST['subServices']) {
-                //         $testId = $test['test_id'];
-                //         break;
-                //     }
-                // }
-
-                // if (!$testId) {
-                //     $this->_arrErrors["subServices"] = "Test invalide";
-                // } else {
-                //     // Prepare data for insert
-                //     $this->_arrData = [
-                //         'date' => $objApt->getDate(),
-                //         'time' => $objApt->getTime(),
-                //         'status' => 'UPCOMING',
-                //         'test_id' => $testId
-                //     ];
-
-                    // Call insert function
-                if($objApt->getId() === 0) {
-                    // if ($objApt->getTestId() == 0) {
-                    //     $this->_arrErrors["test_id"] = "Veuillez sélectionner un test valide";
-                    // }
+                if (count($this->_arrErrors) == 0) {
+                if($objApt->getId() === 0) { 
                     if($objAptModel->insert($objApt)) {
                         header('Location:'.parent::BASE_URL);
+                        exit;
                     }
                         else {
                             $this->_arrErrors[] = "Erreur lors de l'insertion de prendre rendez vous";
@@ -181,6 +159,7 @@ class AppointmentCtrl extends Ctrl {
 
                         if ($objAptModel->update($objApt)){
                             header("Location:".parent::BASE_URL."page/about");
+                            exit;
                         }else{
                             $this->_arrErrors[] = "La modification s'est mal passée";
                         }
@@ -188,33 +167,16 @@ class AppointmentCtrl extends Ctrl {
                     }
                 
                 }
-            } else {
-    
-            }
-            // $this->_arrData["objApt"] = $objApt;
-
-
-    // Fetch tests for subServices based on selected exam (for form persistence)
-    // $examId = null;
-    // if (!empty($_POST['services'])) {
-    //     foreach ($this->_arrData['exams'] as $exam) {
-    //         if ($exam['exam_name'] == $_POST['services']) {
-    //             $examId = $exam['exam_id'];
-    //             break;
-    //         }
-    //     }
-    // }
-    // $this->_arrData['tests'] = $examId ? $objAptModel->getTestsByExam($examId) : [];
-
-    // Prepare data for the template
-    $this->_arrData["strPage"] = "index";
-    $this->_arrData["strTitle"] = "Accueil";
-    $this->_arrData["strDesc"] = "Page d'accueil";
-    $this->_arrData["objApt"] = $objApt; // Pass the Appointment object to the template
-    // $this->_arrData["arrErrors"] = $this->_arrErrors; // Match template variable
-
-    // Display the template
-    $this->displayTemplate("home");
+            } 
+        // Prepare data for the template
+        $this->_arrData["strPage"] = "index";
+        $this->_arrData["strTitle"] = "Accueil";
+        $this->_arrData["strDesc"] = "Page d'accueil";
+        $this->_arrData["objApt"] = $objApt;
+        $this->_arrData["arrExams"] = $arrExams;
+        $this->_arrData["arrTests"] = $arrTests;
+        $this->_arrData["intExamId"] = $intExamId;
+        $this->displayTemplate("home");
     }
 }
 

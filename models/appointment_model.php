@@ -22,12 +22,12 @@ class AppointmentModel extends Model{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getTestsByExam($examId) {
+    public function getTestsByExam($examId): array {
         $strQuery = "SELECT test_id, test_name FROM tests WHERE exam_id = :exam_id ORDER BY test_name";
-        $stmt = $this->_db->prepare($strQuery);
-        $stmt->bindValue(':exam_id', $examId, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $rqPrep = $this->_db->prepare($strQuery);
+        $rqPrep->bindValue(':exam_id', $examId, PDO::PARAM_INT);
+        $rqPrep->execute();
+        return $rqPrep->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function updateStatusToPassed() {
@@ -108,25 +108,18 @@ class AppointmentModel extends Model{
         return $results;
     }
     public function insert(object $objApt) {
-        // if (!isset($_SESSION['user']['user_id']) || !is_numeric($_SESSION['user']['user_id'])) {
-        //     $this->_arrErrors["general"] = "Utilisateur non connecté.";
-        //     return false;
-        // }
-        // try {
-            $strQuery = "INSERT INTO appointment (apt_date, apt_time, apt_status, apt_registdate, apt_user_id, apt_test_id) 
-                         VALUES (:date, :time, :status, :registdate, :user_id, :test_id)";
-            $rqPrep = $this->_db->prepare($strQuery);
-            $rqPrep->bindValue(":date", $objApt->getDate(), PDO::PARAM_STR);
-            $rqPrep->bindValue(":time", $objApt->getTime(), PDO::PARAM_STR);
-            $rqPrep->bindValue(":status", $objApt->getStatus(), PDO::PARAM_STR);
-            $rqPrep->bindValue(":registdate", $objApt->getRegistdate(), PDO::PARAM_STR);
-            $rqPrep->bindValue(":user_id", $_SESSION['user']['user_id'], PDO::PARAM_INT);
-            $rqPrep->bindValue(":test_id", $objApt->getTestId(), PDO::PARAM_INT);
-            return $rqPrep->execute();
-    //     } catch (PDOException $e) {
-    //         error_log("Insert appointment failed: " . $e->getMessage());
-    //         return false;
-    //     }
+
+        $strQuery = "INSERT INTO appointment (apt_date, apt_time, apt_status, apt_registdate, apt_user_id, apt_test_id) 
+                        VALUES (:date, :time, :status, :registdate, :user_id, :test_id)";
+        $rqPrep = $this->_db->prepare($strQuery);
+        $rqPrep->bindValue(":date", $objApt->getDate(), PDO::PARAM_STR);
+        $rqPrep->bindValue(":time", $objApt->getTime(), PDO::PARAM_STR);
+        $rqPrep->bindValue(":status", $objApt->getStatus(), PDO::PARAM_STR);
+        $rqPrep->bindValue(":registdate", $objApt->getRegistdate(), PDO::PARAM_STR);
+        $rqPrep->bindValue(":user_id", $_SESSION['user']['user_id'], PDO::PARAM_INT);
+        $rqPrep->bindValue(":test_id", $objApt->getTestId(), PDO::PARAM_INT);
+        return $rqPrep->execute();
+
     }
     
 }

@@ -15,6 +15,7 @@ class Appointment extends Entity{
     private string $_user_name; // Added for user_name
     private string $_user_firstname; // Added for user_firstname
     private int $_test_id;
+    private string $_test_name; // Added for test_name
     private string $_appointment;
     // private string $
 
@@ -101,6 +102,13 @@ class Appointment extends Entity{
         $this->_test_id = $intTestId;
     }
 
+    public function getTestName(): string {
+        return $this->_test_name;
+    }
+
+    public function setTestName(string $testName) {
+        $this->_test_name = $testName;
+    }
     public function getAppointment(): string {
         return $this->_appointment;
     }
