@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-08 16:15:52
+/* Smarty version 4.3.4, created on 2025-05-11 21:14:43
   from 'C:\wamp64\www\radioappointment\views\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_681cd8b8e449a5_53385730',
+  'unifunc' => 'content_682113437ff6b3_69359204',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '112bf088ee46def3f560447d4fc577d9c4160887' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\home.tpl',
-      1 => 1746720950,
+      1 => 1746998078,
       2 => 'file',
     ),
   ),
@@ -20,25 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_681cd8b8e449a5_53385730 (Smarty_Internal_Template $_smarty_tpl) {
+function content_682113437ff6b3_69359204 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1980894773681cd8b8e37716_87340427', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1005184313682113437a45c6_82187607', "contenu");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_1980894773681cd8b8e37716_87340427 extends Smarty_Internal_Block
+class Block_1005184313682113437a45c6_82187607 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_1980894773681cd8b8e37716_87340427',
+    0 => 'Block_1005184313682113437a45c6_82187607',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -75,9 +75,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         <form action="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 " method="post" class="space-y-6">
 
-                        <div class="form-group">
+                    <div class="form-group">
             <label for="exam_id">Exam:</label>
-            <select class="form-select" id="exam_id" name="exam_id" onchange="this.form.submit()">
+            <select class="form-select" id="exam_id" name="exam_id" required onchange="this.form.submit()">
                 <option value="">Select an exam</option>
                 <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrExams']->value, 'exam');
@@ -95,11 +95,12 @@ $_smarty_tpl->tpl_vars['exam']->do_else = false;
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             </select>
         </div>
+
     
         <!-- Test dropdown -->
         <div class="form-group">
             <label for="test_id">Test:</label>
-            <select class="form-select" id="test_id" name="test_id">
+            <select class="form-select" id="test_id" name="apt_test_id" required>
                 <option value="">Select a test</option>
                 <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrTests']->value, 'test');
@@ -122,12 +123,16 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
               type="text" id="datePicker"  name="apt_date"
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
                 placeholder="Select a date..."
+                value="<?php echo $_smarty_tpl->tpl_vars['objApt']->value->getDate();?>
+"
                                   >
 
                 <input 
                     type="text" id="timePicker" name="apt_time"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
                     placeholder="Select a time..."
+                    value="<?php echo $_smarty_tpl->tpl_vars['objApt']->value->getTime();?>
+"
                                           >
             <div class="max-w-auto mx-auto">
             <input type="submit" value="Enregistrer"

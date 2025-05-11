@@ -42,22 +42,23 @@
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
 
             </select> *}
-            <div class="form-group">
+        <div class="form-group">
             <label for="exam_id">Exam:</label>
-            <select class="form-select" id="exam_id" name="exam_id" onchange="this.form.submit()">
+            <select class="form-select" id="exam_id" name="exam_id" required onchange="this.form.submit()">
                 <option value="">Select an exam</option>
                 {foreach from=$arrExams item=exam}
-                    <option value="{$exam.exam_id}" {if $intExamId eq $exam.exam_id}selected{/if}>
+                    <option value="{$exam.exam_id}" {if $intExamId == $exam.exam_id}selected{/if}>
                         {$exam.exam_name|escape}
                     </option>
                 {/foreach}
             </select>
         </div>
+
     
         <!-- Test dropdown -->
         <div class="form-group">
             <label for="test_id">Test:</label>
-            <select class="form-select" id="test_id" name="test_id">
+            <select class="form-select" id="test_id" name="apt_test_id" required>
                 <option value="">Select a test</option>
                 {foreach from=$arrTests item=test}
                     <option value="{$test.test_id}">
@@ -71,6 +72,7 @@
               type="text" id="datePicker"  name="apt_date"
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
                 placeholder="Select a date..."
+                value="{$objApt->getDate()}"
                 {* value="{if isset($smarty.post.apt_date)}{$smarty.post.apt_date}{/if}" *}
                   >
 
@@ -78,6 +80,7 @@
                     type="text" id="timePicker" name="apt_time"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
                     placeholder="Select a time..."
+                    value="{$objApt->getTime()}"
                     {* value="{if isset($smarty.post.apt_time)}{$smarty.post.apt_time}{/if}" *}
                       >
             <div class="max-w-auto mx-auto">

@@ -9,10 +9,10 @@ class AppointmentModel extends Model{
         parent::__construct();
     }
 
-    public function get($intAptId) : array|false {
+    public function get()  {
         $strQuery = "SELECT *
                      FROM appointment
-                     WHERE apt_id  =" .$intAptId;
+                     WHERE apt_id  = :apt_id" ;
                      return $this->_db->query($strQuery)->fetch();
     }
     // Fetch all exams
@@ -30,6 +30,21 @@ class AppointmentModel extends Model{
         return $rqPrep->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function testExists($testId) {
+        $strQuery = "SELECT COUNT(*) FROM tests WHERE test_id = :test_id";
+        $rqPrep = $this->_db->prepare($strQuery);
+        $rqPrep->bindValue(":test_id", $testId, PDO::PARAM_INT);
+        $rqPrep->execute();
+        return $rqPrep->fetchColumn() > 0;
+    }
+
+    public function examExists($examId) {
+    $strQuery = "SELECT COUNT(*) FROM exams WHERE exam_id = :exam_id";
+    $rqPrep = $this->_db->prepare($strQuery);
+    $rqPrep->bindValue(":exam_id", $examId, PDO::PARAM_INT);
+    $rqPrep->execute();
+    return $rqPrep->fetchColumn() > 0;
+}
     public function updateStatusToPassed() {
         $strQuery = "UPDATE appointment 
                         SET apt_status = 'PASSED' 
@@ -104,11 +119,14 @@ class AppointmentModel extends Model{
             $rqPrep->bindValue(':status', $status, PDO::PARAM_STR);
         }
         $rqPrep->execute();
-        $results = $rqPrep->fetchAll(PDO::FETCH_ASSOC);
-        return $results;
+        return $rqPrep->fetchAll(PDO::FETCH_ASSOC);
+        // return $results;
     }
     public function insert(object $objApt) {
-
+        $testId = $objApt->getTestId();
+        if (!$testId || !$this->testExists($testId)) {
+            return null;
+        }
         $strQuery = "INSERT INTO appointment (apt_date, apt_time, apt_status, apt_registdate, apt_user_id, apt_test_id) 
                         VALUES (:date, :time, :status, :registdate, :user_id, :test_id)";
         $rqPrep = $this->_db->prepare($strQuery);
@@ -117,7 +135,7 @@ class AppointmentModel extends Model{
         $rqPrep->bindValue(":status", $objApt->getStatus(), PDO::PARAM_STR);
         $rqPrep->bindValue(":registdate", $objApt->getRegistdate(), PDO::PARAM_STR);
         $rqPrep->bindValue(":user_id", $_SESSION['user']['user_id'], PDO::PARAM_INT);
-        $rqPrep->bindValue(":test_id", $objApt->getTestId(), PDO::PARAM_INT);
+        $rqPrep->bindValue(":test_id", $testId, PDO::PARAM_INT);
         return $rqPrep->execute();
 
     }

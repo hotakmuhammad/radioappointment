@@ -80,61 +80,58 @@ class AppointmentCtrl extends Ctrl {
 
    public function home() {
 
-            $intAptId = $_GET['id']??0;
+            $intAptId = $_GET['id'] ?? null;
 
             $objAptModel = new AppointmentModel();
             $objApt = new Appointment(); 
+ 
+
+            $objApt->setUserId($_SESSION['user']['user_id']);
+            $objApt->setUserName($_SESSION['user']['user_name']);
+            $objApt->setUserFirstName($_SESSION['user']['user_firstname']);
+            // Initialize defaults
+            $objApt->setId($intAptId ? (int)$intAptId : 0);
+            $objApt->setStatus("UPCOMING");
+            // $objApt->setRegistdate(date('Y-m-d H:i:s'));
+            // $objApt->setDate("");
+            // $objApt->setTime("");
+            // $objApt->setTestId(0);
+
+            if ($intAptId > 0) {
+                $arrApt = $objAptModel->get($intAptId);
+                if ($arrApt) {
+                    $objApt->hydrate($arrApt);
+                }
+            }
+
 
             $arrExams = $objAptModel->getExams();
             $intExamId = $_POST['exam_id']??0;
 
             $arrTests = $intExamId ? $objAptModel->getTestsByExam($intExamId) : [];
-
-            
-            
-            
-            
-            $arrApt = $objAptModel->get($intAptId); 
-            if($arrApt === false) {
-                
-                // $objApt->setId(['appointment']['apt_id']);
-                // $objApt->hydrate($arrApt);
-                $objApt->setId(0);
-                $objApt->setDate("");
-                $objApt->setTime("");
-                $objApt->setStatus("");
-                $objApt->setRegistdate("");
-                $objApt->setUserId($_SESSION['user']['user_id']);
-                $objApt->setUserName($_SESSION['user']['user_name']);
-                $objApt->setUserFirstName($_SESSION['user']['user_firstname']);
-                // $objApt->setTestId(isset($data['test_id']) ? (int)$data['test_id'] : 0);
-                // $objApt->setTestId(['appointment']['apt_test_id']);
-                // $objApt->setTestId(['appointment']['apt_test_id']);
-                $objApt->setTestId($_GET['test_id'] ?? 0);
-                // $objApt->setTestName("");
-            } else {
-                $objApt->hydrate($arrApt);
-
-            }
-            echo"<br>-----------------objAPt -----------<br>";
-            var_dump($objApt);
  
-            
             if (count($_POST) > 0) {
-                // $arrPostData = [
-                //     'apt_id' => $objApt->getId(),
-                //     'apt_date' => $_POST['apt_date'] ?? '',
-                //     'apt_time' => $_POST['apt_time'] ?? '',
-                //     'apt_status' => 'UPCOMING',
-                //     'apt_registdate' => date("Y-m-d H:i:s"),
-                //     'apt_user_id' => $_SESSION['user']['user_id'],
-                //     'apt_test_id' => $_POST['test_id'] ?? 0,
-                // ];
-                $objApt->hydrate($_POST);
-                echo"<br>-----------------_Post -----------<br>";
+                echo "<br>-----------------POST-----------<br>";
                 var_dump($_POST);
-                echo"<br>-----------------objApt in post -----------<br>";
+                echo "<br>-----------------objApt Before Hydrate-----------<br>";
                 var_dump($objApt);
+            }
+            
+            if (count($_POST) > 0) { 
+                $objApt->hydrate($_POST);
+                echo "<br>-----------------objApt After Hydrate-----------<br>";
+                var_dump($objApt);
+                $examId = $_POST['exam_id'] ?? 0;
+                if ($examId == 0 || !$objAptModel->examExists($examId)) {
+                    $this->_arrErrors[] = "Invalid exam selected. Please choose a valid exam.";
+                }
+                // Validate test_id
+                $testId = $objApt->getTestId();
+                if ($testId == 0 || !$objAptModel->testExists($testId)) {
+                    $this->_arrErrors[] = "Invalid test selected. Please choose a valid test.";
+                }
+                echo "<br>-----------------Test ID-----------<br>";
+                var_dump($objApt->getTestId());
                 // Simple validation checks
                 if ($objApt->getDate() == "") {
                     $this->_arrErrors["date"] = "Veuillez choisir une date";
@@ -142,9 +139,6 @@ class AppointmentCtrl extends Ctrl {
                 if ($objApt->getTime() == "") {
                     $this->_arrErrors["time"] = "Veuillez choisir une heure";
                 }
-                // if (empty($_POST['test_id']) || !$objAptModel->testExists($_POST['test_id'])) {
-                //     $this->_arrErrors["test_id"] = "Veuillez sélectionner un test valide";
-                // }
                 if (count($this->_arrErrors) == 0) {
                 if($objApt->getId() === 0) { 
                     if($objAptModel->insert($objApt)) {
@@ -176,6 +170,7 @@ class AppointmentCtrl extends Ctrl {
         $this->_arrData["arrExams"] = $arrExams;
         $this->_arrData["arrTests"] = $arrTests;
         $this->_arrData["intExamId"] = $intExamId;
+        // $this->_arrData["intTestId"] = ;
         $this->displayTemplate("home");
     }
 }
