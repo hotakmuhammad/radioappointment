@@ -77,100 +77,94 @@ class AppointmentCtrl extends Ctrl {
         $this->displayTemplate("archivedAptList");
     }
 
+    public function home() {
+        $strTest = $_POST['test'] ?? '';
+        $strExam = $_POST['exam'] ?? '';
+        $intExamId = $_POST['examId'] ?? '';
 
-   public function home() {
+        $objAptModel = new AppointmentModel;
+        $arrExams = $objAptModel->findExams();
+        $arrTests = $objAptModel->findTests($intExamId ?: null);
+        $arrTestsToDisplay = $arrTests;
+        $arrErrors = array();
 
-            $intAptId = $_GET['id'] ?? null;
-
-            $objAptModel = new AppointmentModel();
-            $objApt = new Appointment(); 
- 
-
+        $objApt = new Appointment();
+        // Set only dynamic values from session or current time
+        if (isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id'] !== '') {
             $objApt->setUserId($_SESSION['user']['user_id']);
-            $objApt->setUserName($_SESSION['user']['user_name']);
-            $objApt->setUserFirstName($_SESSION['user']['user_firstname']);
-            // Initialize defaults
-            $objApt->setId($intAptId ? (int)$intAptId : 0);
-            $objApt->setStatus("UPCOMING");
-            // $objApt->setRegistdate(date('Y-m-d H:i:s'));
-            // $objApt->setDate("");
-            // $objApt->setTime("");
-            // $objApt->setTestId(0);
+        }
+        $objApt->setRegistdate(date("Y-m-d H:i:s"));
+        $objApt->setStatus("UPCOMING");
+        var_dump($objApt);
+        if (count($_POST) > 0) {
+            // Hydrate with POST data
+            $objApt->hydrate($_POST);
+            var_dump($_POST);
+            // Validate user
+            if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == '') {
+                $arrErrors['log'] = "Vous devez être inscrit pour prendre un rendez-vous";
+            }
 
-            if ($intAptId > 0) {
-                $arrApt = $objAptModel->get($intAptId);
-                if ($arrApt) {
-                    $objApt->hydrate($arrApt);
+            // Validate date
+            if (!$objApt->getDate() || !DateTime::createFromFormat('Y-m-d', $objApt->getDate())) {
+                $arrErrors['date'] = "La date est obligatoire et doit être au format YYYY-MM-DD";
+            }
+
+            // Validate time
+            if (!$objApt->getTime() || !DateTime::createFromFormat('H:i', $objApt->getTime())) {
+                $arrErrors['time'] = "L'heure est obligatoire et doit être au format HH:MM";
+            }
+
+            // Validate exam
+            if (!$strExam) {
+                $arrErrors['exam'] = "L'examen est obligatoire";
+            } else {
+                $intExamId = $objAptModel->getExamIdByName($strExam);
+                if (!$intExamId) {
+                    $arrErrors['exam'] = "L'examen n'existe pas";
                 }
             }
 
-
-            $arrExams = $objAptModel->getExams();
-            $intExamId = $_POST['exam_id']??0;
-
-            $arrTests = $intExamId ? $objAptModel->getTestsByExam($intExamId) : [];
- 
-            if (count($_POST) > 0) {
-                echo "<br>-----------------POST-----------<br>";
-                var_dump($_POST);
-                echo "<br>-----------------objApt Before Hydrate-----------<br>";
-                var_dump($objApt);
+            // Validate test and set test_id
+            if (!$strTest) {
+                $arrErrors['test'] = "Le test est obligatoire";
+            } else {
+                $testId = $objAptModel->getTestIdByName($strTest);
+                if ($testId) {
+                    if ($intExamId && !$objAptModel->validateTestForExam($testId, $intExamId)) {
+                        $arrErrors['test'] = "Le test ne correspond pas à l'examen sélectionné";
+                    } else {
+                        $objApt->setTestId($testId);
+                    }
+                } else {
+                    $arrErrors['test'] = "Le test n'existe pas";
+                }
             }
-            
-            if (count($_POST) > 0) { 
-                $objApt->hydrate($_POST);
-                echo "<br>-----------------objApt After Hydrate-----------<br>";
-                var_dump($objApt);
-                $examId = $_POST['exam_id'] ?? 0;
-                if ($examId == 0 || !$objAptModel->examExists($examId)) {
-                    $this->_arrErrors[] = "Invalid exam selected. Please choose a valid exam.";
-                }
-                // Validate test_id
-                $testId = $objApt->getTestId();
-                if ($testId == 0 || !$objAptModel->testExists($testId)) {
-                    $this->_arrErrors[] = "Invalid test selected. Please choose a valid test.";
-                }
-                echo "<br>-----------------Test ID-----------<br>";
-                var_dump($objApt->getTestId());
-                // Simple validation checks
-                if ($objApt->getDate() == "") {
-                    $this->_arrErrors["date"] = "Veuillez choisir une date";
-                }
-                if ($objApt->getTime() == "") {
-                    $this->_arrErrors["time"] = "Veuillez choisir une heure";
-                }
-                if (count($this->_arrErrors) == 0) {
-                if($objApt->getId() === 0) { 
-                    if($objAptModel->insert($objApt)) {
-                        header('Location:'.parent::BASE_URL);
-                        exit;
-                    }
-                        else {
-                            $this->_arrErrors[] = "Erreur lors de l'insertion de prendre rendez vous";
-                        }
-                    } 
-                    else {
 
-                        if ($objAptModel->update($objApt)){
-                            header("Location:".parent::BASE_URL."page/about");
-                            exit;
-                        }else{
-                            $this->_arrErrors[] = "La modification s'est mal passée";
-                        }
-    
-                    }
-                
+            // Insert if no errors
+            if (count($arrErrors) == 0) {
+                $intLastAptId = $objAptModel->insert($objApt);
+                if ($intLastAptId !== false) {
+                    header('Location: ' . parent::BASE_URL . 'appointment/my_appointments');
+                    exit();
+                } else {
+                    $arrErrors[] = "L'insertion s'est mal passée, peut-être que ce test est déjà réservé pour cette date et heure";
                 }
-            } 
-        // Prepare data for the template
+            }
+        }
+
+        $this->_arrData["arrErrors"] = $arrErrors;
+        $this->_arrData["strTest"] = $strTest;
+        $this->_arrData["strExam"] = $strExam;
+        $this->_arrData["intExamId"] = $intExamId;
+        $this->_arrData["arrTestsToDisplay"] = $arrTestsToDisplay;
+        $this->_arrData["arrExams"] = $arrExams;
+        $this->_arrData["objApt"] = $objApt;
+
         $this->_arrData["strPage"] = "index";
         $this->_arrData["strTitle"] = "Accueil";
         $this->_arrData["strDesc"] = "Page d'accueil";
-        $this->_arrData["objApt"] = $objApt;
-        $this->_arrData["arrExams"] = $arrExams;
-        $this->_arrData["arrTests"] = $arrTests;
-        $this->_arrData["intExamId"] = $intExamId;
-        // $this->_arrData["intTestId"] = ;
+
         $this->displayTemplate("home");
     }
 }
