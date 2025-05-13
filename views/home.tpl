@@ -5,19 +5,15 @@
 
 
     {if (count($arrErrors) > 0)}
-      <div class="max-w-md mx-auto mt-4 p-4 m-5 bg-red-50 border border-red-200 rounded-lg shadow-sm">
-        <ul class="space-y-2 text-red-700">
-          {foreach from=$arrErrors item=strError}
-            <li class="flex items-center gap-2">
-              <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path
-                  d="M10 0a10 10 0 1 0 10 10A10 10 0 0 0 10 0zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm1-12h-2v6h2zm0 8h-2v2h2z" />
-              </svg>
-              {$strError}
-            </li>
-          {/foreach}
-        </ul>
-      </div>
+        <div class="max-w-md mx-auto mt-4 p-4 bg-red-50 border border-red-200 rounded-lg shadow-sm">
+            <ul class="space-y-2 text-red-700">
+                {foreach from=$arrErrors item=strError}
+                    <li class="flex items-center gap-2">
+                        {$strError}
+                    </li>
+                {/foreach}
+            </ul>
+        </div>
     {/if}
     <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Pour prendre un rendez vous veuillez créer un compte
       utilisiteur</h2>
@@ -25,10 +21,13 @@
     <form action="{$base_url}" method="post" class="space-y-6">
       <div class="form-group">
         <label for="exam">Exam:</label>
-        <select class="form-select" id="exam_id" name="exam" required>
+        <select
+         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200" 
+
+         id="exam_id" name="exam" required>
           <option value="">Select an exam</option>
           {foreach from=$arrExams item=exam}
-            <option value="{$exam.exam_name}" {if $strExam == $exam.exam_name}selected{/if}>{$exam.exam_name}</option>
+            <option name="exam" value="{$exam.exam_name}" {if $strExam == $exam.exam_name}selected{/if}>{$exam.exam_name}</option>
           {/foreach}
         </select>
       </div>
@@ -37,11 +36,14 @@
       <!-- Test dropdown -->
       <div class="form-group">
         <label for="test">Test:</label>
-        <select class="form-select" id="test" name="test" required>
+        <select 
+         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200" 
+
+        id="test" name="test" required>
           <option value="">Select a test</option>
 
           {foreach from=$arrTestsToDisplay item=test}
-            <option value="{$test.test_name}" {if $strTest == $test.test_name}selected{/if}>{$test.test_name}</option>
+            <option name="test" value="{$test.test_name}" {if $strTest == $test.test_name}selected{/if}>{$test.test_name}</option>
           {/foreach}
         </select>
       </div>
@@ -53,7 +55,7 @@
         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
         placeholder="Select a time..." value="">
       <div class="max-w-auto mx-auto">
-        <input type="submit" value="Enregistrer"
+        <input type="submit" value="Enregistrer" name="log"
           class="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200 cursor-pointer">
       </div>
     </form>

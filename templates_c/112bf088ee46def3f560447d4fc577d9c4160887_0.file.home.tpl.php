@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-12 21:57:32
+/* Smarty version 4.3.4, created on 2025-05-13 21:31:32
   from 'C:\wamp64\www\radioappointment\views\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_68226ecc2efd85_63280927',
+  'unifunc' => 'content_6823ba34c5fc15_24650937',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '112bf088ee46def3f560447d4fc577d9c4160887' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\home.tpl',
-      1 => 1747087049,
+      1 => 1747171888,
       2 => 'file',
     ),
   ),
@@ -20,24 +20,24 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_68226ecc2efd85_63280927 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6823ba34c5fc15_24650937 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_157123232668226ecc2b7925_33927866', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15808633726823ba34c24120_96928178', "contenu");
 ?>
  <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_157123232668226ecc2b7925_33927866 extends Smarty_Internal_Block
+class Block_15808633726823ba34c24120_96928178 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_157123232668226ecc2b7925_33927866',
+    0 => 'Block_15808633726823ba34c24120_96928178',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -47,27 +47,23 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 
 
     <?php if ((count($_smarty_tpl->tpl_vars['arrErrors']->value) > 0)) {?>
-      <div class="max-w-md mx-auto mt-4 p-4 m-5 bg-red-50 border border-red-200 rounded-lg shadow-sm">
-        <ul class="space-y-2 text-red-700">
-          <?php
+        <div class="max-w-md mx-auto mt-4 p-4 bg-red-50 border border-red-200 rounded-lg shadow-sm">
+            <ul class="space-y-2 text-red-700">
+                <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrErrors']->value, 'strError');
 $_smarty_tpl->tpl_vars['strError']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['strError']->value) {
 $_smarty_tpl->tpl_vars['strError']->do_else = false;
 ?>
-            <li class="flex items-center gap-2">
-              <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path
-                  d="M10 0a10 10 0 1 0 10 10A10 10 0 0 0 10 0zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm1-12h-2v6h2zm0 8h-2v2h2z" />
-              </svg>
-              <?php echo $_smarty_tpl->tpl_vars['strError']->value;?>
+                    <li class="flex items-center gap-2">
+                        <?php echo $_smarty_tpl->tpl_vars['strError']->value;?>
 
-            </li>
-          <?php
+                    </li>
+                <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-        </ul>
-      </div>
+            </ul>
+        </div>
     <?php }?>
     <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Pour prendre un rendez vous veuillez créer un compte
       utilisiteur</h2>
@@ -76,7 +72,10 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 " method="post" class="space-y-6">
       <div class="form-group">
         <label for="exam">Exam:</label>
-        <select class="form-select" id="exam_id" name="exam" required>
+        <select
+         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200" 
+
+         id="exam_id" name="exam" required>
           <option value="">Select an exam</option>
           <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrExams']->value, 'exam');
@@ -84,7 +83,7 @@ $_smarty_tpl->tpl_vars['exam']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['exam']->value) {
 $_smarty_tpl->tpl_vars['exam']->do_else = false;
 ?>
-            <option value="<?php echo $_smarty_tpl->tpl_vars['exam']->value['exam_name'];?>
+            <option name="exam" value="<?php echo $_smarty_tpl->tpl_vars['exam']->value['exam_name'];?>
 " <?php if ($_smarty_tpl->tpl_vars['strExam']->value == $_smarty_tpl->tpl_vars['exam']->value['exam_name']) {?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['exam']->value['exam_name'];?>
 </option>
           <?php
@@ -97,7 +96,10 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
       <!-- Test dropdown -->
       <div class="form-group">
         <label for="test">Test:</label>
-        <select class="form-select" id="test" name="test" required>
+        <select 
+         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200" 
+
+        id="test" name="test" required>
           <option value="">Select a test</option>
 
           <?php
@@ -106,7 +108,7 @@ $_smarty_tpl->tpl_vars['test']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['test']->value) {
 $_smarty_tpl->tpl_vars['test']->do_else = false;
 ?>
-            <option value="<?php echo $_smarty_tpl->tpl_vars['test']->value['test_name'];?>
+            <option name="test" value="<?php echo $_smarty_tpl->tpl_vars['test']->value['test_name'];?>
 " <?php if ($_smarty_tpl->tpl_vars['strTest']->value == $_smarty_tpl->tpl_vars['test']->value['test_name']) {?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['test']->value['test_name'];?>
 </option>
           <?php
@@ -122,7 +124,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
         placeholder="Select a time..." value="">
       <div class="max-w-auto mx-auto">
-        <input type="submit" value="Enregistrer"
+        <input type="submit" value="Enregistrer" name="log"
           class="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200 cursor-pointer">
       </div>
     </form>

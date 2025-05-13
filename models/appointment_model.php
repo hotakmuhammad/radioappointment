@@ -94,7 +94,8 @@ class AppointmentModel extends Model{
         return $rqPrep->fetchAll(PDO::FETCH_ASSOC);
         // return $results;
     } 
-public function findExams() {
+    
+    public function findExams() {
         $strQuery = "SELECT exam_id, exam_name FROM exams;";
         return $this->_db->query($strQuery)->fetchAll(PDO::FETCH_ASSOC);
     }

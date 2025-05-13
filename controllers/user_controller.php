@@ -132,13 +132,15 @@ class UserCtrl extends Ctrl {
         $strActualMail = $objUser->getEmail(); 
         $strOldPassword = $objUser->getPassword();
 
+        $this->_arrErrors = [];
     
         if (count($_POST) > 0) { 
     
             $boolVerifyMail = ($strActualMail != ($_POST['email'] ?? $strActualMail));
-            $this->_arrErrors = $this->_verifyInfos($objUser, $boolVerifyMail);
-    
+            
             $objUser->hydrate($_POST); 
+            $this->_arrErrors = $this->_verifyInfos($objUser, $boolVerifyMail);
+     
             if (!empty($_POST['oldPassword'])) {
                 if (!password_verify($_POST['oldPassword'], $strOldPassword)) {
                     $this->_arrErrors['oldPassword'] = "Le mot de passe actuel est incorrect"; 
@@ -201,14 +203,16 @@ class UserCtrl extends Ctrl {
         $arrErrors = array();
         
         if($objUser->getName() == "") {
-            $arrErrors['lastName'] = "Le prènom est obligatoire.";
+            $arrErrors['name'] = "Le nom est obligatoire.";
         }elseif(strlen($objUser->getName()) < 3){
-            $arrErrors['lastName'] = "Le prènom est trop court.";
+            $arrErrors['name'] = "Le nom est trop court.";
         }
+
+
         if($objUser->getFirstName() == "") {
-            $arrErrors['firstName'] = "Le nom est obligatoire.";
+            $arrErrors['firstName'] = "Le prènom est obligatoire.";
         }elseif(strlen($objUser->getFirstName()) < 3){
-            $arrErrors['firstName'] = "Le nom est trop court.";
+            $arrErrors['firstName'] = "Le prènom est trop court.";
         }
 
 

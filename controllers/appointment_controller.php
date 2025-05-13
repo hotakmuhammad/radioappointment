@@ -89,33 +89,32 @@ class AppointmentCtrl extends Ctrl {
         $arrErrors = array();
 
         $objApt = new Appointment();
-        // Set only dynamic values from session or current time
+
         if (isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id'] !== '') {
             $objApt->setUserId($_SESSION['user']['user_id']);
         }
         $objApt->setRegistdate(date("Y-m-d H:i:s"));
         $objApt->setStatus("UPCOMING");
-        var_dump($objApt);
+
         if (count($_POST) > 0) {
-            // Hydrate with POST data
+
             $objApt->hydrate($_POST);
-            var_dump($_POST);
-            // Validate user
+            // var_dump($_POST);
+
             if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == '') {
                 $arrErrors['log'] = "Vous devez être inscrit pour prendre un rendez-vous";
             }
 
-            // Validate date
+ 
             if (!$objApt->getDate() || !DateTime::createFromFormat('Y-m-d', $objApt->getDate())) {
                 $arrErrors['date'] = "La date est obligatoire et doit être au format YYYY-MM-DD";
             }
-
-            // Validate time
+ 
             if (!$objApt->getTime() || !DateTime::createFromFormat('H:i', $objApt->getTime())) {
                 $arrErrors['time'] = "L'heure est obligatoire et doit être au format HH:MM";
             }
 
-            // Validate exam
+ 
             if (!$strExam) {
                 $arrErrors['exam'] = "L'examen est obligatoire";
             } else {
@@ -125,7 +124,7 @@ class AppointmentCtrl extends Ctrl {
                 }
             }
 
-            // Validate test and set test_id
+
             if (!$strTest) {
                 $arrErrors['test'] = "Le test est obligatoire";
             } else {
