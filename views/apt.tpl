@@ -41,7 +41,7 @@
                 </div>
                 <div class="flex mb-8 items-center justify-between">
                     <dt class="text-lg text-gray-600">
-                        <a href="#" class="inline-block px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
+                        <a href="{$base_url}appointment/edit_apt" class="inline-block px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
                              Modifier
                         </a>
                     </dt>

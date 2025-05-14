@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-14 07:56:35
+/* Smarty version 4.3.4, created on 2025-05-14 08:48:49
   from 'C:\wamp64\www\radioappointment\views\apt.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_68244cb3a98a92_32707668',
+  'unifunc' => 'content_682458f17941b9_92189463',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '406fca5b2439ecac14ec766430e3b475f35ee013' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\apt.tpl',
-      1 => 1747209394,
+      1 => 1747212525,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_68244cb3a98a92_32707668 (Smarty_Internal_Template $_smarty_tpl) {
+function content_682458f17941b9_92189463 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <section class="mt-12">
@@ -63,7 +63,8 @@ function content_68244cb3a98a92_32707668 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
                 <div class="flex mb-8 items-center justify-between">
                     <dt class="text-lg text-gray-600">
-                        <a href="#" class="inline-block px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
+                        <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+appointment/edit_apt" class="inline-block px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
                              Modifier
                         </a>
                     </dt>

@@ -17,6 +17,22 @@ class AppointmentModel extends Model{
     } 
 
  
+    public function getAll() {
+        $strQuery  = "SELECT 
+                        a.*,
+                        u.user_name,
+                        u.user_firstname,
+                        t.test_name
+                    FROM 
+                        appointment a
+                    INNER JOIN users u ON a.apt_user_id = u.user_id
+                    INNER JOIN tests t ON a.apt_test_id = t.test_id";
+
+        $rqPrep = $this->_db->prepare($strQuery);
+        $rqPrep->execute();
+        return $rqPrep->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function updateStatusToPassed() {
         $strQuery = "UPDATE appointment 
                         SET apt_status = 'PASSED' 

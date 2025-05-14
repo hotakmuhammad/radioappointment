@@ -35,7 +35,11 @@
                 {if isset($user) && ($user.user_role == 'SUPERADMIN' || $user.user_role == 'ADMIN')}
                     <div class="navbarItems">
                         <a class="buttonLink px-4 py-2 text-white hover:text-gray-300 transition-colors text-xl duration-200"
-                            href="{$base_url}user/manage">Manage</i></a>
+                            href="{$base_url}user/manage">Users</i></a>
+                    </div>
+                    <div class="navbarItems">
+                        <a class="buttonLink px-4 py-2 text-white hover:text-gray-300 transition-colors text-xl duration-200"
+                            href="{$base_url}appointment/manage">RDVs</i></a>
                     </div>
                 {/if}
 

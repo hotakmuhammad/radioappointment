@@ -20,7 +20,8 @@ class AppointmentCtrl extends Ctrl {
         $objUser = new User(); // Get current user (e.g., from session or authentication)
         $objUser->setId($_SESSION['user']['user_id']);
         $objUser->setName($_SESSION['user']['user_name'] ?? '');
-        $objUser->setFirstname($_SESSION['user']['user_firstname'] ?? ''); 
+        $objUser->setFirstname($_SESSION['user']['user_firstname'] ?? '');
+
 
         $objAptModel = new AppointmentModel();
         $objAptModel->updateStatusToPassed();
@@ -33,7 +34,6 @@ class AppointmentCtrl extends Ctrl {
             $objApt->setUserName(isset($arrDetailApt['user_name']) ? $arrDetailApt['user_name'] : '');
             $objApt->setUserFirstName(isset($arrDetailApt['user_firstname']) ? $arrDetailApt['user_firstname'] : '');
             $objApt->setStatus(isset($arrDetailApt['apt_status']) ? $arrDetailApt['apt_status'] : '');
-
         }  
         $this->_arrData["strPage"] = "rdv";
         $this->_arrData["strTitle"] = "Appointment";
@@ -172,7 +172,66 @@ class AppointmentCtrl extends Ctrl {
         $intAptId = $_GET['id']??0;
         $objAptModel = new AppointmentModel();
         $objAptModel->delete($intAptId);
-        header("Location:".parent::BASE_URL."appointment/my_appointments");
+
+            if (isset($_SESSION['user']['user_role']) && ($_SESSION['user']['user_role'] == 'ADMIN' || $_SESSION['user']['user_role'] == 'SUPERADMIN')) {
+                header("Location: " . parent::BASE_URL . "appointment/manage");
+            } else {
+                // Redirect to the user's own appointments page if not an admin
+                header("Location: " . parent::BASE_URL . "appointment/my_appointments");
+            }
+
+    }
+
+    public function manage() {
+
+
+        if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == '') {
+        header('Location:'.parent::BASE_URL.'error/show403');
+        exit;
+        }
+
+        $objUser = new User(); // Get current user (e.g., from session or authentication)
+        $objUser->setId($_SESSION['user']['user_id']);
+        $objUser->setName($_SESSION['user']['user_name'] ?? '');
+        $objUser->setFirstname($_SESSION['user']['user_firstame'] ?? ''); 
+
+        $objAptModel = new AppointmentModel;
+        $arrApts = $objAptModel->getAll();
+
+        $arrAptToDisplay = array();
+
+
+        foreach($arrApts as $arrApt) {
+            $objApt = new Appointment();
+            $objApt->hydrate($arrApt);
+            $arrAptToDisplay[] = $objApt; 
+
+            $objApt->setUserName($arrApt['user_name'] ?? '');
+            $objApt->setUserFirstName($arrApt['user_firstname'] ?? '');
+            $objApt->setStatus($arrApt['apt_status'] ?? '');
+            $objApt->setAppointment($arrApt['apt__appointment'] ?? '');
+        }
+
+
+        $this->_arrData["strPage"] = "manage_apt";
+        $this->_arrData["strTitle"] = "Gestion des rdv";
+        $this->_arrData["strDesc"] = "Page pour la gestion des rdv";
+        $this->_arrData["arrAptToDisplay"] = $arrAptToDisplay;
+
+        $this->displayTemplate("manageApt");
+    
+    }
+    
+
+    public function edit_apt() {
+
+
+
+
+        $this->_arrData["strPage"] = "remplacer_rdv";
+        $this->_arrData["strTitle"] = "Modifier votre rdv";
+        $this->_arrData["strDesc"] = "Page de modification de rdv";
+        $this->displayTemplate("edit_apt");
 
     }
 }

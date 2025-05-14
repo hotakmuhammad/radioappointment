@@ -26,24 +26,38 @@
                     <th class="py-3 px-4 font-semibold text-sm">Id</th>
                     <th class="py-3 px-4 font-semibold text-sm">Nom</th>
                     <th class="py-3 px-4 font-semibold text-sm">Prénom</th>
-                    <th class="py-3 px-4 font-semibold text-sm">Email</th>
-                    <th class="py-3 px-4 font-semibold text-sm">Phone</th>
-                    <th class="py-3 px-4 font-semibold text-sm">Role</th>
-                    <th class="py-3 px-4 font-semibold text-sm">Date d'inscription</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Appointment</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Date</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Time</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Stautus</th>
                 <th class="py-3 px-4 font-semibold text-sm">Action</th>
             </tr>
         </thead>
         <tbody>
+
+        {foreach $arrAptToDisplay as $objApt}
             <tr class="border-b hover:bg-gray-50">
-                <td class="py-3 px-4 text-gray-600">1</td>
-                <td class="py-3 px-4 text-gray-600">Doe</td>
-                <td class="py-3 px-4 text-gray-600">John</td>
-                <td class="py-3 px-4 text-gray-600">jhon@doe.com</td>
-                <td class="py-3 px-4 text-gray-600">+33 6 12 34 56 78</td>
-                <td class="py-3 px-4 text-gray-600">Admin</td>
-                <td class="py-3 px-4 text-gray-600">2023-10-01</td>
-                <td class="py-3 px-4 text-gray-600">Action</td>
+                <td class="py-3 px-4 text-gray-600">{$objApt->getId()}</td>
+                <td class="py-3 px-4 text-gray-600">{$objApt->getUserName()}</td>
+                <td class="py-3 px-4 text-gray-600">{$objApt->getUserFirstName()}</td>
+                <td class="py-3 px-4 text-gray-600">{$objApt->getAppointment()}</td>
+                <td class="py-3 px-4 text-gray-600">{$objApt->getDate()}</td>
+                <td class="py-3 px-4 text-gray-600">{$objApt->getTime()}</td>
+                <td class="py-3 px-4 text-gray-600">{$objApt->getStatus()}</td>
+                        <td class="py-3 px-4 ">
+                            <a
+                                href="{$base_url}appointment/edit_apt" class="">
+                                <i class="hover:text-blue-600 text-blue-400 fa-solid fa-pen-to-square"></i>
+                            </a> /
+                                 <a
+                                    href="{$base_url}appointment/delete_apt?id={$objApt->getId()}" class="">
+                                    <i class="hover:text-red-600 text-red-400 fa-solid fa-trash"></i>
+                                </a>
+
+                        </td>
             </tr>
+
+            {/foreach}
         </tbody>
     </table>
     {* </div> *}
