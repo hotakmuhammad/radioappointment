@@ -21,12 +21,12 @@ class AppointmentModel extends Model{
         $strQuery = "UPDATE appointment 
                         SET apt_status = 'PASSED' 
                         WHERE apt_status = 'UPCOMING' 
-                        AND apt_date < CURRENT_DATE";
+                        AND TIMESTAMP(apt_date, apt_time) < NOW()";
         $rqPrep = $this->_db->prepare($strQuery);
         $rqPrep->execute();
     }
     
-    public function getUpcomming($objUser, $status = 'UPCOMING') {
+    public function getUpcoming($objUser, $status = 'UPCOMING') {
         $strQuery = "SELECT 
             u.user_name,
             u.user_firstname,
@@ -45,7 +45,7 @@ class AppointmentModel extends Model{
             INNER JOIN exams e ON t.exam_id = e.exam_id
         WHERE 
             u.user_id = :user_id
-            AND a.apt_date > CURRENT_TIME;";
+            AND TIMESTAMP(a.apt_date, a.apt_time) > NOW()";
         if ($status !== null) {
             $strQuery .= " AND a.apt_status = :status";
         }
@@ -61,7 +61,7 @@ class AppointmentModel extends Model{
     }
 
 
-    public function getArchived($objUser, $status = 'UPCOMING') {
+    public function getArchived($objUser, $status = 'PASSED') {
         $strQuery = "SELECT 
             u.user_name,
             u.user_firstname,
@@ -80,7 +80,7 @@ class AppointmentModel extends Model{
             INNER JOIN exams e ON t.exam_id = e.exam_id
         WHERE 
             u.user_id = :user_id
-            AND a.apt_date < CURRENT_TIME;";
+            AND TIMESTAMP(a.apt_date, a.apt_time) < NOW()";
         if ($status !== null) {
             $strQuery .= " AND a.apt_status = :status";
         }
@@ -163,6 +163,12 @@ class AppointmentModel extends Model{
             }
             throw $e;
         }
+    }
+
+    public function delete(int $id) {
+        $strQuery  ="DELETE FROM appointment
+                     WHERE apt_id = " .$id;
+                     return $this->_db->exec($strQuery);
     }
     
 }

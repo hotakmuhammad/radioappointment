@@ -46,8 +46,8 @@
                         </a>
                     </dt>
                     <dd class="text-lg text-red-900">
-                        <a href="#" class="inline-block px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700" style="background-color: #dc2626;">
-                            Supprimer
+                        <a href="{$base_url}appointment/delete_apt?id={$objApt->getId()}" class="inline-block px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700" style="background-color: #dc2626;">
+                            Annuler
                         </a>
                     </dd>
                 </div>

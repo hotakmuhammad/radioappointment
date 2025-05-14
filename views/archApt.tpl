@@ -36,6 +36,13 @@
                     <dt class="text-sm font-medium text-gray-600">Status</dt>
                     <dd class="text-lg text-gray-900">{$objApt->getStatus()}</dd>
                 </div>
+                <div class="flex mb-8 items-center justify-between">
+                    <dd class="text-lg text-red-900">
+                        <a href="{$base_url}appointment/delete_apt?id={$objApt->getId()}" class="inline-block px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700" style="background-color: #dc2626;">
+                            Effacer
+                        </a>
+                    </dd>
+                </div>
             </dl>
         </div>
 

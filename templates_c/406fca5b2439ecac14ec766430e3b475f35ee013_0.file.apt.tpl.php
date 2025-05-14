@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-13 14:23:02
+/* Smarty version 4.3.4, created on 2025-05-14 07:56:35
   from 'C:\wamp64\www\radioappointment\views\apt.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_682355c6d33ae9_61154920',
+  'unifunc' => 'content_68244cb3a98a92_32707668',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '406fca5b2439ecac14ec766430e3b475f35ee013' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\apt.tpl',
-      1 => 1747146180,
+      1 => 1747209394,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_682355c6d33ae9_61154920 (Smarty_Internal_Template $_smarty_tpl) {
+function content_68244cb3a98a92_32707668 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <section class="mt-12">
@@ -68,8 +68,10 @@ function content_682355c6d33ae9_61154920 (Smarty_Internal_Template $_smarty_tpl)
                         </a>
                     </dt>
                     <dd class="text-lg text-red-900">
-                        <a href="#" class="inline-block px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700" style="background-color: #dc2626;">
-                            Supprimer
+                        <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+appointment/delete_apt?id=<?php echo $_smarty_tpl->tpl_vars['objApt']->value->getId();?>
+" class="inline-block px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700" style="background-color: #dc2626;">
+                            Annuler
                         </a>
                     </dd>
                 </div>

@@ -23,8 +23,8 @@ class AppointmentCtrl extends Ctrl {
         $objUser->setFirstname($_SESSION['user']['user_firstname'] ?? ''); 
 
         $objAptModel = new AppointmentModel();
-        // $objAptModel->updateStatusToPassed();
-        $arrApt = $objAptModel->getUpcomming($objUser);
+        $objAptModel->updateStatusToPassed();
+        $arrApt = $objAptModel->getUpcoming($objUser);
         $arrAptToDisplay = [];
         foreach ($arrApt as $arrDetailApt) {
             $objApt = new Appointment();
@@ -165,6 +165,15 @@ class AppointmentCtrl extends Ctrl {
         $this->_arrData["strDesc"] = "Page d'accueil";
 
         $this->displayTemplate("home");
+    }
+
+    public function delete_apt() {
+
+        $intAptId = $_GET['id']??0;
+        $objAptModel = new AppointmentModel();
+        $objAptModel->delete($intAptId);
+        header("Location:".parent::BASE_URL."appointment/my_appointments");
+
     }
 }
 
