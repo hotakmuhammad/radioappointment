@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-04-26 17:36:08
+/* Smarty version 4.3.4, created on 2025-05-14 19:43:24
   from 'C:\wamp64\www\radioappointment\views\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_680d1988e14296_72668528',
+  'unifunc' => 'content_6824f25cecf646_37124075',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '36440be06c0410b9ce23665e374084ee2c56a8a8' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\login.tpl',
-      1 => 1745688962,
+      1 => 1747251751,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_680d1988e14296_72668528 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6824f25cecf646_37124075 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1419618102680d1988e0f096_93445848', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_17479614916824f25cec7aa1_36944283', "contenu");
 ?>
  <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_1419618102680d1988e0f096_93445848 extends Smarty_Internal_Block
+class Block_17479614916824f25cec7aa1_36944283 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_1419618102680d1988e0f096_93445848',
+    0 => 'Block_17479614916824f25cec7aa1_36944283',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -90,8 +90,11 @@ user/login" method="post" class="space-y-6">
                     class="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200 cursor-pointer">
             </div>
         </form>
-
-    </div>
+            <div class="p-4">
+                <p>Si vous n'avez pas un compte, vous pouvez en créer un <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+user/registration" class="text-[#50d71e]">ici</a></p>
+            </div>
+        </div>
     <div class="max-w-md  m-5 mx-auto">
     <table class="bg-gray-100 rounded-xl text-gray-700 text-left">
         <caption class="sr-only">User Credentials</caption>

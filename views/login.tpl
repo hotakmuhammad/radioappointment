@@ -38,8 +38,10 @@
                     class="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200 cursor-pointer">
             </div>
         </form>
-
-    </div>
+            <div class="p-4">
+                <p>Si vous n'avez pas un compte, vous pouvez en créer un <a href="{$base_url}user/registration" class="text-[#50d71e]">ici</a></p>
+            </div>
+        </div>
     <div class="max-w-md  m-5 mx-auto">
     <table class="bg-gray-100 rounded-xl text-gray-700 text-left">
         <caption class="sr-only">User Credentials</caption>

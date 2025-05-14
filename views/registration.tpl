@@ -78,5 +78,8 @@
                     class="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200 cursor-pointer">
             </div>
         </form>
+            <div class="p-4 text-center item-center">
+                <p>Si vous avez déjà un compte, connectez vous <a href="{$base_url}user/login" class="text-blue-600">ici</a></p>
+            </div>
     </div>
 {/block}

@@ -51,7 +51,7 @@ class AppointmentCtrl extends Ctrl {
         } 
 
         
-        $objUser = new User(); // Get current user (e.g., from session or authentication)
+        $objUser = new User(); 
         $objUser->setId($_SESSION['user']['user_id']);
         $objUser->setName($_SESSION['user']['user_name'] ?? '');
         $objUser->setFirstname($_SESSION['user']['user_firstname'] ?? ''); 
@@ -193,7 +193,7 @@ class AppointmentCtrl extends Ctrl {
         $objUser = new User(); // Get current user (e.g., from session or authentication)
         $objUser->setId($_SESSION['user']['user_id']);
         $objUser->setName($_SESSION['user']['user_name'] ?? '');
-        $objUser->setFirstname($_SESSION['user']['user_firstame'] ?? ''); 
+        $objUser->setFirstname($_SESSION['user']['user_firstname'] ?? ''); 
 
         $objAptModel = new AppointmentModel;
         $arrApts = $objAptModel->getAll();
@@ -203,13 +203,13 @@ class AppointmentCtrl extends Ctrl {
 
         foreach($arrApts as $arrApt) {
             $objApt = new Appointment();
-            $objApt->hydrate($arrApt);
-            $arrAptToDisplay[] = $objApt; 
-
+            $objApt->hydrate($arrApt); 
             $objApt->setUserName($arrApt['user_name'] ?? '');
             $objApt->setUserFirstName($arrApt['user_firstname'] ?? '');
             $objApt->setStatus($arrApt['apt_status'] ?? '');
-            $objApt->setAppointment($arrApt['apt__appointment'] ?? '');
+            $objApt->setAppointment($arrApt['test_name'] ?? '');
+            $arrAptToDisplay[] = $objApt; 
+
         }
 
 
@@ -226,11 +226,56 @@ class AppointmentCtrl extends Ctrl {
     public function edit_apt() {
 
 
+		if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == ''){
+			header("Location:".parent::BASE_URL."error/show403");
+            exit;
+		}
 
+        $intAptId = $_GET['id']??0;
+        $arrErrors = array();
+        $objAptModel = new AppointmentModel();
+        $arrExams = $objAptModel->findExams();
+        $arrApt = $objAptModel->getApt($intAptId);
+        $objApt = new Appointment();
+        $objApt->hydrate($arrApt);
+
+        $intExamId = isset($arrApt['exam_id']) ? (int)$arrApt['exam_id'] : null;
+        $arrTests = $objAptModel->findTests($intExamId);
+
+        if ($_SESSION['user']['user_role'] != 'ADMIN' && $_SESSION['user']['user_role'] != 'SUPERADMIN' && $_SESSION['user']['user_id'] != $objApt->getUserId()) {
+            header("Location: " . parent::BASE_URL . "error/show403");
+            exit;
+        }
+
+        // $objAptModel = new AppointmentModel();
+        if(count($_POST) > 0) {
+
+            $objApt->setDate($_POST['date'] ?? '');
+            $objApt->setTime($_POST['time'] ?? '');
+            $objApt->setStatus('UPCOMING');
+            $objApt->setTestId((int)($_POST['test'] ?? 0));
+
+
+            if($objAptModel->update($objApt)) {
+                if (isset($_SESSION['user']['user_role']) && ($_SESSION['user']['user_role'] == 'ADMIN' || $_SESSION['user']['user_role'] == 'SUPERADMIN')) {
+                    header("Location: " . parent::BASE_URL . "appointment/manage");
+                } else {
+                    header("Location: " . parent::BASE_URL . "appointment/my_appointments");
+                }
+            } else {
+                $arrErrors[] = "La modification s'est mal passée";
+            }
+        }
 
         $this->_arrData["strPage"] = "remplacer_rdv";
-        $this->_arrData["strTitle"] = "Modifier votre rdv";
-        $this->_arrData["strDesc"] = "Page de modification de rdv";
+        $this->_arrData["strTitle"] = "Modify Appointment";
+        $this->_arrData["strDesc"] = "Page for modifying appointments";
+        $this->_arrData["arrErrors"] = $arrErrors;
+        $this->_arrData["arrExams"] = $arrExams;
+        $this->_arrData["arrTests"] = $arrTests;
+        $this->_arrData["objApt"] = $objApt;
+        $this->_arrData["base_url"] = parent::BASE_URL . "appointment/edit_apt?id=" . $intAptId;
+
         $this->displayTemplate("edit_apt");
 
     }
