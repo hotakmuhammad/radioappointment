@@ -231,51 +231,95 @@ class AppointmentCtrl extends Ctrl {
             exit;
 		}
 
-        $intAptId = $_GET['id']??0;
+        $intAptId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+        $strTest = $_POST['test'] ?? '';
+        $strExam = $_POST['exam'] ?? '';
+        $intExamId = $_POST['examId'] ?? null;
         $arrErrors = array();
         $objAptModel = new AppointmentModel();
         $arrExams = $objAptModel->findExams();
         $arrApt = $objAptModel->getApt($intAptId);
+
         $objApt = new Appointment();
-        $objApt->hydrate($arrApt);
+        $objApt->hydrate($arrApt); 
 
-        $intExamId = isset($arrApt['exam_id']) ? (int)$arrApt['exam_id'] : null;
-        $arrTests = $objAptModel->findTests($intExamId);
-
+        $arrTestsToDisplay = $objAptModel->findTests($intExamId);
         if ($_SESSION['user']['user_role'] != 'ADMIN' && $_SESSION['user']['user_role'] != 'SUPERADMIN' && $_SESSION['user']['user_id'] != $objApt->getUserId()) {
             header("Location: " . parent::BASE_URL . "error/show403");
             exit;
         }
 
-        // $objAptModel = new AppointmentModel();
+        $objApt->setId($arrApt['id']??0);
+        $objApt->setTestId($arrApt['test_id'] ?? 0);
+        $objApt->setDate($arrApt['date'] ?? '');
+        $objApt->setTime($arrApt['time'] ?? '');
+        $objApt->setStatus($arrApt['status'] ?? 'UPCOMMING');
+
         if(count($_POST) > 0) {
 
-            $objApt->setDate($_POST['date'] ?? '');
-            $objApt->setTime($_POST['time'] ?? '');
-            $objApt->setStatus('UPCOMING');
-            $objApt->setTestId((int)($_POST['test'] ?? 0));
+            $objApt->hydrate($_POST);
 
+            // Validate date
+            if (!$objApt->getDate() || !DateTime::createFromFormat('Y-m-d', $objApt->getDate())) {
+                $arrErrors['date'] = "La date est obligatoire et doit être au format YYYY-MM-DD";
+            }
 
-            if($objAptModel->update($objApt)) {
-                if (isset($_SESSION['user']['user_role']) && ($_SESSION['user']['user_role'] == 'ADMIN' || $_SESSION['user']['user_role'] == 'SUPERADMIN')) {
-                    header("Location: " . parent::BASE_URL . "appointment/manage");
-                } else {
-                    header("Location: " . parent::BASE_URL . "appointment/my_appointments");
-                }
+            // Validate time
+            if (!$objApt->getTime() || !DateTime::createFromFormat('H:i', $objApt->getTime())) {
+                $arrErrors['time'] = "L'heure est obligatoire et doit être au format HH:MM";
+            }
+
+            // Validate exam
+            if (!$strExam) {
+                $arrErrors['exam'] = "L'examen est obligatoire";
             } else {
-                $arrErrors[] = "La modification s'est mal passée";
+                $intExamId = $objAptModel->getExamIdByName($strExam);
+                if (!$intExamId) {
+                    $arrErrors['exam'] = "L'examen n'existe pas";
+                }
+            }
+
+
+            if (!$strTest) {
+                $arrErrors['test'] = "Le test est obligatoire";
+            } else {
+                $testId = $objAptModel->getTestIdByName($strTest);
+                if ($testId) {
+                    if ($intExamId && !$objAptModel->validateTestForExam($testId, $intExamId)) {
+                        $arrErrors['test'] = "Le test ne correspond pas à l'examen sélectionné";
+                    } else {
+                        $objApt->setTestId($testId);
+                    }
+                } else {
+                    $arrErrors['test'] = "Le test n'existe pas";
+                }
+            }
+
+            if (count($arrErrors) == 0) {
+                if ($objAptModel->update($objApt)) {
+                    if ($_SESSION['user']['user_role'] == 'ADMIN' || $_SESSION['user']['user_role'] == 'SUPERADMIN') {
+                        header("Location: " . parent::BASE_URL . "appointment/manage");
+                    } else {
+                        header("Location: " . parent::BASE_URL . "appointment/my_appointments");
+                    }
+                    exit;
+                } else {
+                    $arrErrors[] = "L'update s'est mal passé, peut-être que ce test est déjà réservé pour cette date et heure";
+                }
             }
         }
 
         $this->_arrData["strPage"] = "remplacer_rdv";
-        $this->_arrData["strTitle"] = "Modify Appointment";
-        $this->_arrData["strDesc"] = "Page for modifying appointments";
+        $this->_arrData["strTitle"] = "Modifier un rendez-vous";
+        $this->_arrData["strDesc"] = "Page pour modifier un rendez-vous";
         $this->_arrData["arrErrors"] = $arrErrors;
-        $this->_arrData["arrExams"] = $arrExams;
-        $this->_arrData["arrTests"] = $arrTests;
+        $this->_arrData["strTest"] = $strTest; 
+        $this->_arrData["strExam"] = $strExam;
+        $this->_arrData["intExamId"] = $intExamId; 
+        $this->_arrData["arrTestsToDisplay"] = $arrTestsToDisplay;
+        $this->_arrData["arrExams"] = $arrExams; 
         $this->_arrData["objApt"] = $objApt;
-        $this->_arrData["base_url"] = parent::BASE_URL . "appointment/edit_apt?id=" . $intAptId;
-
+ 
         $this->displayTemplate("edit_apt");
 
     }

@@ -14,17 +14,16 @@
 
       <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Modify Your Appointment</h2>
 
-      <form action="{$base_url}" method="post" class="space-y-6">
+      <form action="{$base_url}/appointment/edit_apt" method="post" class="space-y-6">
           <div class="form-group">
               <label for="exam">Exam:</label>
               <select
                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
                   id="exam_id" name="exam" required>
                   <option value="">Select an exam</option>
-                  {foreach from=$arrExams item=exam}
-                      <option value="{$exam.exam_id}" {if $objApt->getExamId() == $exam.exam_id}selected{/if}>
-                          {$exam.exam_name}</option>
-                  {/foreach}
+                {foreach from=$arrExams item=exam}
+                    <option value="{$exam.exam_name}" {if $strExam == $exam.exam_name}selected{/if}>{$exam.exam_name}</option>
+                {/foreach}
               </select>
           </div>
 
@@ -34,10 +33,9 @@
                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
                   id="test" name="test" required>
                   <option value="">Select a test</option>
-                  {foreach from=$arrTests item=test}
-                      <option value="{$test.test_id}" {if $objApt->getTestId() == $test.test_id}selected{/if}>
-                          {$test.test_name}</option>
-                  {/foreach}
+               {foreach from=$arrTestsToDisplay item=test}
+                    <option value="{$test.test_name}" {if $strTest == $test.test_name}selected{/if}>{$test.test_name}</option>
+                {/foreach}
               </select>
           </div>
 

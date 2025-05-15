@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-14 21:40:11
+/* Smarty version 4.3.4, created on 2025-05-15 11:52:36
   from 'C:\wamp64\www\radioappointment\views\edit_apt.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_68250dbbc3ace2_02218154',
+  'unifunc' => 'content_6825d584ac44c9_20104927',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4f5e35c79883c2fd8b9bf42014cfd54d3c41b963' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\edit_apt.tpl',
-      1 => 1747258673,
+      1 => 1747309955,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_68250dbbc3ace2_02218154 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6825d584ac44c9_20104927 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_128078663768250dbbc0a6e6_65471559', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_14838612426825d584a890b0_74356360', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_128078663768250dbbc0a6e6_65471559 extends Smarty_Internal_Block
+class Block_14838612426825d584a890b0_74356360 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_128078663768250dbbc0a6e6_65471559',
+    0 => 'Block_14838612426825d584a890b0_74356360',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -64,24 +64,23 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
       <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Modify Your Appointment</h2>
 
       <form action="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
-" method="post" class="space-y-6">
+/appointment/edit_apt" method="post" class="space-y-6">
           <div class="form-group">
               <label for="exam">Exam:</label>
               <select
                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
                   id="exam_id" name="exam" required>
                   <option value="">Select an exam</option>
-                  <?php
+                <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrExams']->value, 'exam');
 $_smarty_tpl->tpl_vars['exam']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['exam']->value) {
 $_smarty_tpl->tpl_vars['exam']->do_else = false;
 ?>
-                      <option value="<?php echo $_smarty_tpl->tpl_vars['exam']->value['exam_id'];?>
-" <?php if ($_smarty_tpl->tpl_vars['objApt']->value->getExamId() == $_smarty_tpl->tpl_vars['exam']->value['exam_id']) {?>selected<?php }?>>
-                          <?php echo $_smarty_tpl->tpl_vars['exam']->value['exam_name'];?>
+                    <option value="<?php echo $_smarty_tpl->tpl_vars['exam']->value['exam_name'];?>
+" <?php if ($_smarty_tpl->tpl_vars['strExam']->value == $_smarty_tpl->tpl_vars['exam']->value['exam_name']) {?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['exam']->value['exam_name'];?>
 </option>
-                  <?php
+                <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
               </select>
@@ -93,17 +92,16 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
                   id="test" name="test" required>
                   <option value="">Select a test</option>
-                  <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrTests']->value, 'test');
+               <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrTestsToDisplay']->value, 'test');
 $_smarty_tpl->tpl_vars['test']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['test']->value) {
 $_smarty_tpl->tpl_vars['test']->do_else = false;
 ?>
-                      <option value="<?php echo $_smarty_tpl->tpl_vars['test']->value['test_id'];?>
-" <?php if ($_smarty_tpl->tpl_vars['objApt']->value->getTestId() == $_smarty_tpl->tpl_vars['test']->value['test_id']) {?>selected<?php }?>>
-                          <?php echo $_smarty_tpl->tpl_vars['test']->value['test_name'];?>
+                    <option value="<?php echo $_smarty_tpl->tpl_vars['test']->value['test_name'];?>
+" <?php if ($_smarty_tpl->tpl_vars['strTest']->value == $_smarty_tpl->tpl_vars['test']->value['test_name']) {?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['test']->value['test_name'];?>
 </option>
-                  <?php
+                <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
               </select>

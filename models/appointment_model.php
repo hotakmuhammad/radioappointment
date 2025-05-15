@@ -17,11 +17,14 @@ class AppointmentModel extends Model{
     } 
 
     public function getApt($aptId) {
-        $strQuery = "SELECT * FROM appointment WHERE apt_id = :apt_id";
+         $strQuery = "SELECT a.apt_id, a.apt_date, a.apt_time, a.apt_status, a.apt_registdate, a.apt_user_id, a.apt_test_id, t.exam_id 
+                     FROM appointment a 
+                     LEFT JOIN tests t ON a.apt_test_id = t.test_id 
+                     WHERE a.apt_id = :apt_id";
         $rqPrep = $this->_db->prepare($strQuery);
         $rqPrep->bindValue(':apt_id', $aptId, PDO::PARAM_INT);
         $rqPrep->execute();
-        return $rqPrep->fetch(PDO::FETCH_ASSOC);
+        return $rqPrep->fetch(PDO::FETCH_ASSOC) ?: false;
     }
 
     public function getAll() {
@@ -119,11 +122,13 @@ class AppointmentModel extends Model{
     } 
     
     public function findExams() {
-        $strQuery = "SELECT exam_id, exam_name FROM exams;";
-        return $this->_db->query($strQuery)->fetchAll(PDO::FETCH_ASSOC);
+        $strQuery = "SELECT exam_id, exam_name FROM exams";
+        $rqPrep = $this->_db->prepare($strQuery);
+        $rqPrep->execute();
+        return $rqPrep->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function findTests($examId = null) {
+    public function findTests($examId) {
         $strQuery = "SELECT test_id, test_name, exam_id FROM tests";
         if ($examId !== null) {
             $strQuery .= " WHERE exam_id = :exam_id";
@@ -146,7 +151,14 @@ class AppointmentModel extends Model{
         $result = $rqPrep->fetch(PDO::FETCH_ASSOC);
         return $result ? $result['test_id'] : false;
     }
-
+    public function getTestNameById($testId) {
+        $strQuery = "SELECT test_name FROM tests WHERE test_id = :testId";
+        $stmt = $this->_db->prepare($strQuery);
+        $stmt->bindValue(':testId', $testId, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['test_name'] : '';
+    }
     public function getExamIdByName($examName) {
         $strQuery = "SELECT exam_id FROM exams WHERE exam_name = :examName";
         $rqPrep = $this->_db->prepare($strQuery);
