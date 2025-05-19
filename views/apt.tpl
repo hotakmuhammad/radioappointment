@@ -1,9 +1,4 @@
-{* {extends file="views/layout.tpl"} *}
-
-{* {include file="views/_partiel/header.tpl"} *}
-{* {block name="contenu"} *}
-
-<section class="mt-12">
+<section class="mt-12"> 
     <div class="container mx-auto px-4">
 
         <div class="max-w-2xl mx-auto bg-white rounded-xl ">
@@ -41,8 +36,8 @@
                 </div>
                 <div class="flex mb-8 items-center justify-between">
                     <dt class="text-lg text-gray-600">
-                        <a href="{$base_url}appointment/edit_apt" class="inline-block px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
-                             Modifier
+                        <a href="{$base_url}appointment/edit_apt?id={$objApt->getId()}" class="inline-block px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
+                             Remplacer
                         </a>
                     </dt>
                     <dd class="text-lg text-red-900">
@@ -56,4 +51,3 @@
 
     </div>
 </section>
-{* {/block} *}

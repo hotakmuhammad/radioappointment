@@ -56,13 +56,10 @@ class UserCtrl extends Ctrl {
         $strPassword 	= $_POST['password']??"";
 
         if(count($_POST) > 0) {
-            $objUserModel = new UserModel;
-            
-            $arrUser = $objUserModel->searchUser($strEmail, $strPassword);
-
-            if($arrUser === false) {
-                $this->_arrErrors[] = "Erreur de connexion";
-
+            $objUserModel = new UserModel; 
+            $arrUser = $objUserModel->searchUser($strEmail, $strPassword); 
+            if($arrUser === false) { 
+                $this->_arrErrors[] = "Erreur de connexion"; 
 				}else{
                     if (isset($arrUser['user_isbanned']) && $arrUser['user_isbanned'] == 'ISBANNED') {
                         session_destroy();
@@ -77,14 +74,9 @@ class UserCtrl extends Ctrl {
                         exit;
                     }
             }
-        }
-
-
-
-        $this->_arrData["strPage"] = "login";
-
-        $this->_arrData["strTitle"] = "Login";
-
+        } 
+        $this->_arrData["strPage"] = "login"; 
+        $this->_arrData["strTitle"] = "Login"; 
         $this->_arrData["strDesc"] = "Page de connexion";
         $this->_arrData["email"]	= $strEmail;
         $this->displayTemplate("login");

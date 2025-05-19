@@ -78,6 +78,7 @@ class AppointmentCtrl extends Ctrl {
     }
 
     public function home() {
+        $this->_arrErrors = array();
         $strTest = $_POST['test'] ?? '';
         $strExam = $_POST['exam'] ?? '';
         $intExamId = $_POST['examId'] ?? '';
@@ -86,7 +87,7 @@ class AppointmentCtrl extends Ctrl {
         $arrExams = $objAptModel->findExams();
         $arrTests = $objAptModel->findTests($intExamId ?: null);
         $arrTestsToDisplay = $arrTests;
-        $arrErrors = array();
+        // $arrErrors = array();
 
         $objApt = new Appointment();
 
@@ -99,60 +100,60 @@ class AppointmentCtrl extends Ctrl {
         if (count($_POST) > 0) {
 
             $objApt->hydrate($_POST);
-            // var_dump($_POST);
+    
 
             if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == '') {
-                $arrErrors['log'] = "Vous devez être inscrit pour prendre un rendez-vous";
+                $this->_arrErrors['log'] = "Vous devez être inscrit pour prendre un rendez-vous";
             }
 
  
             if (!$objApt->getDate() || !DateTime::createFromFormat('Y-m-d', $objApt->getDate())) {
-                $arrErrors['date'] = "La date est obligatoire et doit être au format YYYY-MM-DD";
+                $this->_arrErrors['date'] = "La date est obligatoire et doit être au format YYYY-MM-DD";
             }
  
             if (!$objApt->getTime() || !DateTime::createFromFormat('H:i', $objApt->getTime())) {
-                $arrErrors['time'] = "L'heure est obligatoire et doit être au format HH:MM";
+                $this->_arrErrors['time'] = "L'heure est obligatoire et doit être au format HH:MM";
             }
 
  
             if (!$strExam) {
-                $arrErrors['exam'] = "L'examen est obligatoire";
+                $this->_arrErrors['exam'] = "L'examen est obligatoire";
             } else {
                 $intExamId = $objAptModel->getExamIdByName($strExam);
                 if (!$intExamId) {
-                    $arrErrors['exam'] = "L'examen n'existe pas";
+                    $this->_arrErrors['exam'] = "L'examen n'existe pas";
                 }
             }
 
 
             if (!$strTest) {
-                $arrErrors['test'] = "Le test est obligatoire";
+                $this->_arrErrors['test'] = "Le test est obligatoire";
             } else {
                 $testId = $objAptModel->getTestIdByName($strTest);
                 if ($testId) {
                     if ($intExamId && !$objAptModel->validateTestForExam($testId, $intExamId)) {
-                        $arrErrors['test'] = "Le test ne correspond pas à l'examen sélectionné";
+                        $this->_arrErrors['test'] = "Le test ne correspond pas à l'examen sélectionné";
                     } else {
                         $objApt->setTestId($testId);
                     }
                 } else {
-                    $arrErrors['test'] = "Le test n'existe pas";
+                    $this->_arrErrors['test'] = "Le test n'existe pas";
                 }
             }
 
             // Insert if no errors
-            if (count($arrErrors) == 0) {
+            if (count($this->_arrErrors) == 0) {
                 $intLastAptId = $objAptModel->insert($objApt);
                 if ($intLastAptId !== false) {
                     header('Location: ' . parent::BASE_URL . 'appointment/my_appointments');
                     exit();
                 } else {
-                    $arrErrors[] = "L'insertion s'est mal passée, peut-être que ce test est déjà réservé pour cette date et heure";
+                    $this->_arrErrors[] = "Vou ne pouvez pas prendre deux rendez vous en même temps";
                 }
             }
         }
 
-        $this->_arrData["arrErrors"] = $arrErrors;
+        // $this->_arrData["arrErrors"] = $arrErrors;
         $this->_arrData["strTest"] = $strTest;
         $this->_arrData["strExam"] = $strExam;
         $this->_arrData["intExamId"] = $intExamId;
@@ -224,103 +225,13 @@ class AppointmentCtrl extends Ctrl {
     
 
     public function edit_apt() {
-
-
-		if (!isset($_SESSION['user']['user_id']) || $_SESSION['user']['user_id'] == ''){
-			header("Location:".parent::BASE_URL."error/show403");
-            exit;
-		}
-
-        $intAptId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-        $strTest = $_POST['test'] ?? '';
-        $strExam = $_POST['exam'] ?? '';
-        $intExamId = $_POST['examId'] ?? null;
-        $arrErrors = array();
+        
+        
+        $intAptId = $_GET['id']??0;
         $objAptModel = new AppointmentModel();
-        $arrExams = $objAptModel->findExams();
-        $arrApt = $objAptModel->getApt($intAptId);
+        $objAptModel->delete($intAptId);
 
-        $objApt = new Appointment();
-        $objApt->hydrate($arrApt); 
-
-        $arrTestsToDisplay = $objAptModel->findTests($intExamId);
-        if ($_SESSION['user']['user_role'] != 'ADMIN' && $_SESSION['user']['user_role'] != 'SUPERADMIN' && $_SESSION['user']['user_id'] != $objApt->getUserId()) {
-            header("Location: " . parent::BASE_URL . "error/show403");
-            exit;
-        }
-
-        $objApt->setId($arrApt['id']??0);
-        $objApt->setTestId($arrApt['test_id'] ?? 0);
-        $objApt->setDate($arrApt['date'] ?? '');
-        $objApt->setTime($arrApt['time'] ?? '');
-        $objApt->setStatus($arrApt['status'] ?? 'UPCOMMING');
-
-        if(count($_POST) > 0) {
-
-            $objApt->hydrate($_POST);
-
-            // Validate date
-            if (!$objApt->getDate() || !DateTime::createFromFormat('Y-m-d', $objApt->getDate())) {
-                $arrErrors['date'] = "La date est obligatoire et doit être au format YYYY-MM-DD";
-            }
-
-            // Validate time
-            if (!$objApt->getTime() || !DateTime::createFromFormat('H:i', $objApt->getTime())) {
-                $arrErrors['time'] = "L'heure est obligatoire et doit être au format HH:MM";
-            }
-
-            // Validate exam
-            if (!$strExam) {
-                $arrErrors['exam'] = "L'examen est obligatoire";
-            } else {
-                $intExamId = $objAptModel->getExamIdByName($strExam);
-                if (!$intExamId) {
-                    $arrErrors['exam'] = "L'examen n'existe pas";
-                }
-            }
-
-
-            if (!$strTest) {
-                $arrErrors['test'] = "Le test est obligatoire";
-            } else {
-                $testId = $objAptModel->getTestIdByName($strTest);
-                if ($testId) {
-                    if ($intExamId && !$objAptModel->validateTestForExam($testId, $intExamId)) {
-                        $arrErrors['test'] = "Le test ne correspond pas à l'examen sélectionné";
-                    } else {
-                        $objApt->setTestId($testId);
-                    }
-                } else {
-                    $arrErrors['test'] = "Le test n'existe pas";
-                }
-            }
-
-            if (count($arrErrors) == 0) {
-                if ($objAptModel->update($objApt)) {
-                    if ($_SESSION['user']['user_role'] == 'ADMIN' || $_SESSION['user']['user_role'] == 'SUPERADMIN') {
-                        header("Location: " . parent::BASE_URL . "appointment/manage");
-                    } else {
-                        header("Location: " . parent::BASE_URL . "appointment/my_appointments");
-                    }
-                    exit;
-                } else {
-                    $arrErrors[] = "L'update s'est mal passé, peut-être que ce test est déjà réservé pour cette date et heure";
-                }
-            }
-        }
-
-        $this->_arrData["strPage"] = "remplacer_rdv";
-        $this->_arrData["strTitle"] = "Modifier un rendez-vous";
-        $this->_arrData["strDesc"] = "Page pour modifier un rendez-vous";
-        $this->_arrData["arrErrors"] = $arrErrors;
-        $this->_arrData["strTest"] = $strTest; 
-        $this->_arrData["strExam"] = $strExam;
-        $this->_arrData["intExamId"] = $intExamId; 
-        $this->_arrData["arrTestsToDisplay"] = $arrTestsToDisplay;
-        $this->_arrData["arrExams"] = $arrExams; 
-        $this->_arrData["objApt"] = $objApt;
- 
-        $this->displayTemplate("edit_apt");
+        header("Location: " . parent::BASE_URL);
 
     }
 }

@@ -8,24 +8,7 @@ class AppointmentModel extends Model{
     public function __construct(){
         parent::__construct();
     }
-
-    public function get()  {
-        $strQuery = "SELECT *
-                     FROM appointment
-                     WHERE apt_id  = :apt_id" ;
-                     return $this->_db->query($strQuery)->fetch();
-    } 
-
-    public function getApt($aptId) {
-         $strQuery = "SELECT a.apt_id, a.apt_date, a.apt_time, a.apt_status, a.apt_registdate, a.apt_user_id, a.apt_test_id, t.exam_id 
-                     FROM appointment a 
-                     LEFT JOIN tests t ON a.apt_test_id = t.test_id 
-                     WHERE a.apt_id = :apt_id";
-        $rqPrep = $this->_db->prepare($strQuery);
-        $rqPrep->bindValue(':apt_id', $aptId, PDO::PARAM_INT);
-        $rqPrep->execute();
-        return $rqPrep->fetch(PDO::FETCH_ASSOC) ?: false;
-    }
+ 
 
     public function getAll() {
         $strQuery  = "SELECT 
@@ -117,8 +100,7 @@ class AppointmentModel extends Model{
             $rqPrep->bindValue(':status', $status, PDO::PARAM_STR);
         }
         $rqPrep->execute();
-        return $rqPrep->fetchAll(PDO::FETCH_ASSOC);
-        // return $results;
+        return $rqPrep->fetchAll(PDO::FETCH_ASSOC); 
     } 
     
     public function findExams() {
@@ -150,15 +132,8 @@ class AppointmentModel extends Model{
         $rqPrep->execute();
         $result = $rqPrep->fetch(PDO::FETCH_ASSOC);
         return $result ? $result['test_id'] : false;
-    }
-    public function getTestNameById($testId) {
-        $strQuery = "SELECT test_name FROM tests WHERE test_id = :testId";
-        $stmt = $this->_db->prepare($strQuery);
-        $stmt->bindValue(':testId', $testId, PDO::PARAM_INT);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result ? $result['test_name'] : '';
-    }
+    } 
+
     public function getExamIdByName($examName) {
         $strQuery = "SELECT exam_id FROM exams WHERE exam_name = :examName";
         $rqPrep = $this->_db->prepare($strQuery);
@@ -198,28 +173,7 @@ class AppointmentModel extends Model{
             }
             throw $e;
         }
-    }
-
-
-    public function update(object $objApt) {
-        $strQuery = "UPDATE appointment
-                    SET apt_date = :apt_date,
-                        apt_time = :apt_time,
-                        apt_status = :apt_status,
-                        apt_test_id = :apt_test_id
-                    WHERE apt_id = :apt_id";
-
-        $rqPrep = $this->_db->prepare($strQuery);
-        $rqPrep->bindValue(':apt_date', $objApt->getDate(), PDO::PARAM_STR);
-        $rqPrep->bindValue(':apt_time', $objApt->getTime(), PDO::PARAM_STR);
-        $rqPrep->bindValue(':apt_status', $objApt->getStatus(), PDO::PARAM_STR);
-        $rqPrep->bindValue(':apt_test_id', $objApt->getTestId(), PDO::PARAM_INT);
-        $rqPrep->bindValue(':apt_id', $objApt->getId(), PDO::PARAM_INT);
-
-        return $rqPrep->execute();
-    }
-
-
+    } 
     public function delete(int $id) {
         $strQuery  ="DELETE FROM appointment
                      WHERE apt_id = " .$id;

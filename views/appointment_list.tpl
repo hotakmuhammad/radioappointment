@@ -46,21 +46,16 @@
                 <td class="py-3 px-4 text-gray-600">{$objApt->getStatus()}</td>
                         <td class="py-3 px-4 ">
                             <a
-                                href="{$base_url}appointment/edit_apt" class="">
-                                <i class="hover:text-blue-600 text-blue-400 fa-solid fa-pen-to-square"></i>
-                            </a> /
-                                 <a
-                                    href="{$base_url}appointment/delete_apt?id={$objApt->getId()}" class="">
-                                    <i class="hover:text-red-600 text-red-400 fa-solid fa-trash"></i>
-                                </a>
-
+                                href="{$base_url}appointment/delete_apt?id={$objApt->getId()}" class="">
+                                <i class="hover:text-red-600 text-red-400 fa-solid fa-trash"></i>
+                            </a>
                         </td>
             </tr>
 
             {/foreach}
         </tbody>
     </table>
-    {* </div> *}
+
 
 </div> 
 
