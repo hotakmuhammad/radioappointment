@@ -15,12 +15,12 @@
                 <p class="text-xl">A propos</p>
             </a>
         </div>
-        <div class="navbarItems">
+        {* <div class="navbarItems">
             <a class="buttonLink px-4 py-2 text-white hover:text-gray-300 transition-colors  duration-200"
                 href="{$base_url}page/about">
                 <p class="text-xl">Service</p>
             </a>
-        </div>
+        </div> *}
         <div class="navbarItems flex gap-4">
             {if isset($user.user_id) && $user.user_id != ''}
                 <div class="navbarItems"> 

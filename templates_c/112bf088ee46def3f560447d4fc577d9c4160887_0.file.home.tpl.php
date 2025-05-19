@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-19 12:53:34
+/* Smarty version 4.3.4, created on 2025-05-19 13:47:13
   from 'C:\wamp64\www\radioappointment\views\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_682b29ce8f2d78_60105321',
+  'unifunc' => 'content_682b3661015228_54574659',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '112bf088ee46def3f560447d4fc577d9c4160887' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\home.tpl',
-      1 => 1747659203,
+      1 => 1747662432,
       2 => 'file',
     ),
   ),
@@ -20,30 +20,31 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_682b29ce8f2d78_60105321 (Smarty_Internal_Template $_smarty_tpl) {
+function content_682b3661015228_54574659 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_262859485682b29ce8e6791_70129075', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1983529361682b366100a9d7_26637855', "contenu");
 ?>
  <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_262859485682b29ce8e6791_70129075 extends Smarty_Internal_Block
+class Block_1983529361682b366100a9d7_26637855 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_262859485682b29ce8e6791_70129075',
+    0 => 'Block_1983529361682b366100a9d7_26637855',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
-  <div class="max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
+  
+  <div class="mt-24 mb-20 max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
 
 
     <?php if ((count($_smarty_tpl->tpl_vars['arrErrors']->value) > 0)) {?>
@@ -75,7 +76,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         <select
          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200" 
 
-         id="exam_id" name="exam" required>
+         id="exam_id" name="exam" >
           <option value="">Select an exam</option>
           <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrExams']->value, 'exam');
@@ -99,7 +100,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         <select 
          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200" 
 
-        id="test" name="test" required>
+        id="test" name="test" >
           <option value="">Select a test</option>
 
           <?php
@@ -128,6 +129,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
           class="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200 cursor-pointer">
       </div>
     </form>
+        <div>
+        </div>
 
   </div>
   <?php echo '<script'; ?>

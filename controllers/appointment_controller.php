@@ -108,11 +108,11 @@ class AppointmentCtrl extends Ctrl {
 
  
             if (!$objApt->getDate() || !DateTime::createFromFormat('Y-m-d', $objApt->getDate())) {
-                $this->_arrErrors['date'] = "La date est obligatoire et doit être au format YYYY-MM-DD";
+                $this->_arrErrors['date'] = "La date est obligatoire";
             }
  
             if (!$objApt->getTime() || !DateTime::createFromFormat('H:i', $objApt->getTime())) {
-                $this->_arrErrors['time'] = "L'heure est obligatoire et doit être au format HH:MM";
+                $this->_arrErrors['time'] = "L'heure est obligatoire";
             }
 
  

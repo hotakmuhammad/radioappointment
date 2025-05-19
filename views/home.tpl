@@ -1,7 +1,8 @@
 {extends file="views/layout.tpl"}
 
 {block name="contenu"}
-  <div class="max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
+  
+  <div class="mt-24 mb-20 max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
 
 
     {if (count($arrErrors) > 0)}
@@ -24,7 +25,7 @@
         <select
          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200" 
 
-         id="exam_id" name="exam" required>
+         id="exam_id" name="exam" >
           <option value="">Select an exam</option>
           {foreach from=$arrExams item=exam}
             <option name="exam" value="{$exam.exam_name}" {if $strExam == $exam.exam_name}selected{/if}>{$exam.exam_name}</option>
@@ -39,7 +40,7 @@
         <select 
          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200" 
 
-        id="test" name="test" required>
+        id="test" name="test" >
           <option value="">Select a test</option>
 
           {foreach from=$arrTestsToDisplay item=test}
@@ -59,6 +60,8 @@
           class="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200 cursor-pointer">
       </div>
     </form>
+        <div>
+        </div>
 
   </div>
   <script>
