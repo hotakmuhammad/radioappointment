@@ -20,10 +20,10 @@
         </button>
         
         <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-20">
-          {if isset($user.user_id)}
+          {if isset($user.user_id) && $user.user_id != ''}
             <a href="{$base_url}appointment/my_appointments" class="block px-4 py-2 text-lg hover:bg-gray-100">Mes RDVs</a>
             <a href="{$base_url}appointment/archived" class="block px-4 py-2 text-lg hover:bg-gray-100">RDVs archivés</a>
-            {if $user.user_role == 'ADMIN' || $user.user_role == 'SUPERADMIN'}
+            {if isset($user) && ($user.user_role == 'SUPERADMIN' || $user.user_role == 'ADMIN')}
               <a href="{$base_url}user/manage" class="block px-4 py-2 text-lg hover:bg-gray-100">Utilisateurs</a>
               <a href="{$base_url}appointment/manage" class="block px-4 py-2 text-lg hover:bg-gray-100">Gérer RDVs</a>
             {/if}
@@ -35,8 +35,7 @@
           {/if}
         </div>
       </div>
-
-      <!-- Mobile toggle -->
+ 
       <div class="sm:hidden">
         <button id="mobileMenuButton" class="text-gray-300 hover:text-white focus:outline-none">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"

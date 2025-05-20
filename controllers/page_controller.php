@@ -100,5 +100,16 @@ class PageCtrl extends Ctrl {
 
         $this->displayTemplate("appointment_list");
     }
+
+
+    public function mentions() {
+        $this->_arrData["strPage"]     = "mention_legales";
+
+        $this->_arrData["strTitle"] = "Mentions légales";
+
+        $this->_arrData["strDesc"]     = "Page de mentions légales";
+
+        $this->displayTemplate("mentions");
+    }
  
 }

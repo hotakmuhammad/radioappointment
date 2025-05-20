@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-20 13:04:52
+/* Smarty version 4.3.4, created on 2025-05-20 13:54:15
   from 'C:\wamp64\www\radioappointment\views\_partiel\nav.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_682c7df4b2e106_84676270',
+  'unifunc' => 'content_682c898704a441_80409563',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a975b4cffb40b9ed9fa5e543302d1a77c3cd7b96' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\_partiel\\nav.tpl',
-      1 => 1747746291,
+      1 => 1747749251,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_682c7df4b2e106_84676270 (Smarty_Internal_Template $_smarty_tpl) {
+function content_682c898704a441_80409563 (Smarty_Internal_Template $_smarty_tpl) {
 ?><nav class="bg-gray-800 text-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
@@ -45,12 +45,12 @@ page/about" class="px-3 py-2 rounded-md text-lg hover:bg-gray-700">A propos</a>
         </button>
         
         <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-20">
-          <?php if ((isset($_smarty_tpl->tpl_vars['user']->value['user_id']))) {?>
+          <?php if ((isset($_smarty_tpl->tpl_vars['user']->value['user_id'])) && $_smarty_tpl->tpl_vars['user']->value['user_id'] != '') {?>
             <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 appointment/my_appointments" class="block px-4 py-2 text-lg hover:bg-gray-100">Mes RDVs</a>
             <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 appointment/archived" class="block px-4 py-2 text-lg hover:bg-gray-100">RDVs archivés</a>
-            <?php if ($_smarty_tpl->tpl_vars['user']->value['user_role'] == 'ADMIN' || $_smarty_tpl->tpl_vars['user']->value['user_role'] == 'SUPERADMIN') {?>
+            <?php if ((isset($_smarty_tpl->tpl_vars['user']->value)) && ($_smarty_tpl->tpl_vars['user']->value['user_role'] == 'SUPERADMIN' || $_smarty_tpl->tpl_vars['user']->value['user_role'] == 'ADMIN')) {?>
               <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 user/manage" class="block px-4 py-2 text-lg hover:bg-gray-100">Utilisateurs</a>
               <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
@@ -68,8 +68,7 @@ user/registration" class="block px-4 py-2 text-lg hover:bg-gray-100">Inscription
           <?php }?>
         </div>
       </div>
-
-      <!-- Mobile toggle -->
+ 
       <div class="sm:hidden">
         <button id="mobileMenuButton" class="text-gray-300 hover:text-white focus:outline-none">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
