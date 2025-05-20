@@ -2,7 +2,7 @@
 
 {block name="contenu"}
   
-  <div class="mt-24 mb-20 max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
+  <div class="mt-28 mb-28 max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
 
 
     {if (count($arrErrors) > 0)}

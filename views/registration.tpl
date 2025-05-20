@@ -79,7 +79,7 @@
             </div>
         </form>
             <div class="p-4 text-center item-center">
-                <p>Si vous avez déjà un compte, connectez vous <a href="{$base_url}user/login" class="text-blue-600">ici</a></p>
+                <p>Si vous avez déjà un compte, connectez vous <a href="{$base_url}user/login" class="text-blue-700">ici</a></p>
             </div>
     </div>
 {/block}

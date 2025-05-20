@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-14 19:44:48
+/* Smarty version 4.3.4, created on 2025-05-20 13:10:09
   from 'C:\wamp64\www\radioappointment\views\registration.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6824f2b0c2dfb2_07618656',
+  'unifunc' => 'content_682c7f31f28427_45290407',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6279dccc6e1f2fdd5898a80b8b77168c6fc55d26' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\registration.tpl',
-      1 => 1747251887,
+      1 => 1747746608,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6824f2b0c2dfb2_07618656 (Smarty_Internal_Template $_smarty_tpl) {
+function content_682c7f31f28427_45290407 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2660248126824f2b0c23db0_50704400', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1936608512682c7f31f20808_12859329', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_2660248126824f2b0c23db0_50704400 extends Smarty_Internal_Block
+class Block_1936608512682c7f31f20808_12859329 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_2660248126824f2b0c23db0_50704400',
+    0 => 'Block_1936608512682c7f31f20808_12859329',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -133,7 +133,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </form>
             <div class="p-4 text-center item-center">
                 <p>Si vous avez déjà un compte, connectez vous <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
-user/login" class="text-blue-600">ici</a></p>
+user/login" class="text-blue-700">ici</a></p>
             </div>
     </div>
 <?php

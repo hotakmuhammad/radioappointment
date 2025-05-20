@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-14 19:43:24
+/* Smarty version 4.3.4, created on 2025-05-20 13:09:41
   from 'C:\wamp64\www\radioappointment\views\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_6824f25cecf646_37124075',
+  'unifunc' => 'content_682c7f15483308_68584755',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '36440be06c0410b9ce23665e374084ee2c56a8a8' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\login.tpl',
-      1 => 1747251751,
+      1 => 1747746579,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6824f25cecf646_37124075 (Smarty_Internal_Template $_smarty_tpl) {
+function content_682c7f15483308_68584755 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_17479614916824f25cec7aa1_36944283', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_918310587682c7f1547e4c8_08366465', "contenu");
 ?>
  <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_17479614916824f25cec7aa1_36944283 extends Smarty_Internal_Block
+class Block_918310587682c7f1547e4c8_08366465 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_17479614916824f25cec7aa1_36944283',
+    0 => 'Block_918310587682c7f1547e4c8_08366465',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -92,7 +92,7 @@ user/login" method="post" class="space-y-6">
         </form>
             <div class="p-4">
                 <p>Si vous n'avez pas un compte, vous pouvez en créer un <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
-user/registration" class="text-[#50d71e]">ici</a></p>
+user/registration" class="text-blue-700">ici</a></p>
             </div>
         </div>
     <div class="max-w-md  m-5 mx-auto">

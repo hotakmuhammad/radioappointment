@@ -39,7 +39,7 @@
             </div>
         </form>
             <div class="p-4">
-                <p>Si vous n'avez pas un compte, vous pouvez en créer un <a href="{$base_url}user/registration" class="text-[#50d71e]">ici</a></p>
+                <p>Si vous n'avez pas un compte, vous pouvez en créer un <a href="{$base_url}user/registration" class="text-blue-700">ici</a></p>
             </div>
         </div>
     <div class="max-w-md  m-5 mx-auto">

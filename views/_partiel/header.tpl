@@ -11,6 +11,8 @@
     {* <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> *}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <title>RadioAppointment</title>
+    <link rel="icon" href="/images/favicon.ico">
     {block name="js_head_users_list"}
 		
     {/block}

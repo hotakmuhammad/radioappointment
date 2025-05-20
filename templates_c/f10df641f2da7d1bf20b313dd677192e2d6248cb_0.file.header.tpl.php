@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-19 13:23:06
+/* Smarty version 4.3.4, created on 2025-05-20 13:13:17
   from 'C:\wamp64\www\radioappointment\views\_partiel\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_682b30ba026b77_74185229',
+  'unifunc' => 'content_682c7fed0fe1d0_82782887',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f10df641f2da7d1bf20b313dd677192e2d6248cb' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\_partiel\\header.tpl',
-      1 => 1747660985,
+      1 => 1747746796,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:views/_partiel/nav.tpl' => 1,
   ),
 ),false)) {
-function content_682b30ba026b77_74185229 (Smarty_Internal_Template $_smarty_tpl) {
+function content_682c7fed0fe1d0_82782887 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -41,8 +41,10 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
     <?php echo '<script'; ?>
  src="https://cdn.jsdelivr.net/npm/flatpickr"><?php echo '</script'; ?>
 >
+    <title>RadioAppointment</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2054576964682b30ba023f29_46881121', "js_head_users_list");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1998022281682c7fed0fb644_40070581', "js_head_users_list");
 ?>
 
 
@@ -66,12 +68,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2054576964682b30ba
 >
 <?php }
 /* {block "js_head_users_list"} */
-class Block_2054576964682b30ba023f29_46881121 extends Smarty_Internal_Block
+class Block_1998022281682c7fed0fb644_40070581 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js_head_users_list' => 
   array (
-    0 => 'Block_2054576964682b30ba023f29_46881121',
+    0 => 'Block_1998022281682c7fed0fb644_40070581',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

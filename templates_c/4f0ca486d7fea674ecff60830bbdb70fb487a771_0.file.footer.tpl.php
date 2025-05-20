@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-19 13:38:05
+/* Smarty version 4.3.4, created on 2025-05-20 13:11:18
   from 'C:\wamp64\www\radioappointment\views\_partiel\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_682b343df420e6_73312949',
+  'unifunc' => 'content_682c7f7619e162_86371389',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4f0ca486d7fea674ecff60830bbdb70fb487a771' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\_partiel\\footer.tpl',
-      1 => 1747661884,
+      1 => 1747746676,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_682b343df420e6_73312949 (Smarty_Internal_Template $_smarty_tpl) {
+function content_682c7f7619e162_86371389 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -46,19 +46,19 @@ page/contact" class="text-sm hover:text-indigo-200">Contact</a>
             </div>
         </footer>
         <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_801385556682b343df41458_71718302', "js_footer");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_5894236682c7f7619d6b8_75883866', "js_footer");
 ?>
 
         </body>
 
 </html><?php }
 /* {block "js_footer"} */
-class Block_801385556682b343df41458_71718302 extends Smarty_Internal_Block
+class Block_5894236682c7f7619d6b8_75883866 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js_footer' => 
   array (
-    0 => 'Block_801385556682b343df41458_71718302',
+    0 => 'Block_5894236682c7f7619d6b8_75883866',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
