@@ -177,7 +177,7 @@ class AppointmentCtrl extends Ctrl {
             if (isset($_SESSION['user']['user_role']) && ($_SESSION['user']['user_role'] == 'ADMIN' || $_SESSION['user']['user_role'] == 'SUPERADMIN')) {
                 header("Location: " . parent::BASE_URL . "appointment/manage");
             } else {
-                // Redirect to the user's own appointments page if not an admin
+                
                 header("Location: " . parent::BASE_URL . "appointment/my_appointments");
             }
 

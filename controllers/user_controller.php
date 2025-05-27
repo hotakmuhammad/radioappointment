@@ -24,7 +24,7 @@ class UserCtrl extends Ctrl {
             if(count($this->_arrErrors) == 0){ 
                 $objUserModel	= new UserModel;
                 if ($objUserModel->registration($objUser)){
-                    header("Location:".parent::BASE_URL."page/appointment");
+                    header("Location:".parent::BASE_URL);
                 }else{
                     $this->_arrErrors[] = "L'insertion s'est mal passée";
                 }
@@ -224,9 +224,12 @@ class UserCtrl extends Ctrl {
 
             $boolMailExists = $objUserModel->verifyEmail($objUser->getEmail());
  
-            if ($boolMailExists === true && $objUser->getEmail() != $_SESSION['user']['user_email']) {
+            if ($boolMailExists === true &&
+                (!isset($_SESSION['user']) || $objUser->getEmail() != $_SESSION['user']['user_email'])
+            ) {
                 $arrErrors['email'] = "Le mail est déjà utilisé";
             }
+
         } 
         return $arrErrors;
     }
