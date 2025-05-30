@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.html5.min.js"></script>
- 
+
     <div class="container mx-auto p-4">
         <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Liste des utilisateurs</h2>
         <hr class="border-gray-300 mb-6">
@@ -45,13 +45,11 @@
                         {/if}
 
                         <td class="py-3 px-4 ">
-                            <a
-                                href="{$base_url}user/edit_profile?id={$objUser->getId()}" class="">
+                            <a href="{$base_url}user/edit_profile?id={$objUser->getId()}" class="">
                                 <i class="hover:text-blue-600 text-blue-400 fa-solid fa-pen-to-square"></i>
                             </a> /
                             {if (isset($smarty.session.user.user_id) && $smarty.session.user.user_role == "SUPERADMIN" || $smarty.session.user.user_role == "ADMIN")}
-                                <a
-                                    href="{$base_url}user/delete?id={$objUser->getId()}" class="">
+                                <a href="{$base_url}user/delete?id={$objUser->getId()}" class="">
                                     <i class="hover:text-red-600 text-red-400 fa-solid fa-trash"></i>
                                 </a>
 
@@ -63,7 +61,7 @@
             </tbody>
         </table>
 
-    </div> 
+    </div>
 
 
 {/block}

@@ -32,9 +32,7 @@
           {/foreach}
         </select>
       </div>
-
-
-      <!-- Test dropdown -->
+ 
       <div class="form-group">
         <label for="test">Exam :</label>
         <select

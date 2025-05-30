@@ -18,7 +18,7 @@ class User extends Entity{
     private string $_isbanned;
     private string $_regist_date;
     
-    // Getters and Setters ID
+    
     public function getId() :int{
         return $this->_id;
     }
@@ -27,7 +27,7 @@ class User extends Entity{
         $this->_id = $intId;
     }
 
-    // Getters and Setters Last Name
+    
     public function getName() :string{
         return $this->_name;
     }
@@ -37,7 +37,7 @@ class User extends Entity{
         $this->_name = filter_var($strName, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     }
 
-    // Getters and Setters First Name
+    
     public function getFirstName() :string{
         return $this->_firstName;
     }
@@ -48,7 +48,7 @@ class User extends Entity{
     }
 
     
-    // Getters and Setters Email
+  
     public function getEmail() :string{
         return $this->_email;
     }
@@ -57,7 +57,7 @@ class User extends Entity{
         $this->_email = $strEmail;
     }
 
-    // Getters and Setters Phone
+
     public function getPhone() :string{
         return $this->_phone;
     }
@@ -66,7 +66,7 @@ class User extends Entity{
         $this->_phone = $strPhone;
     }
 
-    // Getters and Setters Password
+
     public function getPassword() :string{
         return $this->_password;
     }
@@ -79,7 +79,7 @@ class User extends Entity{
         return password_hash($this->_password, PASSWORD_DEFAULT);
     }
     
-    // Getter and setter for user role
+
     public function getRole() :string{
         return $this->_role;
     }
@@ -88,7 +88,7 @@ class User extends Entity{
         $this->_role = $strRole;
     }
 
-    // Getter and setters isBanned
+
     public function getIsBanned() :string{
         return $this->_isbanned;
     }
@@ -97,7 +97,7 @@ class User extends Entity{
         $this->_isbanned = $strIsBanned;
     }
 
-    // Getters and Setters Registration Date
+
     public function getRegist_date() :string{
         return $this->_regist_date;
     }

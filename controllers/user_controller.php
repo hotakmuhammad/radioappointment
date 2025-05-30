@@ -1,8 +1,5 @@
 <?php
-
-//include_once ("models/unifinder_model.php");
-
-
+ 
 include_once("models/user_model.php");
 include_once("entities/user_entity.php");
 
@@ -13,8 +10,7 @@ class UserCtrl extends Ctrl {
 
         $objUser = new User();
         if(count($_POST) > 0) {
-            // var_dump($_POST); 
-            // exit();
+
             $objUser->hydrate($_POST);
 
             $this->_arrErrors = $this->_verifyInfos($objUser);

@@ -2,10 +2,9 @@
     <div class="container mx-auto px-4">
 
         <div class="max-w-2xl mx-auto bg-white rounded-xl ">
-            {* <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">
-                Appointments details</h1> *}
+
             <dl class="space-y-6 border-b border-gray-600 ">
-                {* {if ( isset($user.user_id) && $user.user_id != '' ) } *}
+
                     <div class="flex items-center justify-between border-b border-gray-200 pb-1">
                         <dt class="text-sm font-medium text-gray-600">Nom</dt>
                         <dd class="text-lg text-gray-900">{$objApt->getUserName()}</dd>
@@ -15,7 +14,7 @@
                         <dt class="text-sm font-medium text-gray-600">Prénom</dt>
                         <dd class="text-lg text-gray-900">{$objApt->getUserFirstname()}</dd>
                     </div>
-                {* {/if} *}
+
                 <div class="flex items-center justify-between border-b border-gray-200 pb-1">
                     <dt class="text-sm font-medium text-gray-600">Appointment</dt>
                     <dd class="text-lg text-gray-900">{$objApt->getAppointment()}</dd>
