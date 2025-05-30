@@ -30,24 +30,24 @@
                                     alt="Avatar de {$objUser->getName()}" />                                                        
                             </div>
                     <dl class="space-y-6">
-                        <!-- Name -->
+
                         <div class="flex items-center justify-between border-b border-gray-200 pb-4">
                             <dt class="text-sm font-medium text-gray-600">Nom</dt>
                             <dd class="text-lg text-gray-900">{$objUser->getName()}</dd>
                         </div>
-                        <!-- First Name -->
+
                         <div class="flex items-center justify-between border-b border-gray-200 pb-4">
                             <dt class="text-sm font-medium text-gray-600">Prénom</dt>
                             <dd class="text-lg text-gray-900">{$objUser->getFirstName()}</dd>
                         </div>
-                        <!-- Phone -->
+
                         <div class="flex items-center justify-between border-b border-gray-200 pb-4">
                             <dt class="text-sm font-medium text-gray-600">Téléphone</dt>
                             <dd class="text-lg text-gray-900">{$objUser->getPhone()}</dd>
                         </div>
-                        <!-- Email -->
+
                         <div class="flex items-center justify-between">
-                            <dt class="text-sm font-medium text-gray-600">Email</dt>
+                            <dt class="text-sm font-medium text-gray-600">Adresse mail</dt>
                             <dd  class="text-lg text-gray-900">{$objUser->getEmail()}</dd>
                         </div>
                     </dl>
@@ -87,7 +87,7 @@
                         
                         {if $isAdminOrSuperAdmin}
                             <div>
-                                <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Roles</label>
+                                <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Rôle</label>
                                 <select name="role" id="role"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
                                     <option value="USER" {if $objUser->getRole() == "USER"}selected{/if}  >USER</option>
@@ -108,23 +108,12 @@
                                 </select>
                             </div>
                             {/if}
-                        {* Uncomment and style if needed
-                        <div>
-                            <label for="pseudo" class="block text-sm font-medium text-gray-700 mb-2">Pseudo</label>
-                            <input 
-                                type="text" 
-                                name="pseudo" 
-                                id="pseudo" 
-                                value="{if isset($smarty.cookies.pseudo)}{$smarty.cookies.pseudo}{/if}"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
-                            >
-                        </div>
-                    *}
+
                     </div>
                 
                 {/if}
                 </fieldset>
-                {* Password fields only for logged-in user editing their own profile *}
+
                 {if $isOwnProfile}
                 <fieldset class="space-y-6">
                     <legend class="text-xl font-medium text-gray-700 border-b pb-2">Informations de connexion</legend>
@@ -156,10 +145,6 @@
                 </div>
             </form>
         </div>
-        <p>
-            Sqaan@444$hello124578
-            </br>
-            Sqaan@444$hello1245
-        </p>
+
     </main>
 {/block}

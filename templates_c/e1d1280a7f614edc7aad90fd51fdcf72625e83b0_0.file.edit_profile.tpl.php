@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-05 10:28:51
+/* Smarty version 4.3.4, created on 2025-05-30 21:04:24
   from 'C:\wamp64\www\radioappointment\views\edit_profile.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_681892e3de8da5_59048293',
+  'unifunc' => 'content_683a1d58a07be3_16444932',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e1d1280a7f614edc7aad90fd51fdcf72625e83b0' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\edit_profile.tpl',
-      1 => 1746440930,
+      1 => 1748639058,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_681892e3de8da5_59048293 (Smarty_Internal_Template $_smarty_tpl) {
+function content_683a1d58a07be3_16444932 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1863191787681892e3dd4851_84689788', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1454387221683a1d58995043_89109036', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_1863191787681892e3dd4851_84689788 extends Smarty_Internal_Block
+class Block_1454387221683a1d58995043_89109036 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_1863191787681892e3dd4851_84689788',
+    0 => 'Block_1454387221683a1d58995043_89109036',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -82,27 +82,27 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 " />                                                        
                             </div>
                     <dl class="space-y-6">
-                        <!-- Name -->
+
                         <div class="flex items-center justify-between border-b border-gray-200 pb-4">
                             <dt class="text-sm font-medium text-gray-600">Nom</dt>
                             <dd class="text-lg text-gray-900"><?php echo $_smarty_tpl->tpl_vars['objUser']->value->getName();?>
 </dd>
                         </div>
-                        <!-- First Name -->
+
                         <div class="flex items-center justify-between border-b border-gray-200 pb-4">
                             <dt class="text-sm font-medium text-gray-600">Prénom</dt>
                             <dd class="text-lg text-gray-900"><?php echo $_smarty_tpl->tpl_vars['objUser']->value->getFirstName();?>
 </dd>
                         </div>
-                        <!-- Phone -->
+
                         <div class="flex items-center justify-between border-b border-gray-200 pb-4">
                             <dt class="text-sm font-medium text-gray-600">Téléphone</dt>
                             <dd class="text-lg text-gray-900"><?php echo $_smarty_tpl->tpl_vars['objUser']->value->getPhone();?>
 </dd>
                         </div>
-                        <!-- Email -->
+
                         <div class="flex items-center justify-between">
-                            <dt class="text-sm font-medium text-gray-600">Email</dt>
+                            <dt class="text-sm font-medium text-gray-600">Adresse mail</dt>
                             <dd  class="text-lg text-gray-900"><?php echo $_smarty_tpl->tpl_vars['objUser']->value->getEmail();?>
 </dd>
                         </div>
@@ -149,7 +149,7 @@ user/edit_profile<?php if (!$_smarty_tpl->tpl_vars['isOwnProfile']->value) {?>?i
                         
                         <?php if ($_smarty_tpl->tpl_vars['isAdminOrSuperAdmin']->value) {?>
                             <div>
-                                <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Roles</label>
+                                <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Rôle</label>
                                 <select name="role" id="role"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200">
                                     <option value="USER" <?php if ($_smarty_tpl->tpl_vars['objUser']->value->getRole() == "USER") {?>selected<?php }?>  >USER</option>
@@ -170,11 +170,13 @@ user/edit_profile<?php if (!$_smarty_tpl->tpl_vars['isOwnProfile']->value) {?>?i
                                 </select>
                             </div>
                             <?php }?>
-                                            </div>
+
+                    </div>
                 
                 <?php }?>
                 </fieldset>
-                                <?php if ($_smarty_tpl->tpl_vars['isOwnProfile']->value) {?>
+
+                <?php if ($_smarty_tpl->tpl_vars['isOwnProfile']->value) {?>
                 <fieldset class="space-y-6">
                     <legend class="text-xl font-medium text-gray-700 border-b pb-2">Informations de connexion</legend>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -205,11 +207,7 @@ user/edit_profile<?php if (!$_smarty_tpl->tpl_vars['isOwnProfile']->value) {?>?i
                 </div>
             </form>
         </div>
-        <p>
-            Sqaan@444$hello124578
-            </br>
-            Sqaan@444$hello1245
-        </p>
+
     </main>
 <?php
 }

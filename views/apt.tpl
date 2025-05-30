@@ -35,12 +35,12 @@
                     <dd class="text-lg text-gray-900">{$objApt->getStatus()}</dd>
                 </div>
                 <div class="flex mb-8 items-center justify-between">
-                    <dt class="text-lg text-gray-600">
+                    <dt class="text-lg m-4 text-gray-600">
                         <a href="{$base_url}appointment/edit_apt?id={$objApt->getId()}" class="inline-block px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
                              Remplacer
                         </a>
                     </dt>
-                    <dd class="text-lg text-red-900">
+                    <dd class="text-lg m-4 text-red-900">
                         <a href="{$base_url}appointment/delete_apt?id={$objApt->getId()}" class="inline-block px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700" style="background-color: #dc2626;">
                             Annuler
                         </a>

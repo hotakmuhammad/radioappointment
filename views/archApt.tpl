@@ -1,23 +1,15 @@
-{* {extends file="views/layout.tpl"} *}
-
-{* {block name="contenu"}  *}
-<section class="mt-12">
+<section class="mt-12"> 
     <div class="container mx-auto px-4"> 
         <div class="max-w-2xl mx-auto bg-white rounded-xl ">
-            {* <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">
-                Appointments details</h1> *}
-            <dl class="space-y-6 border-b border-gray-600 ">
-                {* {if ( isset($user.user_id) && $user.user_id != '' ) } *}
+            <dl class="space-y-6 border-b border-gray-600 "> 
                     <div class="flex items-center justify-between border-b border-gray-200 pb-1">
                         <dt class="text-sm font-medium text-gray-600">Nom</dt>
                         <dd class="text-lg text-gray-900">{$objApt->getUserName()}</dd>
-                    </div>
-
+                    </div> 
                     <div class="flex items-center justify-between border-b border-gray-200 pb-1">
                         <dt class="text-sm font-medium text-gray-600">Prénom</dt>
                         <dd class="text-lg text-gray-900">{$objApt->getUserFirstname()}</dd>
-                    </div>
-                {* {/if} *}
+                    </div> 
                 <div class="flex items-center justify-between border-b border-gray-200 pb-1">
                     <dt class="text-sm font-medium text-gray-600">Appointment</dt>
                     <dd class="text-lg text-gray-900">{$objApt->getAppointment()}</dd>
@@ -37,7 +29,7 @@
                     <dd class="text-lg text-gray-900">{$objApt->getStatus()}</dd>
                 </div>
                 <div class="flex mb-8 items-center justify-between">
-                    <dd class="text-lg text-red-900">
+                    <dd class="text-lg m-4 text-red-900">
                         <a href="{$base_url}appointment/delete_apt?id={$objApt->getId()}" class="inline-block px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700" style="background-color: #dc2626;">
                             Effacer
                         </a>
@@ -47,6 +39,4 @@
         </div>
 
     </div>
-</section>
-    
-{* {/block} *}
+</section> 

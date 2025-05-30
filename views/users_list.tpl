@@ -12,8 +12,7 @@
     <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.html5.min.js"></script>
  
     <div class="container mx-auto p-4">
-        <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Users List</h2>
-        {* <p class="text-gray-600 mb-6">List of users</p> *}
+        <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Liste des utilisateurs</h2>
         <hr class="border-gray-300 mb-6">
 
 
@@ -24,10 +23,10 @@
                     <th class="py-3 px-4 font-semibold text-sm">Id</th>
                     <th class="py-3 px-4 font-semibold text-sm">Nom</th>
                     <th class="py-3 px-4 font-semibold text-sm">Prénom</th>
-                    <th class="py-3 px-4 font-semibold text-sm">Email</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Adresse mail</th>
                     <th class="py-3 px-4 font-semibold text-sm">Situation</th>
                     {if (isset($smarty.session.user.user_id) && $smarty.session.user.user_role == "SUPERADMIN" || $smarty.session.user.user_role == "ADMIN")}
-                        <th class="py-3 px-4 font-semibold test-sm">Role</th>
+                        <th class="py-3 px-4 font-semibold test-sm">Rôle</th>
                     {/if}
 
                     <th class="py-3 px-4 font-semibold text-sm">Action</th>

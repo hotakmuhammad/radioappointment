@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-19 12:23:06
+/* Smarty version 4.3.4, created on 2025-05-30 20:57:23
   from 'C:\wamp64\www\radioappointment\views\apt.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_682b22aa1f79c1_01293186',
+  'unifunc' => 'content_683a1bb3709173_38467957',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '406fca5b2439ecac14ec766430e3b475f35ee013' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\apt.tpl',
-      1 => 1747657205,
+      1 => 1748638641,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_682b22aa1f79c1_01293186 (Smarty_Internal_Template $_smarty_tpl) {
+function content_683a1bb3709173_38467957 (Smarty_Internal_Template $_smarty_tpl) {
 ?><section class="mt-12"> 
     <div class="container mx-auto px-4">
 
@@ -60,14 +60,14 @@ function content_682b22aa1f79c1_01293186 (Smarty_Internal_Template $_smarty_tpl)
 </dd>
                 </div>
                 <div class="flex mb-8 items-center justify-between">
-                    <dt class="text-lg text-gray-600">
+                    <dt class="text-lg m-4 text-gray-600">
                         <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 appointment/edit_apt?id=<?php echo $_smarty_tpl->tpl_vars['objApt']->value->getId();?>
 " class="inline-block px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
                              Remplacer
                         </a>
                     </dt>
-                    <dd class="text-lg text-red-900">
+                    <dd class="text-lg m-4 text-red-900">
                         <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 appointment/delete_apt?id=<?php echo $_smarty_tpl->tpl_vars['objApt']->value->getId();?>
 " class="inline-block px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700" style="background-color: #dc2626;">

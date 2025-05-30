@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-20 13:14:36
+/* Smarty version 4.3.4, created on 2025-05-30 21:01:52
   from 'C:\wamp64\www\radioappointment\views\appointment_list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_682c803c3bac17_32054806',
+  'unifunc' => 'content_683a1cc0729fd0_93697565',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '48a95b6c92bc4af76d0c630f43bb2785b6c0c79e' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\appointment_list.tpl',
-      1 => 1747746501,
+      1 => 1748638907,
       2 => 'file',
     ),
   ),
@@ -20,25 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_682c803c3bac17_32054806 (Smarty_Internal_Template $_smarty_tpl) {
+function content_683a1cc0729fd0_93697565 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
  
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_633001488682c803c37fcf8_13425200', "js_head_users_list");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_204090571683a1cc0717103_70052328', "js_head_users_list");
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2052430149682c803c3b6451_09194063', "js_footer");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_815889748683a1cc0726df2_49208129', "js_footer");
 }
 /* {block "js_head_users_list"} */
-class Block_633001488682c803c37fcf8_13425200 extends Smarty_Internal_Block
+class Block_204090571683a1cc0717103_70052328 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js_head_users_list' => 
   array (
-    0 => 'Block_633001488682c803c37fcf8_13425200',
+    0 => 'Block_204090571683a1cc0717103_70052328',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -74,7 +74,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
     <link href="./assets/style/output.css" rel="stylesheet">
     
     <div class="container mx-auto p-4">
-        <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Appointment List</h2>
+        <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Liste de rendez-vous</h2>
         <hr class="border-gray-300 mb-6">
 
  
@@ -84,10 +84,10 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                     <th class="py-3 px-4 font-semibold text-sm">Id</th>
                     <th class="py-3 px-4 font-semibold text-sm">Nom</th>
                     <th class="py-3 px-4 font-semibold text-sm">Prénom</th>
-                    <th class="py-3 px-4 font-semibold text-sm">Appointment</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Rendez-vous</th>
                     <th class="py-3 px-4 font-semibold text-sm">Date</th>
-                    <th class="py-3 px-4 font-semibold text-sm">Time</th>
-                    <th class="py-3 px-4 font-semibold text-sm">Stautus</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Heure</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Statut</th>
                 <th class="py-3 px-4 font-semibold text-sm">Action</th>
             </tr>
         </thead>
@@ -139,12 +139,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 }
 /* {/block "js_head_users_list"} */
 /* {block "js_footer"} */
-class Block_2052430149682c803c3b6451_09194063 extends Smarty_Internal_Block
+class Block_815889748683a1cc0726df2_49208129 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js_footer' => 
   array (
-    0 => 'Block_2052430149682c803c3b6451_09194063',
+    0 => 'Block_815889748683a1cc0726df2_49208129',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

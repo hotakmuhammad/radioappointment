@@ -14,7 +14,7 @@
     <link href="./assets/style/output.css" rel="stylesheet">
     
     <div class="container mx-auto p-4">
-        <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Appointment List</h2>
+        <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Liste de rendez-vous</h2>
         <hr class="border-gray-300 mb-6">
 
  
@@ -25,10 +25,10 @@
                     <th class="py-3 px-4 font-semibold text-sm">Id</th>
                     <th class="py-3 px-4 font-semibold text-sm">Nom</th>
                     <th class="py-3 px-4 font-semibold text-sm">Prénom</th>
-                    <th class="py-3 px-4 font-semibold text-sm">Appointment</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Rendez-vous</th>
                     <th class="py-3 px-4 font-semibold text-sm">Date</th>
-                    <th class="py-3 px-4 font-semibold text-sm">Time</th>
-                    <th class="py-3 px-4 font-semibold text-sm">Stautus</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Heure</th>
+                    <th class="py-3 px-4 font-semibold text-sm">Statut</th>
                 <th class="py-3 px-4 font-semibold text-sm">Action</th>
             </tr>
         </thead>
