@@ -1,6 +1,6 @@
 <?php
 
-//include_once ("models/unifinder_model.php");
+
 
 include_once("models/appointment_model.php");
 include_once("entities/appointment_entity.php");
@@ -17,7 +17,7 @@ class AppointmentCtrl extends Ctrl {
         } 
 
         
-        $objUser = new User(); // Get current user (e.g., from session or authentication)
+        $objUser = new User(); 
         $objUser->setId($_SESSION['user']['user_id']);
         $objUser->setName($_SESSION['user']['user_name'] ?? '');
         $objUser->setFirstname($_SESSION['user']['user_firstname'] ?? '');
@@ -87,7 +87,7 @@ class AppointmentCtrl extends Ctrl {
         $arrExams = $objAptModel->findExams();
         $arrTests = $objAptModel->findTests($intExamId ?: null);
         $arrTestsToDisplay = $arrTests;
-        // $arrErrors = array();
+        
 
         $objApt = new Appointment();
 
@@ -141,7 +141,7 @@ class AppointmentCtrl extends Ctrl {
                 }
             }
 
-            // Insert if no errors
+            
             if (count($this->_arrErrors) == 0) {
                 $intLastAptId = $objAptModel->insert($objApt);
                 if ($intLastAptId !== false) {
@@ -153,7 +153,7 @@ class AppointmentCtrl extends Ctrl {
             }
         }
 
-        // $this->_arrData["arrErrors"] = $arrErrors;
+        
         $this->_arrData["strTest"] = $strTest;
         $this->_arrData["strExam"] = $strExam;
         $this->_arrData["intExamId"] = $intExamId;
@@ -191,7 +191,7 @@ class AppointmentCtrl extends Ctrl {
         exit;
         }
 
-        $objUser = new User(); // Get current user (e.g., from session or authentication)
+        $objUser = new User();
         $objUser->setId($_SESSION['user']['user_id']);
         $objUser->setName($_SESSION['user']['user_name'] ?? '');
         $objUser->setFirstname($_SESSION['user']['user_firstname'] ?? ''); 

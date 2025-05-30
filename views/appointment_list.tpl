@@ -17,8 +17,6 @@
         <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Liste de rendez-vous</h2>
         <hr class="border-gray-300 mb-6">
 
- 
-        {* <div class="container mx-auto p-4"> *}
         <table id="aptTable" class="w-full border-collapse bg-white shadow-md rounded-lg">
             <thead>
                 <tr class="bg-gray-100 text-gray-700 text-left">

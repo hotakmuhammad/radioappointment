@@ -8,10 +8,8 @@ class Ctrl {
     protected array $_arrErrors = array();
     protected array $_arrSuccess = array();
 
-    protected array $_arrData = array();
-
-    protected array $_arrMimesType = array("image/jpeg", "image/png", "image/gif");
-
+    protected array $_arrData = array(); 
+ 
     protected array $_arrAdminPages = array();
 
     public function __construct(){
@@ -27,18 +25,17 @@ class Ctrl {
     }
     
     public function displayTemplate($strTpl, $boolDisplay = true){
-        // Initialisation de Smarty
+
         include_once("libs/smarty/Smarty.class.php");
 			$smarty = new Smarty();
 
 			foreach($this->_arrData as $key=>$value){
 				$smarty->assign($key, $value);
 			}
-			// L'utilisateur en session
+
 			$smarty->assign("user", $_SESSION['user']??array());
 			$smarty->assign("base_url", self::BASE_URL);
-
-            // Les erreurs
+ 
             $smarty->assign("arrErrors", $this->_arrErrors);
             $smarty->assign("arrSuccess", $this->_arrSuccess);
 

@@ -12,12 +12,12 @@ class Appointment extends Entity{
     private string $_status ;
     private string $_registdate;
     private int $_user_id ;
-    private string $_user_name; // Added for user_name
-    private string $_user_firstname; // Added for user_firstname
+    private string $_user_name; 
+    private string $_user_firstname; 
     private int $_test_id;
-    private string $_test_name; // Added for test_name
+    private string $_test_name; 
     private string $_appointment;
-    // private string $
+
 
     public function getId() :int{
         return $this->_id;
@@ -36,7 +36,7 @@ class Appointment extends Entity{
     }
 
     public function getDateFr() {
-        // Convertit la date au format français (jj/mm/aaaa)
+        
         $objDate = new DateTime ($this->_date);
         return $objDate->format("d/m/Y");
     }
@@ -58,7 +58,7 @@ class Appointment extends Entity{
     }
 
 
-    // Getters and Setters Registration Date
+    
     public function getRegistdate() :string{
         return $this->_registdate;
     }
