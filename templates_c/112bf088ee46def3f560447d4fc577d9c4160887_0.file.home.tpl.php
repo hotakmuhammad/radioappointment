@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-30 20:52:29
+/* Smarty version 4.3.4, created on 2025-05-30 21:58:11
   from 'C:\wamp64\www\radioappointment\views\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_683a1a8dabba68_79787333',
+  'unifunc' => 'content_683a29f3a28d57_93288407',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '112bf088ee46def3f560447d4fc577d9c4160887' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\home.tpl',
-      1 => 1748638303,
+      1 => 1748640460,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_683a1a8dabba68_79787333 (Smarty_Internal_Template $_smarty_tpl) {
+function content_683a29f3a28d57_93288407 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1177040880683a1a8da6d319_69975627', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_420520302683a29f3a1b422_54347618', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_1177040880683a1a8da6d319_69975627 extends Smarty_Internal_Block
+class Block_420520302683a29f3a1b422_54347618 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_1177040880683a1a8da6d319_69975627',
+    0 => 'Block_420520302683a29f3a1b422_54347618',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -91,9 +91,7 @@ $_smarty_tpl->tpl_vars['exam']->do_else = false;
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </select>
       </div>
-
-
-      <!-- Test dropdown -->
+ 
       <div class="form-group">
         <label for="test">Exam :</label>
         <select
