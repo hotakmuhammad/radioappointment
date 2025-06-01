@@ -24,11 +24,10 @@
             </div>
         {/if}
 
-        <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Creation account Page</h1>
+        <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Inscription</h1>
 
         <form action="{$base_url}/user/registration" method="post" class="space-y-6">
-            <h2 class="text-2xl font-medium text-gray-700 mb-4">Sign Up</h2>
-            <p class="text-gray-600 mb-6">Please fill in this form to create an account.</p>
+            <p class="text-gray-600 mb-6">Veuillez completer le formulaire pour créer votre compte</p>
             <hr class="border-gray-300 mb-6">
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

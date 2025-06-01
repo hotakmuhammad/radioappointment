@@ -16,7 +16,7 @@
         </div>
     {/if}
     <div class="max-w-lg mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
-        <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Login Page</h1>
+        <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Connexion</h1>
 
         <form action="{$base_url}user/login" method="post" class="space-y-6">
             <div class="max-w-md mx-auto">
