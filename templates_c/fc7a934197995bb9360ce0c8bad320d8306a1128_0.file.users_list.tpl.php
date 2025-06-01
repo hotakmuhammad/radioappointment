@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-30 21:02:32
+/* Smarty version 4.3.4, created on 2025-05-31 21:42:55
   from 'C:\wamp64\www\radioappointment\views\users_list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_683a1ce8edeae9_77075993',
+  'unifunc' => 'content_683b77df74a2e0_30577933',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fc7a934197995bb9360ce0c8bad320d8306a1128' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\users_list.tpl',
-      1 => 1748638950,
+      1 => 1748640531,
       2 => 'file',
     ),
   ),
@@ -20,22 +20,22 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_683a1ce8edeae9_77075993 (Smarty_Internal_Template $_smarty_tpl) {
+function content_683b77df74a2e0_30577933 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1950192273683a1ce8ec9c11_88024451', "js_head_users_list");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_748166824683b77df6b06d8_53639608', "js_head_users_list");
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1936520885683a1ce8edded2_08382576', "js_footer");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_956499084683b77df73e8c9_97744744', "js_footer");
 }
 /* {block "js_head_users_list"} */
-class Block_1950192273683a1ce8ec9c11_88024451 extends Smarty_Internal_Block
+class Block_748166824683b77df6b06d8_53639608 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js_head_users_list' => 
   array (
-    0 => 'Block_1950192273683a1ce8ec9c11_88024451',
+    0 => 'Block_748166824683b77df6b06d8_53639608',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -68,7 +68,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
     <?php echo '<script'; ?>
  src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.html5.min.js"><?php echo '</script'; ?>
 >
- 
+
     <div class="container mx-auto p-4">
         <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Liste des utilisateurs</h2>
         <hr class="border-gray-300 mb-6">
@@ -114,15 +114,13 @@ $_smarty_tpl->tpl_vars['objUser']->do_else = false;
                         <?php }?>
 
                         <td class="py-3 px-4 ">
-                            <a
-                                href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+                            <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 user/edit_profile?id=<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getId();?>
 " class="">
                                 <i class="hover:text-blue-600 text-blue-400 fa-solid fa-pen-to-square"></i>
                             </a> /
                             <?php if (((isset($_SESSION['user']['user_id'])) && $_SESSION['user']['user_role'] == "SUPERADMIN" || $_SESSION['user']['user_role'] == "ADMIN")) {?>
-                                <a
-                                    href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+                                <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 user/delete?id=<?php echo $_smarty_tpl->tpl_vars['objUser']->value->getId();?>
 " class="">
                                     <i class="hover:text-red-600 text-red-400 fa-solid fa-trash"></i>
@@ -138,7 +136,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             </tbody>
         </table>
 
-    </div> 
+    </div>
 
 
 <?php
@@ -146,12 +144,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 }
 /* {/block "js_head_users_list"} */
 /* {block "js_footer"} */
-class Block_1936520885683a1ce8edded2_08382576 extends Smarty_Internal_Block
+class Block_956499084683b77df73e8c9_97744744 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js_footer' => 
   array (
-    0 => 'Block_1936520885683a1ce8edded2_08382576',
+    0 => 'Block_956499084683b77df73e8c9_97744744',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

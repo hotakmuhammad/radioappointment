@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-20 13:09:41
+/* Smarty version 4.3.4, created on 2025-06-01 19:50:50
   from 'C:\wamp64\www\radioappointment\views\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_682c7f15483308_68584755',
+  'unifunc' => 'content_683caf1a1fcba5_64341732',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '36440be06c0410b9ce23665e374084ee2c56a8a8' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\login.tpl',
-      1 => 1747746579,
+      1 => 1748807448,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_682c7f15483308_68584755 (Smarty_Internal_Template $_smarty_tpl) {
+function content_683caf1a1fcba5_64341732 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_918310587682c7f1547e4c8_08366465', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1121932872683caf1a1f7ba5_85151266', "contenu");
 ?>
  <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_918310587682c7f1547e4c8_08366465 extends Smarty_Internal_Block
+class Block_1121932872683caf1a1f7ba5_85151266 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_918310587682c7f1547e4c8_08366465',
+    0 => 'Block_1121932872683caf1a1f7ba5_85151266',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -66,7 +66,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </div>
     <?php }?>
     <div class="max-w-lg mx-auto p-8 bg-white rounded-xl shadow-lg mt-12">
-        <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Login Page</h1>
+        <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Connexion</h1>
 
         <form action="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 user/login" method="post" class="space-y-6">

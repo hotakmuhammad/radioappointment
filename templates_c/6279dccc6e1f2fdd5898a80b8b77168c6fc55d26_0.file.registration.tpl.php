@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-05-20 13:10:09
+/* Smarty version 4.3.4, created on 2025-06-01 19:49:43
   from 'C:\wamp64\www\radioappointment\views\registration.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_682c7f31f28427_45290407',
+  'unifunc' => 'content_683caed73f1360_65229023',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6279dccc6e1f2fdd5898a80b8b77168c6fc55d26' => 
     array (
       0 => 'C:\\wamp64\\www\\radioappointment\\views\\registration.tpl',
-      1 => 1747746608,
+      1 => 1748807380,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_682c7f31f28427_45290407 (Smarty_Internal_Template $_smarty_tpl) {
+function content_683caed73f1360_65229023 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1936608512682c7f31f20808_12859329', "contenu");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_121040876683caed73e9e24_13192264', "contenu");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "views/layout.tpl");
 }
 /* {block "contenu"} */
-class Block_1936608512682c7f31f20808_12859329 extends Smarty_Internal_Block
+class Block_121040876683caed73e9e24_13192264 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'contenu' => 
   array (
-    0 => 'Block_1936608512682c7f31f20808_12859329',
+    0 => 'Block_121040876683caed73e9e24_13192264',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -71,14 +71,13 @@ $_smarty_tpl->tpl_vars['strError']->do_else = false;
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </ul>
             </div>
-        <?php }?> 
+        <?php }?>
 
-        <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Creation account Page</h1> 
+        <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Inscription</h1>
 
         <form action="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 /user/registration" method="post" class="space-y-6">
-            <h2 class="text-2xl font-medium text-gray-700 mb-4">Sign Up</h2>
-            <p class="text-gray-600 mb-6">Please fill in this form to create an account.</p>
+            <p class="text-gray-600 mb-6">Veuillez completer le formulaire pour créer votre compte</p>
             <hr class="border-gray-300 mb-6">
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -131,10 +130,10 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     class="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200 cursor-pointer">
             </div>
         </form>
-            <div class="p-4 text-center item-center">
-                <p>Si vous avez déjà un compte, connectez vous <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+        <div class="p-4 text-center item-center">
+            <p>Si vous avez déjà un compte, connectez vous <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 user/login" class="text-blue-700">ici</a></p>
-            </div>
+        </div>
     </div>
 <?php
 }
