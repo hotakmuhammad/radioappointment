@@ -58,7 +58,7 @@ Cette application vise à :
 > (À adapter selon la stack que tu as utilisée)
 
 - **Frontend** : HTML, CSS, JavaScript
-- **Backend** : PHP / Node.js / Python / autre ?
+- **Backend** : PHP
 - **Base de données** : MySQL 
 - **Sécurité** : Authentification, gestion des rôles, validation des entrées
 
