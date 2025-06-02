@@ -75,6 +75,7 @@ class UserCtrl extends Ctrl {
         $this->_arrData["strTitle"] = "Login"; 
         $this->_arrData["strDesc"] = "Page de connexion";
         $this->_arrData["email"]	= $strEmail;
+        $this->_arrData['csrf']		= $this->_generateCsrfToken();
         $this->displayTemplate("login");
 
 	}

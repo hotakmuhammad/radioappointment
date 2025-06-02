@@ -45,5 +45,13 @@ class Ctrl {
 				return $smarty->fetch("views/".$strTpl.".tpl");
 			}
     }
+	protected function _generateCsrfToken():string {
+		$strCSRFToken = bin2hex(random_bytes(32)); 
+		return $_SESSION['csrf_token'] = $strCSRFToken;
+	}
+	
+	protected function _verifyCsrfToken(string $strCSRFToken):bool {
+		return isset($_SESSION['csrf_token']) && $_SESSION['csrf_token'] === $strCSRFToken;
+	}
 }
 
