@@ -39,7 +39,7 @@
                         <td class="py-3 px-4 text-gray-600">{$objUser->getName()}</td>
                         <td class="py-3 px-4 text-gray-600">{$objUser->getFirstName()}</td>
                         <td class="py-3 px-4 text-gray-600">{$objUser->getEmail()}</td>
-                        <td class="isBanned py-3 px-4 text-gray-600">{$objUser->getIsBanned()}</td>
+                        <td class="{if $objUser->getIsBanned()}isBanned{/if} isBanned py-3 px-4 text-gray-600">{$objUser->getIsBanned()}</td>
                         {if (isset($smarty.session.user.user_id) && $smarty.session.user.user_role == "SUPERADMIN" || $smarty.session.user.user_role == "ADMIN")}
                             <td class=" py-3 px-4 text-gray-600">{$objUser->getRole()}</td>
                         {/if}

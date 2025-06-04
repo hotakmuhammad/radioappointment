@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+.isBanned {
+    color: red;
+}
+

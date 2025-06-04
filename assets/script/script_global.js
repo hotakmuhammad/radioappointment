@@ -1,13 +1,4 @@
-const areBanned = document.getElementsByClassName('isBanned'); 
- 
-for(let isBanned of areBanned) {
-
-    if(isBanned && isBanned.textContent.trim() === "ISBANNED"){
-        isBanned.style.color = "red";
-    }  
-} 
- 
-  const userBtn = document.getElementById('userMenuButton');
+  const userBtn = document.getElementById('userMenuButton'); 
   const userDropdown = document.getElementById('userDropdown');
   const mobileBtn = document.getElementById('mobileMenuButton');
   const mobileMenu = document.getElementById('mobileMenu');
