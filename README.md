@@ -55,8 +55,6 @@ Cette application vise à :
 
 ## 🛠️ Technologies utilisées
 
-> (À adapter selon la stack que tu as utilisée)
-
 - **Frontend** : HTML, CSS, JavaScript
 - **Backend** : PHP 
 - **Base de données** : MySQL 
